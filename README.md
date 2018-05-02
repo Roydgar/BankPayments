@@ -4,7 +4,7 @@ Bank payments system.
 
 
 
-##Project description
+## Project description
 
 Bank payments system. User owns one or more accounts(deposit, credit). 
 Access to your Account can be obtained after entering 
