@@ -21,7 +21,6 @@ public class Account {
 
     private Type type;
 
-
     public Money getBalance() {
         return balance;
     }
