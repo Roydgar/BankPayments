@@ -1,9 +1,9 @@
 package ua.training.model.dao.impl;
 
-import ua.training.exception.LoginFailedException;
+import ua.training.exception.NoResultFromDbException;
 import ua.training.model.dao.UserDao;
 import ua.training.model.dao.impl.constants.ColumnNames;
-import ua.training.model.dao.impl.constants.Queries;
+import ua.training.model.dao.impl.constants.UserQueries;
 import ua.training.model.entity.User;
 import ua.training.util.constants.ExceptionMessages;
 
@@ -22,7 +22,7 @@ public class JDBCUserDao implements UserDao {
     @Override
     public void create(User user) {
         try (PreparedStatement ps = connection.prepareStatement
-                (Queries.USER_CREATE)){
+                (UserQueries.CREATE)){
 
             prepareCreateUpdateQuery(user, ps);
 
@@ -33,18 +33,19 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
-    public User findById(int id) {
+    public User findById(int id) throws NoResultFromDbException {
         try (PreparedStatement ps = connection.prepareStatement
-                (Queries.USER_FIND_BY_ID)){
+                (UserQueries.FIND_BY_ID)){
             ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
             if( rs.next() ){
                 return extractFromResultSet(rs);
+            } else {
+                throw new NoResultFromDbException(ExceptionMessages.NO_RESULT_FROM_DB);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     private User extractFromResultSet(ResultSet rs)
@@ -62,7 +63,7 @@ public class JDBCUserDao implements UserDao {
     public List<User> findAll() {
         List<User> resultList = new ArrayList<>();
         try (Statement ps = connection.createStatement()){
-            ResultSet rs = ps.executeQuery(Queries.USER_FIND_ALL);
+            ResultSet rs = ps.executeQuery(UserQueries.FIND_ALL);
 
             while ( rs.next() ){
                 resultList.add(extractFromResultSet(rs));
@@ -77,7 +78,7 @@ public class JDBCUserDao implements UserDao {
     @Override
     public void update(User user) {
         try (PreparedStatement ps = connection.prepareStatement(
-                Queries.USER_UPDATE)){
+                UserQueries.UPDATE)){
             prepareCreateUpdateQuery(user, ps);
 
             ps.executeUpdate();
@@ -88,7 +89,7 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public void delete(int id) {
-        try (PreparedStatement ps = connection.prepareStatement(Queries.USER_DELETE)){
+        try (PreparedStatement ps = connection.prepareStatement(UserQueries.DELETE)){
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -107,8 +108,8 @@ public class JDBCUserDao implements UserDao {
 
     //Todo: think about null
     @Override
-    public User login(String login, String password) throws LoginFailedException {
-        try (PreparedStatement ps = connection.prepareStatement(Queries.USER_LOGIN)){
+    public User login(String login, String password) throws NoResultFromDbException {
+        try (PreparedStatement ps = connection.prepareStatement(UserQueries.LOGIN)){
             ps.setString(1, login);
             ps.setString(2, password);
 
@@ -117,7 +118,7 @@ public class JDBCUserDao implements UserDao {
             if( rs.next() ){
                 return extractFromResultSet(rs);
             } else {
-                throw new LoginFailedException(ExceptionMessages.LOGIN_FAILED);
+                throw new NoResultFromDbException(ExceptionMessages.LOGIN_FAILED);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -126,7 +127,7 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public boolean userExists(String login) {
-        try (PreparedStatement ps = connection.prepareStatement(Queries.USER_FIND_BY_LOGIN)){
+        try (PreparedStatement ps = connection.prepareStatement(UserQueries.FIND_BY_LOGIN)){
             ps.setString(1, login.toLowerCase());
 
             ResultSet rs = ps.executeQuery();
