@@ -1,7 +1,7 @@
 package ua.training.model.service;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import ua.training.exception.LoginFailedException;
+import ua.training.exception.NoResultFromDbException;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.UserDao;
 import ua.training.model.entity.User;
@@ -33,7 +33,7 @@ public class UserService {
         userDao.delete(id);
     }
 
-    public User login(String login, String password) throws LoginFailedException {
+    public User login(String login, String password) throws NoResultFromDbException {
         return userDao.login(login, DigestUtils.md5Hex(password));
     }
 

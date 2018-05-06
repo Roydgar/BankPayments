@@ -9,6 +9,7 @@ public class Account {
 
     public enum Type { CREDIT, DEPOSIT, CHECKING }
 
+    private int id;
     private Money balance;
     private String number;
 
@@ -20,6 +21,10 @@ public class Account {
     private Money balanceLimit;
 
     private Type type;
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public Money getBalance() {
         return balance;
@@ -53,9 +58,7 @@ public class Account {
         this.validityDate = validityDate;
     }
 
-    public double getRate() {
-        return rate;
-    }
+    public double getRate() { return rate; }
 
     public void setRate(double rate) {
         this.rate = rate;
@@ -90,7 +93,8 @@ public class Account {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return Double.compare(account.rate, rate) == 0 &&
+        return id == account.id &&
+                Double.compare(account.rate, rate) == 0 &&
                 Double.compare(account.accruedInterest, accruedInterest) == 0 &&
                 Objects.equals(balance, account.balance) &&
                 Objects.equals(number, account.number) &&
@@ -102,16 +106,17 @@ public class Account {
 
     @Override
     public int hashCode() {
-        return Objects.hash(balance, number, creationDate, validityDate, rate, accruedInterest, balanceLimit, type);
+        return Objects.hash(id, balance, number, creationDate, validityDate, rate, accruedInterest, balanceLimit, type);
     }
 
     @Override
     public String toString() {
         return "Account{" +
-                "balance=" + balance +
+                "id=" + id +
+                ", balance=" + balance +
                 ", number='" + number + '\'' +
-                ", creationTime=" + creationDate +
-                ", validityTime=" + validityDate +
+                ", creationDate=" + creationDate +
+                ", validityDate=" + validityDate +
                 ", rate=" + rate +
                 ", accruedInterest=" + accruedInterest +
                 ", balanceLimit=" + balanceLimit +
@@ -127,6 +132,11 @@ public class Account {
 
         public AccountBuilder setBalance(Money balance) {
             account.setBalance(balance);
+            return this;
+        }
+
+        public AccountBuilder setId(int id) {
+            account.setId(id);
             return this;
         }
 

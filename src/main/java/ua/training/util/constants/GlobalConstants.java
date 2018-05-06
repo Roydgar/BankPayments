@@ -4,4 +4,6 @@ public interface GlobalConstants {
     String ADMIN_PATTERN        = "admin";
     String CHARACTER_ENCODING   = "UTF-8";
     String CONTENT_TYPE         = "text/html";
+
+    String DEFAULT_CURRENCY     = "USD";
 }

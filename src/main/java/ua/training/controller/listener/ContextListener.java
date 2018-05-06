@@ -1,4 +1,4 @@
-package ua.training.controller;
+package ua.training.controller.listener;
 
 import ua.training.util.constants.AttributeNames;
 

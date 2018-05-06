@@ -46,7 +46,7 @@ public class Registration implements Command {
     }
 
     private void setErrorMessage(HttpServletRequest request, String errorMessage) {
-        request.setAttribute(AttributeNames.WRONG_INPUT_MESSAGE, ResourceBundleUtil.getMessage(
+        request.setAttribute(AttributeNames.WRONG_INPUT_MESSAGE, ResourceBundleUtil.getPropertyFromLangBundle(
                 errorMessage, (Locale)request.getSession().getAttribute(AttributeNames.LANGUAGE)));
     }
 }

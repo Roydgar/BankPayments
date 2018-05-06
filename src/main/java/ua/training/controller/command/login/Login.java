@@ -1,7 +1,7 @@
 package ua.training.controller.command.login;
 
 import ua.training.controller.command.Command;
-import ua.training.exception.LoginFailedException;
+import ua.training.exception.NoResultFromDbException;
 import ua.training.model.entity.User;
 import ua.training.model.service.UserService;
 import ua.training.util.DataValidator;
@@ -33,7 +33,7 @@ public class Login implements Command {
         User user;
         try {
             user = userService.login(login, password);
-        } catch (LoginFailedException e) {
+        } catch (NoResultFromDbException e) {
             setErrorMessage(request, ResponseMessages.LOGIN_ERROR);
             return PageURLs.LOGIN;
         }
@@ -55,6 +55,8 @@ public class Login implements Command {
 
     private void setErrorMessage(HttpServletRequest request, String message) {
         Locale locale = (Locale)request.getSession().getAttribute(AttributeNames.LANGUAGE);
-        request.setAttribute(AttributeNames.WRONG_INPUT_MESSAGE, ResourceBundleUtil.getMessage(message, locale));
+
+        request.setAttribute(AttributeNames.WRONG_INPUT_MESSAGE, ResourceBundleUtil.
+                getPropertyFromLangBundle(message, locale));
     }
 }
