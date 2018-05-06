@@ -4,6 +4,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import ua.training.exception.NoResultFromDbException;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.UserDao;
+import ua.training.model.dao.UserHasAccountDao;
 import ua.training.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class UserService {
     private UserDao userDao = DaoFactory.getInstance().createUserDao();
+
     public void create(String login, String password, User.Role role, String email) {
         userDao.create(new User.UserBuilder().setLogin(login).setPassword(DigestUtils.md5Hex(password))
         .setEmail(email).setRole(role).create());
