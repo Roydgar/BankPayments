@@ -1,10 +1,12 @@
 package ua.training.model.dao.impl.constants;
 
 
+import ua.training.util.constants.PropertyFileNames;
+
 import java.util.ResourceBundle;
 
 public interface UserQueries {
-    ResourceBundle bundle = ResourceBundle.getBundle("dao");
+    ResourceBundle bundle = ResourceBundle.getBundle(PropertyFileNames.DAO);
 
     String CREATE        = bundle.getString("query.user.create");
     String FIND_BY_ID    = bundle.getString("query.user.findById");

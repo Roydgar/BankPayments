@@ -4,6 +4,7 @@ import ua.training.exception.NoResultFromDbException;
 import ua.training.model.dao.UserDao;
 import ua.training.model.dao.impl.constants.ColumnNames;
 import ua.training.model.dao.impl.constants.UserQueries;
+import ua.training.model.dao.util.ExtractUtil;
 import ua.training.model.entity.User;
 import ua.training.util.constants.ExceptionMessages;
 
@@ -39,7 +40,7 @@ public class JDBCUserDao implements UserDao {
             ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
             if( rs.next() ){
-                return extractFromResultSet(rs);
+                return ExtractUtil.extractUserFromResultSet(rs);
             } else {
                 throw new NoResultFromDbException(ExceptionMessages.NO_RESULT_FROM_DB);
             }
@@ -48,16 +49,7 @@ public class JDBCUserDao implements UserDao {
         }
     }
 
-    private User extractFromResultSet(ResultSet rs)
-            throws SQLException {
-        int userId       =  rs.getInt(ColumnNames.USER_ID);
-        String login  =  rs.getString(ColumnNames.USER_LOGIN);
-        String email     = rs.getString(ColumnNames.USER_EMAIL);
-        String password  =  rs.getString(ColumnNames.USER_PASSWORD);
-        String role      =  rs.getString(ColumnNames.USER_ROLE);
-        return new User.UserBuilder().setId(userId).setLogin(login).setEmail(email).setPassword(password)
-                .setRole(User.Role.valueOf(role.toUpperCase())).create();
-    }
+
 
     @Override
     public List<User> findAll() {
@@ -66,7 +58,7 @@ public class JDBCUserDao implements UserDao {
             ResultSet rs = ps.executeQuery(UserQueries.FIND_ALL);
 
             while ( rs.next() ){
-                resultList.add(extractFromResultSet(rs));
+                resultList.add(ExtractUtil.extractUserFromResultSet(rs));
             }
 
         } catch (SQLException e) {
@@ -116,7 +108,7 @@ public class JDBCUserDao implements UserDao {
             ResultSet rs = ps.executeQuery();
 
             if( rs.next() ){
-                return extractFromResultSet(rs);
+                return ExtractUtil.extractUserFromResultSet(rs);
             } else {
                 throw new NoResultFromDbException(ExceptionMessages.LOGIN_FAILED);
             }

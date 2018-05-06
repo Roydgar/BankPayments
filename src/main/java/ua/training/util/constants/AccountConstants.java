@@ -10,5 +10,6 @@ public interface AccountConstants {
     Long DEPOSIT_BALANCE_LIMIT   = Long.parseLong(moneyBundle.getString("balance.limit.deposit"));
 
     Integer VALIDITY_TIME       = Integer.parseInt(moneyBundle.getString("validity.timeInMonth"));
+
 }
 

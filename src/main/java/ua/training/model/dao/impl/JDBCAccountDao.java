@@ -5,6 +5,7 @@ import ua.training.exception.NoResultFromDbException;
 import ua.training.model.dao.AccountDao;
 import ua.training.model.dao.impl.constants.AccountQueries;
 import ua.training.model.dao.impl.constants.ColumnNames;
+import ua.training.model.dao.util.ExtractUtil;
 import ua.training.model.entity.Account;
 import ua.training.util.AccountUtil;
 import ua.training.util.constants.ExceptionMessages;
@@ -78,7 +79,7 @@ public class JDBCAccountDao implements AccountDao{
             ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
             if( rs.next() ){
-                return extractFromResultSet(rs);
+                return ExtractUtil.extractAccountFromResultSet(rs);
             } else {
                 throw new NoResultFromDbException(ExceptionMessages.NO_RESULT_FROM_DB);
             }
@@ -94,7 +95,7 @@ public class JDBCAccountDao implements AccountDao{
             ResultSet rs = ps.executeQuery(AccountQueries.FIND_ALL);
 
             while ( rs.next() ){
-                resultList.add(extractFromResultSet(rs));
+                resultList.add(ExtractUtil.extractAccountFromResultSet(rs));
             }
 
         } catch (SQLException e) {
@@ -103,22 +104,7 @@ public class JDBCAccountDao implements AccountDao{
         return resultList;
     }
 
-    private Account extractFromResultSet(ResultSet rs) throws SQLException{
-        int accountId = rs.getInt(ColumnNames.ACCOUNT_ID);
-        String number = rs.getString(ColumnNames.ACCOUNT_NUMBER);
-        long balance  = rs.getLong(ColumnNames.ACCOUNT_BALANCE);
-        LocalDateTime creationDate = rs.getTimestamp(ColumnNames.ACCOUNT_CREATION_DATE).toLocalDateTime();
-        LocalDateTime validityDate = rs.getTimestamp(ColumnNames.ACCOUNT_VALIDITY_DATE).toLocalDateTime();
-        double rate = rs.getBigDecimal(ColumnNames.ACCOUNT_RATE).doubleValue();
-        double accruedInterest = rs.getBigDecimal(ColumnNames.ACCOUNT_ACCRUED_INTEREST).doubleValue();
-        long limit = rs.getLong(ColumnNames.ACCOUNT_LIMIT);
-        Account.Type accountType = Account.Type.valueOf(rs.getString(ColumnNames.ACCOUNT_TYPE).toUpperCase());
 
-        return new Account.AccountBuilder().setId(accountId).setNumber(number)
-                .setBalance(AccountUtil.getMoneyInDefaultCurrency(balance)).setCreationTDate(creationDate)
-                .setValidityDate(validityDate).setRate(rate).setAccruedInterest(accruedInterest)
-                .setBalanceLimit(AccountUtil.getMoneyInDefaultCurrency(limit)).setType(accountType).create();
-    }
 
     @Override
     public void update(Account entity) {
