@@ -1,7 +1,7 @@
 package ua.training.model.service;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import ua.training.exception.UserDoesntExistException;
+import ua.training.exception.LoginFailedException;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.UserDao;
 import ua.training.model.entity.User;
@@ -13,7 +13,7 @@ import java.util.List;
 public class UserService {
     private UserDao userDao = DaoFactory.getInstance().createUserDao();
     public void create(String login, String password, User.Role role, String email) {
-        userDao.create(new User.UserBuilder().setLogin(login).setPassword(encryptPassword(password))
+        userDao.create(new User.UserBuilder().setLogin(login).setPassword(DigestUtils.md5Hex(password))
         .setEmail(email).setRole(role).create());
     }
 
@@ -33,8 +33,8 @@ public class UserService {
         userDao.delete(id);
     }
 
-    public User login(String login, String password) throws UserDoesntExistException{
-        return userDao.login(login, encryptPassword(password));
+    public User login(String login, String password) throws LoginFailedException {
+        return userDao.login(login, DigestUtils.md5Hex(password));
     }
 
     public boolean userExists(String login) {
@@ -56,8 +56,5 @@ public class UserService {
         return false;
     }
 
-    private String encryptPassword(String password) {
-        return DigestUtils.md5Hex(password);
-    }
 
 }

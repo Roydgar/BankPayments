@@ -10,9 +10,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li class="active"><a href="#"> <fmt:message key="navbar.home" /> </a></li>
+                <li><a href="#"> <fmt:message key="navbar.about" /> </a></li>
+                <li><a href="#"> <fmt:message key="navbar.contacts" /> </a></li>
                 <li>
                     <br>
                     <select class="form-control" id="language" name="language" onchange="submit()">
@@ -22,7 +22,7 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> <fmt:message key="navbar.logout" /> </a></li>
             </ul>
         </div>
     </div>

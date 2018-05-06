@@ -1,10 +1,11 @@
 package ua.training.model.dao.impl;
 
-import ua.training.exception.UserDoesntExistException;
+import ua.training.exception.LoginFailedException;
 import ua.training.model.dao.UserDao;
 import ua.training.model.dao.impl.constants.ColumnNames;
 import ua.training.model.dao.impl.constants.Queries;
 import ua.training.model.entity.User;
+import ua.training.util.constants.ExceptionMessages;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -106,7 +107,7 @@ public class JDBCUserDao implements UserDao {
 
     //Todo: think about null
     @Override
-    public User login(String login, String password) throws UserDoesntExistException{
+    public User login(String login, String password) throws LoginFailedException {
         try (PreparedStatement ps = connection.prepareStatement(Queries.USER_LOGIN)){
             ps.setString(1, login);
             ps.setString(2, password);
@@ -116,7 +117,7 @@ public class JDBCUserDao implements UserDao {
             if( rs.next() ){
                 return extractFromResultSet(rs);
             } else {
-                throw new UserDoesntExistException("User doesnt exist");
+                throw new LoginFailedException(ExceptionMessages.LOGIN_FAILED);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -126,7 +127,7 @@ public class JDBCUserDao implements UserDao {
     @Override
     public boolean userExists(String login) {
         try (PreparedStatement ps = connection.prepareStatement(Queries.USER_FIND_BY_LOGIN)){
-            ps.setString(1, login);
+            ps.setString(1, login.toLowerCase());
 
             ResultSet rs = ps.executeQuery();
 

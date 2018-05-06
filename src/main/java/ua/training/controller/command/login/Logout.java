@@ -13,19 +13,15 @@ public class Logout implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         String login = (String)request.getSession().getAttribute(AttributeNames.LOGGED_USER_LOGIN);
-        System.out.println(login);
         @SuppressWarnings("unchecked")
         HashSet<String> loggedUsers = (HashSet<String>) request.getSession().getServletContext()
                 .getAttribute(AttributeNames.LOGGED_USERS);
 
-        System.out.println(loggedUsers);
         loggedUsers.remove(login);
 
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_ROLE, User.Role.UNKNOWN);
-        request.getSession().getServletContext()
-                .setAttribute(AttributeNames.LOGGED_USERS, loggedUsers);
+        request.getSession().getServletContext().setAttribute(AttributeNames.LOGGED_USERS, loggedUsers);
 
-        System.out.println(loggedUsers);
         return PageURLs.INDEX;
     }
 }

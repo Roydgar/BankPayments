@@ -32,11 +32,13 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="./view/login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="./view/login.jsp">
+                    <span class="glyphicon glyphicon-log-in"></span> <fmt:message key="index.link.login" /></a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="./view/registration.jsp">Register</a></li>
+                <li><a href="./view/registration.jsp"> <span class="glyphicon glyphicon-user"></span>
+                    <fmt:message key="index.link.registration" /></a></li>
             </ul>
         </div>
     </div>

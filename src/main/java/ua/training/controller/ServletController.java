@@ -5,6 +5,7 @@ import ua.training.controller.command.login.Login;
 import ua.training.controller.command.login.Logout;
 import ua.training.controller.command.login.Registration;
 import ua.training.model.service.UserService;
+import ua.training.util.constants.AttributeNames;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -22,10 +23,9 @@ public class ServletController extends HttpServlet {
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         UserService userService = new UserService();
-        System.out.println("Init");
 
         servletConfig.getServletContext()
-                .setAttribute("loggedUsers", new HashSet<String>());
+                .setAttribute(AttributeNames.LOGGED_USERS, new HashSet<String>());
 
         commands.put("login", new Login(userService));
         commands.put("registration", new Registration(userService));

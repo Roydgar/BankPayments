@@ -10,28 +10,30 @@
 
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><button class="btn btn-info" data-toggle="collapse"
-                            data-target="#hide-me">Choose an account</button>
+                            data-target="#hide-me"><fmt:message key="sidebar.chooseAnAccount" /></button>
                     <div id="hide-me" class="collapse in">
-                        <label for="sort-by">Sort by</label>
+                        <label for="sort-by"><fmt:message key="sidebar.sortBy" /></label>
                         <select class="form-control" id="sort-by">
-                            <option value="balance">Balance</option>
-                            <option value="type">Type</option>
-                            <option value="time">Creation time</option>
+                            <option value="balance"><fmt:message key="sidebar.sortBy.balance" /></option>
+                            <option value="type"><fmt:message key="sidebar.sortBy.type" /></option>
+                            <option value="time"><fmt:message key="sidebar.sortBy.creationTime" /></option>
                         </select>
+
                         <ul class="list-group">
                             <c:forEach var="account" items="${sessionScope.accounts}">
                                 <li class="list-group-item">account.number  :  account:balance</li>
                             </c:forEach>
                         </ul>
+
                     </div></li>
-                <li class="active"><a href="#section1">Info</a></li>
-                <li><a href="#section2">Do operation</a></li>
-                <li><a href="#section3">Operation history</a></li>
-                <li><a href="#section4">Add an user to your account</a></li>
-                <li><a href="open-account.jsp">Open a new account</a></li>
+                <li class="active"><a href="#section1"><fmt:message key="sidebar.accountInfo" /></a></li>
+                <li><a href="#section2"><fmt:message key="sidebar.doOperation" /></a></li>
+                <li><a href="#section3"><fmt:message key="sidebar.operationHistory" /></a></li>
+                <li><a href="#section4"><fmt:message key="sidebar.addUserToAccount" /></a></li>
+                <li><a href="open-account.jsp"><fmt:message key="sidebar.openAccount" /></a></li>
             </ul><br>
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search">
+                <input type="text" class="form-control" placeholder="<fmt:message key="sidebar.search" />">
                 <span class="input-group-btn">
           <button class="btn btn-default" type="button">
             <span class="glyphicon glyphicon-search"></span>

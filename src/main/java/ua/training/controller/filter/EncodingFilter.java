@@ -19,7 +19,7 @@ public class EncodingFilter implements Filter {
         servletResponse.setContentType(GlobalConstants.CONTENT_TYPE);
         servletResponse.setCharacterEncoding(GlobalConstants.CHARACTER_ENCODING);
         servletRequest.setCharacterEncoding(GlobalConstants.CHARACTER_ENCODING);
-        System.out.println("Encodings");
+
         filterChain.doFilter(servletRequest,servletResponse);
     }
 
