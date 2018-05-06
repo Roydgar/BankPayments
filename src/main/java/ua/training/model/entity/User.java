@@ -6,6 +6,7 @@ public class User {
     private int id;
     private String login;
     private String password;
+    private String email;
     private Role role;
 
     public int getId() {
@@ -40,6 +41,11 @@ public class User {
 
     public boolean isAdmin() {return role == Role.ADMIN; }
 
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,20 +54,22 @@ public class User {
         return id == user.id &&
                 Objects.equals(login, user.login) &&
                 Objects.equals(password, user.password) &&
+                Objects.equals(email, user.email) &&
                 role == user.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, role);
+
+        return Objects.hash(id, login, password, email, role);
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + login + '\'' +
-                ", password='" + password + '\'' +
+                ", login='" + login + '\'' +
+                ", email='" + email + '\'' +
                 ", role=" + role +
                 '}';
     }
@@ -93,6 +101,11 @@ public class User {
 
         public UserBuilder setRole(Role role) {
             user.setRole(role);
+            return this;
+        }
+
+        public UserBuilder setEmail(String email) {
+            user.setEmail(email);
             return this;
         }
 

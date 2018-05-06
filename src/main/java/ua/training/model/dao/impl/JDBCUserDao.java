@@ -1,5 +1,6 @@
 package ua.training.model.dao.impl;
 
+import ua.training.exception.UserDoesntExistException;
 import ua.training.model.dao.UserDao;
 import ua.training.model.dao.impl.constants.ColumnNames;
 import ua.training.model.dao.impl.constants.Queries;
@@ -22,9 +23,7 @@ public class JDBCUserDao implements UserDao {
         try (PreparedStatement ps = connection.prepareStatement
                 (Queries.USER_CREATE)){
 
-            ps.setString(1 , user.getLogin());
-            ps.setString(2 , user.getPassword());
-            ps.setString(3 , user.getRole().toString());
+            prepareCreateUpdateQuery(user, ps);
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -50,12 +49,12 @@ public class JDBCUserDao implements UserDao {
     private User extractFromResultSet(ResultSet rs)
             throws SQLException {
         int userId       =  rs.getInt(ColumnNames.USER_ID);
-        String login  =  rs.getString(ColumnNames.USER_LOGIN) ;
+        String login  =  rs.getString(ColumnNames.USER_LOGIN);
+        String email     = rs.getString(ColumnNames.USER_EMAIL);
         String password  =  rs.getString(ColumnNames.USER_PASSWORD);
         String role      =  rs.getString(ColumnNames.USER_ROLE);
-
-        return new User.UserBuilder().setId(userId).setLogin(login).setPassword(password)
-                .setRole(User.Role.valueOf(role)).create();
+        return new User.UserBuilder().setId(userId).setLogin(login).setEmail(email).setPassword(password)
+                .setRole(User.Role.valueOf(role.toUpperCase())).create();
     }
 
     @Override
@@ -78,9 +77,7 @@ public class JDBCUserDao implements UserDao {
     public void update(User user) {
         try (PreparedStatement ps = connection.prepareStatement(
                 Queries.USER_UPDATE)){
-            ps.setString(1 , user.getLogin());
-            ps.setString(2 , user.getPassword());
-            ps.setString(3 , user.getRole().toString());
+            prepareCreateUpdateQuery(user, ps);
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -107,9 +104,9 @@ public class JDBCUserDao implements UserDao {
         }
     }
 
+    //Todo: think about null
     @Override
-    public User login(String login, String password) {
-        User user = null;
+    public User login(String login, String password) throws UserDoesntExistException{
         try (PreparedStatement ps = connection.prepareStatement(Queries.USER_LOGIN)){
             ps.setString(1, login);
             ps.setString(2, password);
@@ -117,12 +114,13 @@ public class JDBCUserDao implements UserDao {
             ResultSet rs = ps.executeQuery();
 
             if( rs.next() ){
-                user = extractFromResultSet(rs);
+                return extractFromResultSet(rs);
+            } else {
+                throw new UserDoesntExistException("User doesnt exist");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return user;
     }
 
     @Override
@@ -139,5 +137,12 @@ public class JDBCUserDao implements UserDao {
             throw new RuntimeException(e);
         }
         return false;
+    }
+
+    private void prepareCreateUpdateQuery(User user, PreparedStatement ps) throws SQLException {
+        ps.setString(1 , user.getLogin().toLowerCase());
+        ps.setString(2, user.getEmail().toLowerCase());
+        ps.setString(3 , user.getPassword());
+        ps.setString(4 , user.getRole().toString());
     }
 }
