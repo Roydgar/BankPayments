@@ -1,10 +1,6 @@
 package ua.training.util.constants;
 
-import ua.training.model.entity.Account;
-
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.concurrent.ConcurrentHashMap;
 
 public interface AccountConstants {
     ResourceBundle moneyBundle = ResourceBundle.getBundle(PropertyFileNames.MONEY);

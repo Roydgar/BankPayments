@@ -1,13 +1,12 @@
 package ua.training.controller.listener;
-
-
-import ua.training.model.entity.User;
 import ua.training.util.constants.AttributeNames;
 
+import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import java.util.HashSet;
 
+@WebListener
 public class SessionListener implements HttpSessionListener {
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
