@@ -1,6 +1,7 @@
 package ua.training.controller;
 
 import ua.training.controller.command.Command;
+import ua.training.controller.command.CommandCreator;
 import ua.training.controller.command.login.Login;
 import ua.training.controller.command.login.Logout;
 import ua.training.controller.command.login.Registration;
@@ -19,17 +20,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ServletController extends HttpServlet {
-    private Map<String, Command> commands = new ConcurrentHashMap<>();
+    private CommandCreator commandCreator = new CommandCreator();
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
-        UserService userService = new UserService();
-
-        servletConfig.getServletContext()
-                .setAttribute(AttributeNames.LOGGED_USERS, new HashSet<String>());
-
-        commands.put("login", new Login(userService));
-        commands.put("registration", new Registration(userService));
-        commands.put("logout", new Logout());
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -50,16 +43,11 @@ public class ServletController extends HttpServlet {
 
         path = path.replaceAll(".*/" , "");
 
-        Command command = commands.getOrDefault(path,
-                (r)->"index.jsp");
         System.out.println(path);
-        String page = command.execute(request);
+        String page = commandCreator.executeCommand(path, request);
         System.err.println(page);
-        if(page.contains("redirect")){
-            response.sendRedirect(page.replace("redirect:", ""));
-        }else {
-            request.getRequestDispatcher(page).forward(request, response);
-        }
+
+        request.getRequestDispatcher(page).forward(request, response);
     }
 
     @Override
