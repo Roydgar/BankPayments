@@ -5,5 +5,4 @@ public interface CommandNames {
     String REGISTRATION  = "registration";
     String LOGOUT        = "logout";
     String OPEN_ACCOUNT  = "open-account";
-    String SHOW_ACCOUNTS = "show-accounts";
 }

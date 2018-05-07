@@ -1,9 +1,6 @@
 package ua.training.controller.command;
 
-import ua.training.model.dao.DaoFactory;
-import ua.training.model.entity.Account;
 import ua.training.model.service.AccountService;
-import ua.training.util.DataValidator;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.PageURLs;
 
@@ -18,6 +15,8 @@ public class OpenAccount implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         String type = request.getParameter(AttributeNames.ACCOUNT_TYPE);
+
+        System.out.println(type);
 
         accountService.create(type,
                 (Integer)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID));

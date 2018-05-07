@@ -4,7 +4,6 @@ import ua.training.controller.command.Command;
 import ua.training.exception.NoResultFromDbException;
 import ua.training.model.entity.User;
 import ua.training.model.service.UserService;
-import ua.training.util.DataValidator;
 import ua.training.util.ResourceBundleUtil;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.ResponseMessages;
@@ -25,10 +24,6 @@ public class Login implements Command {
     public String execute(HttpServletRequest request) {
         String login = request.getParameter(AttributeNames.LOGIN);
         String password = request.getParameter(AttributeNames.PASSWORD);
-
-        if (DataValidator.parameterIsEmptyOrNull(login, password)) {
-            return PageURLs.LOGIN;
-        }
 
         User user;
         try {

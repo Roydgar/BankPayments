@@ -1,6 +1,7 @@
 package ua.training;
 
 import org.junit.Test;
+import ua.training.exception.NoResultFromDbException;
 import ua.training.model.dao.AccountDao;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.UserDao;
@@ -14,31 +15,33 @@ public class DatabaseTest {
     @Test
     public void testLogin() {
         AccountDao dao = DaoFactory.getInstance().createAccountDao();
-
+        UserHasAccountDao dao1 = DaoFactory.getInstance().createUserHasAccountDao();
         LocalDateTime when = LocalDateTime.now();
 
-        dao.create(new Account.AccountBuilder().setNumber(AccountUtil.generateAccountNumber())
-        .setBalance(AccountUtil.getZeroBalance()).setAccruedInterest(0).setRate(0)
-        .setBalanceLimit(AccountUtil.getBalanceLimit(Account.Type.CHECKING)).setCreationTDate(when)
-        .setValidityDate(AccountUtil.generateValidityTime(when)).setType(Account.Type.CHECKING).create());
-
+//        dao.create(new Account.AccountBuilder().setNumber(AccountUtil.generateAccountNumber())
+//        .setBalance(AccountUtil.getZeroBalance()).setAccruedInterest(0).setRate(0)
+//        .setBalanceLimit(AccountUtil.getBalanceLimit(Account.Type.CHECKING)).setCreationTDate(when)
+//        .setValidityDate(AccountUtil.generateValidityTime(when)).setType(Account.Type.CHECKING).create());
+        dao1.create(4, 3);
         System.out.println(dao.findAll());
 
     }
 
     @Test
     public void test() {
-        UserHasAccountDao dao = DaoFactory.getInstance().createUserHasAccountDao();
-        System.out.println(dao.findUsersByAccountId(2));
+        AccountDao accountDao = DaoFactory.getInstance().createAccountDao();
     }
 
     @Test
     public void testFindAll(){
         AccountDao accountDao = DaoFactory.getInstance().createAccountDao();
         UserDao userDao = DaoFactory.getInstance().createUserDao();
+        try {
+            System.out.println(accountDao.findByNumber(""));
 
-        System.out.println(accountDao.findAll());
-        System.out.println(userDao.findAll());
+        } catch (NoResultFromDbException e) {
+            e.printStackTrace();
+        }
     }
 
 }

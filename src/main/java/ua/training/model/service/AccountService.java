@@ -25,7 +25,7 @@ public class AccountService {
     }
 
     public void create(String type, int userId) {
-        Account.Type accountType = Account.Type.valueOf(type);
+        Account.Type accountType = Account.Type.valueOf(type.toUpperCase());
         LocalDateTime creationTime = LocalDateTime.now();
         String generatedNumber = AccountUtil.generateAccountNumber();
 
@@ -33,7 +33,7 @@ public class AccountService {
                 .setBalance(AccountUtil.getZeroBalance()).setAccruedInterest(0).setRate(0)
                 .setBalanceLimit(AccountUtil.getBalanceLimit(accountType)).setCreationTDate(creationTime )
                 .setValidityDate(AccountUtil.generateValidityTime(creationTime ))
-                .setType(Account.Type.CHECKING).create();
+                .setType(accountType).create();
         accountDao.create(account);
 
         try {

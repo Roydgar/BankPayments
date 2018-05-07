@@ -47,8 +47,14 @@
 
                     <br>
                     <c:forEach var="account" items="${sessionScope.accounts}">
-                        <li class="list-group-item"><c:out value="${account.number}"/> :
-                            <c:out value="${account.balance}"/></li>
+                        <h4 class="header-panel" >
+                            <c:out value="${account.number}"/> : <c:out value="${account.balance}"/>
+                            <br>
+                            Created: <c:out value="${account.creationDate}"/> ; Valid to <c:out value="${account.validityDate}"/>
+                            <br>
+                            Type :   <c:out value="${account.type}"/> <br>
+                            ---------------------------
+                        </h4>
                     </c:forEach>
                 </div>
             </div>

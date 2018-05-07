@@ -22,7 +22,6 @@ public class CommandExecutor {
         commands.put(CommandNames.REGISTRATION, new Registration(userService));
         commands.put(CommandNames.LOGOUT, new Logout());
         commands.put(CommandNames.OPEN_ACCOUNT, new OpenAccount(accountService));
-        commands.put(CommandNames.SHOW_ACCOUNTS, new ShowAccounts(accountService));
     }
 
 
