@@ -30,7 +30,7 @@ public class AccountUtil {
     public static String generateAccountNumber() {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < 4; i++) {
-            builder.append(random(1000, 9999)).append(" ");
+            builder.append(random(1000, 9999));
         }
         return builder.toString();
     }

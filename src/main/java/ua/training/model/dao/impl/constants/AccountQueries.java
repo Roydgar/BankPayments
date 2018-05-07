@@ -14,4 +14,5 @@ public interface AccountQueries {
     String DELETE                  = bundle.getString("query.account.delete");
     String UPDATE_BALANCE          = bundle.getString("query.account.updateBalance");
     String UPDATE_ACCRUED_INTEREST = bundle.getString("query.account.updateAccruedInterest");
+    String FIND_BY_NUMBER          = bundle.getString("query.account.findByNumber");
 }

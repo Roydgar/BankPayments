@@ -28,7 +28,7 @@
                 <li><a href="#section2"><fmt:message key="sidebar.doOperation" /></a></li>
                 <li><a href="#section3"><fmt:message key="sidebar.operationHistory" /></a></li>
                 <li><a href="#section4"><fmt:message key="sidebar.addUserToAccount" /></a></li>
-                <li><a href="open-account.jsp"><fmt:message key="sidebar.openAccount" /></a></li>
+                <li><a href="../view/open-account.jsp"><fmt:message key="sidebar.openAccount" /></a></li>
                 <li>   -----------------------------------------------------------------------------------------</li>
                 <li><a href="open-account.jsp"><fmt:message key="sidebar.admin.confirmCreditRequests" /></a></li>
                 <li><a href="open-account.jsp"><fmt:message key="sidebar.admin.addNewAdmin" /></a></li>

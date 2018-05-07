@@ -7,8 +7,8 @@ public interface PageURLs {
     String LOGIN          = "view/login.jsp";
     String REGISTRATION   = "view/registration.jsp";
 
-    String USER_MENU      = "view/user-menu.jsp";
-    String ADMIN_MENU     = "view/admin-menu.jsp";
+    String USER_MENU            = "view/user-menu.jsp";
+    String ADMIN_MENU           = "view/admin-menu.jsp";
 
     String OPEN_ACCOUNT   = "view/open-account.jsp";
 

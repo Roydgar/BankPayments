@@ -10,13 +10,15 @@
             <div class="account-wall">
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                      alt="">
-                <form class="form-signin">
+                <form class="form-signin" action="/open-account">
                     <label for="account-type">Choose an account type</label>
-                    <select class="form-control" id="account-type">
-                        <option value="one">Checking</option>
-                        <option value="two">Credit</option>
-                        <option value="three">Deposit</option>
+
+                    <select class="form-control" id="Account-type" name="account-type">
+                        <option value="Checking">Checking</option>
+                        <option value="Credit">Credit</option>
+                        <option value="Deposit">Deposit</option>
                     </select>
+
                     <button class="btn btn-lg btn-primary btn-block" type="submit">
                         Open an account</button>
                     <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>

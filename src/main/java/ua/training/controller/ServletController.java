@@ -39,8 +39,11 @@ public class ServletController extends HttpServlet {
         System.out.println(path);
         String page = commandExecutor.executeCommand(path, request);
         System.err.println(page);
-
-        request.getRequestDispatcher(page).forward(request, response);
+        if(page.contains("redirect")){
+            response.sendRedirect(page.replace("redirect:", ""));
+        }else {
+            request.getRequestDispatcher(page).forward(request, response);
+        }
     }
 
     @Override

@@ -102,7 +102,6 @@
         </div>
     </div>
 
-    ыафыаыфавывфафываdsgfsdfgываф
 </div><br>
 
 <%@ include file="/util/footer.jsp" %>

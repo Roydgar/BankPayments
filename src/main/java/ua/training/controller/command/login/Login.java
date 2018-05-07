@@ -43,14 +43,14 @@ public class Login implements Command {
             return PageURLs.ERROR;
         }
 
+        request.getSession().setAttribute(AttributeNames.LOGGED_USER_ID, user.getId());
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_LOGIN, user.getLogin().toLowerCase());
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_ROLE, user.getRole());
-
-        return getPageByRole(user);
+        return getPageByRole(user.getRole());
     }
 
-    private String getPageByRole(User user) {
-        return user.getRole() == User.Role.ADMIN ? PageURLs.ADMIN_MENU : PageURLs.USER_MENU;
+    private String getPageByRole(User.Role userRole) {
+        return userRole == User.Role.ADMIN ? PageURLs.ADMIN_MENU : PageURLs.USER_MENU;
     }
 
     private void setErrorMessage(HttpServletRequest request, String message) {

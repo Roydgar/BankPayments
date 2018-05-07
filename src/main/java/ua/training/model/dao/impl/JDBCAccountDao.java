@@ -89,6 +89,22 @@ public class JDBCAccountDao implements AccountDao{
     }
 
     @Override
+    public Account findByNumber(String number) throws NoResultFromDbException {
+        try (PreparedStatement ps = connection.prepareStatement
+                (AccountQueries.FIND_BY_NUMBER)){
+            ps.setString(1, number);
+            ResultSet rs = ps.executeQuery();
+            if( rs.next() ){
+                return ExtractUtil.extractAccountFromResultSet(rs);
+            } else {
+                throw new NoResultFromDbException(ExceptionMessages.NO_RESULT_FROM_DB);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public List<Account> findAll() {
         List<Account> resultList = new ArrayList<>();
         try (Statement ps = connection.createStatement()){
@@ -111,7 +127,7 @@ public class JDBCAccountDao implements AccountDao{
         try (PreparedStatement ps = connection.prepareStatement(
                 AccountQueries.UPDATE)){
             prepareCreateUpdateQuery(entity, ps);
-
+            ps.setInt(9, entity.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -3,6 +3,7 @@ package ua.training.controller.command;
 import ua.training.controller.command.login.Login;
 import ua.training.controller.command.login.Logout;
 import ua.training.controller.command.login.Registration;
+import ua.training.model.service.AccountService;
 import ua.training.model.service.UserService;
 import ua.training.util.constants.CommandNames;
 
@@ -15,10 +16,13 @@ public class CommandExecutor {
 
     public CommandExecutor() {
         UserService userService = new UserService();
+        AccountService accountService = new AccountService();
 
         commands.put(CommandNames.LOGIN, new Login(userService));
         commands.put(CommandNames.REGISTRATION, new Registration(userService));
         commands.put(CommandNames.LOGOUT, new Logout());
+        commands.put(CommandNames.OPEN_ACCOUNT, new OpenAccount(accountService));
+        commands.put(CommandNames.SHOW_ACCOUNTS, new ShowAccounts(accountService));
     }
 
 
