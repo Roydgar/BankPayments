@@ -3,6 +3,7 @@ package ua.training.controller.command.login;
 import ua.training.controller.command.Command;
 import ua.training.exception.NoResultFromDbException;
 import ua.training.model.entity.User;
+import ua.training.model.service.AccountService;
 import ua.training.model.service.UserService;
 import ua.training.util.ResourceBundleUtil;
 import ua.training.util.constants.AttributeNames;
@@ -15,9 +16,10 @@ import java.util.Locale;
 public class Login implements Command {
 
     private UserService userService;
-
-    public Login(UserService userService) {
+    private AccountService accountService;
+    public Login(UserService userService, AccountService accountService) {
         this.userService = userService;
+        this.accountService = accountService;
     }
 
     @Override
@@ -41,11 +43,13 @@ public class Login implements Command {
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_ID, user.getId());
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_LOGIN, user.getLogin().toLowerCase());
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_ROLE, user.getRole());
+        request.getSession().setAttribute(AttributeNames.ACCOUNTS, accountService.findAccountsByUserId(user.getId()));
+
         return getPageByRole(user.getRole());
     }
 
     private String getPageByRole(User.Role userRole) {
-        return userRole == User.Role.ADMIN ? PageURLs.ADMIN_MENU : PageURLs.USER_MENU;
+        return userRole == User.Role.ADMIN ? PageURLs.REDIRECT_ADMIN_MENU : PageURLs.REDIRECT_USER_MENU;
     }
 
     private void setErrorMessage(HttpServletRequest request, String message) {

@@ -15,13 +15,11 @@ public class CommandExecutor {
     private Map<String, Command> commands = new ConcurrentHashMap<>();
 
     public CommandExecutor() {
-        UserService userService = new UserService();
-        AccountService accountService = new AccountService();
-
-        commands.put(CommandNames.LOGIN, new Login(userService));
-        commands.put(CommandNames.REGISTRATION, new Registration(userService));
+        commands.put(CommandNames.LOGIN, new Login(new UserService(), new AccountService()));
+        commands.put(CommandNames.REGISTRATION, new Registration(new UserService()));
         commands.put(CommandNames.LOGOUT, new Logout());
-        commands.put(CommandNames.OPEN_ACCOUNT, new OpenAccount(accountService));
+        commands.put(CommandNames.OPEN_ACCOUNT, new OpenAccount(new AccountService()));
+        commands.put(CommandNames.SELECT_ACCOUNT, new SelectAccount(new AccountService()));
     }
 
 

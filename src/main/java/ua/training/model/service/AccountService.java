@@ -62,4 +62,5 @@ public class AccountService {
     public List<Account> findAccountsByUserId(int userId) {
         return userHasAccountDao.findAccountsByUserId(userId);
     }
+
 }

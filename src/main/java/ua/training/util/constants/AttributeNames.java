@@ -16,4 +16,5 @@ public interface AttributeNames {
     String ACCOUNT_TYPE        = "account-type";
 
     String ACCOUNTS            = "accounts";
+    String SELECTED_ACCOUNT    = "selectedAccount";
 }
