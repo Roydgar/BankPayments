@@ -11,10 +11,6 @@ public class AccountOperation {
     private String recipient;
     private Type type;
 
-    public AccountOperation() {
-
-    }
-
     public LocalDateTime getDate() {
         return date;
     }

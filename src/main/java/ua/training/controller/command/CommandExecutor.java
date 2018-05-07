@@ -14,16 +14,25 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CommandExecutor {
     private Map<String, Command> commands = new ConcurrentHashMap<>();
 
-    public CommandExecutor() {
+    private CommandExecutor() {
         commands.put(CommandNames.LOGIN, new Login(new UserService(), new AccountService()));
         commands.put(CommandNames.REGISTRATION, new Registration(new UserService()));
         commands.put(CommandNames.LOGOUT, new Logout());
         commands.put(CommandNames.OPEN_ACCOUNT, new OpenAccount(new AccountService()));
         commands.put(CommandNames.SELECT_ACCOUNT, new SelectAccount(new AccountService()));
+        commands.put(CommandNames.ADD_USER_TO_ACCOUNT, new AddUserToAccount(new UserService(), new AccountService()));
     }
-
 
     public String executeCommand(String command, HttpServletRequest request) {
         return commands.getOrDefault(command, (r)->"index.jsp").execute(request);
     }
+
+    private static class CommandCreatorHolder {
+        private static final CommandExecutor instance = new CommandExecutor();
+    }
+
+    public static CommandExecutor getInstance() {
+        return CommandCreatorHolder.instance;
+    }
+
 }

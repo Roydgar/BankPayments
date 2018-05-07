@@ -4,15 +4,11 @@ import org.javamoney.moneta.Money;
 import ua.training.exception.NoResultFromDbException;
 import ua.training.model.dao.AccountDao;
 import ua.training.model.dao.impl.constants.AccountQueries;
-import ua.training.model.dao.impl.constants.ColumnNames;
 import ua.training.model.dao.util.ExtractUtil;
 import ua.training.model.entity.Account;
-import ua.training.util.AccountUtil;
 import ua.training.util.constants.ExceptionMessages;
-
 import java.math.BigDecimal;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

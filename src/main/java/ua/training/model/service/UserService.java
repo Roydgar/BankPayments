@@ -6,6 +6,7 @@ import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.UserDao;
 import ua.training.model.dao.UserHasAccountDao;
 import ua.training.model.entity.User;
+import ua.training.util.constants.PageURLs;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
@@ -43,6 +44,10 @@ public class UserService {
         return userDao.userExists(login);
     }
 
+    public User getUserByLogin(String login)throws NoResultFromDbException {
+        return userDao.findUserByLogin(login);
+    }
+
     public boolean userIsLogged(HttpServletRequest request, String login) {
         @SuppressWarnings("unchecked")
         HashSet<String> loggedUsers = (HashSet<String>) request.getSession().getServletContext()
@@ -57,6 +62,5 @@ public class UserService {
                 .setAttribute("loggedUsers", loggedUsers);
         return false;
     }
-
 
 }

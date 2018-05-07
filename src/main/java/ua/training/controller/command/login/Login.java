@@ -6,17 +6,19 @@ import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.UserService;
 import ua.training.util.ResourceBundleUtil;
+import ua.training.util.UserUtil;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.ResponseMessages;
 import ua.training.util.constants.PageURLs;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Locale;
+
 
 public class Login implements Command {
 
     private UserService userService;
     private AccountService accountService;
+
     public Login(UserService userService, AccountService accountService) {
         this.userService = userService;
         this.accountService = accountService;
@@ -31,31 +33,22 @@ public class Login implements Command {
         try {
             user = userService.login(login, password);
         } catch (NoResultFromDbException e) {
-            setErrorMessage(request, ResponseMessages.LOGIN_ERROR);
+            ResourceBundleUtil.setErrorMessage(request, ResponseMessages.LOGIN_ERROR);
             return PageURLs.LOGIN;
         }
 
         if(userService.userIsLogged(request, login)) {
-            setErrorMessage(request, ResponseMessages.LOGIN_USER_IS_LOGGED);
+            ResourceBundleUtil.setErrorMessage(request, ResponseMessages.LOGIN_USER_IS_LOGGED);
             return PageURLs.ERROR;
         }
 
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_ID, user.getId());
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_LOGIN, user.getLogin().toLowerCase());
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_ROLE, user.getRole());
-        request.getSession().setAttribute(AttributeNames.ACCOUNTS, accountService.findAccountsByUserId(user.getId()));
+        request.getSession().setAttribute(AttributeNames.ACCOUNTS,
+                accountService.findAccountsByUserId(user.getId()));
 
-        return getPageByRole(user.getRole());
+        return UserUtil.getPageByRole(user.getRole());
     }
 
-    private String getPageByRole(User.Role userRole) {
-        return userRole == User.Role.ADMIN ? PageURLs.REDIRECT_ADMIN_MENU : PageURLs.REDIRECT_USER_MENU;
-    }
-
-    private void setErrorMessage(HttpServletRequest request, String message) {
-        Locale locale = (Locale)request.getSession().getAttribute(AttributeNames.LANGUAGE);
-
-        request.setAttribute(AttributeNames.WRONG_INPUT_MESSAGE, ResourceBundleUtil.
-                getPropertyFromLangBundle(message, locale));
-    }
 }

@@ -26,24 +26,17 @@ public class Registration implements Command {
 
 
         if(!password.equals(confirmPassword)) {
-            setErrorMessage(request, ResponseMessages.REGISTRATION_PASSWORDS_DONT_MATCH);
+            ResourceBundleUtil.setErrorMessage(request, ResponseMessages.REGISTRATION_PASSWORDS_DONT_MATCH);
             return PageURLs.REGISTRATION;
         }
 
         if (userService.userExists(login)) {
-            setErrorMessage(request, ResponseMessages.REGISTRATION_USER_EXISTS);
+            ResourceBundleUtil.setErrorMessage(request, ResponseMessages.REGISTRATION_USER_EXISTS);
             return PageURLs.REGISTRATION;
         }
 
         userService.create(login, password, User.Role.USER, email);
 
         return PageURLs.LOGIN;
-    }
-
-    private void setErrorMessage(HttpServletRequest request, String message) {
-        Locale locale = (Locale)request.getSession().getAttribute(AttributeNames.LANGUAGE);
-
-        request.setAttribute(AttributeNames.WRONG_INPUT_MESSAGE, ResourceBundleUtil.getPropertyFromLangBundle(
-                message, locale));
     }
 }

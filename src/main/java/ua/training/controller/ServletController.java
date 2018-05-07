@@ -4,7 +4,6 @@ import ua.training.controller.command.CommandExecutor;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,9 +12,9 @@ import java.io.IOException;
 
 public class ServletController extends HttpServlet {
 
-    private CommandExecutor commandExecutor = new CommandExecutor();
+    private CommandExecutor commandExecutor = CommandExecutor.getInstance();
     @Override
-    public void init(ServletConfig servletConfig) throws ServletException {
+    public void init(ServletConfig servletConfig){
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp)

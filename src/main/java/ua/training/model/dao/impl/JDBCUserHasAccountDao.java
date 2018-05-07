@@ -1,16 +1,11 @@
 package ua.training.model.dao.impl;
 
 import ua.training.model.dao.UserHasAccountDao;
-import ua.training.model.dao.impl.constants.AccountQueries;
-import ua.training.model.dao.impl.constants.ColumnNames;
 import ua.training.model.dao.impl.constants.UserHasAccountQueries;
 import ua.training.model.dao.util.ExtractUtil;
 import ua.training.model.entity.Account;
 import ua.training.model.entity.User;
-import ua.training.util.AccountUtil;
-
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

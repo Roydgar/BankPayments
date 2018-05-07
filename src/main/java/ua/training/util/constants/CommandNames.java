@@ -6,4 +6,5 @@ public interface CommandNames {
     String LOGOUT         = "logout";
     String OPEN_ACCOUNT   = "open-account";
     String SELECT_ACCOUNT = "select-account";
+    String ADD_USER_TO_ACCOUNT = "add-user-to-account";
 }

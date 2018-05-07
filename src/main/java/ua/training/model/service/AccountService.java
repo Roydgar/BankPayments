@@ -63,4 +63,12 @@ public class AccountService {
         return userHasAccountDao.findAccountsByUserId(userId);
     }
 
+    public void addUserToAccount(int userId, int accountId) {
+        userHasAccountDao.create(userId, accountId);
+    }
+
+    public Account findByNumber(String number) throws NoResultFromDbException{
+        return accountDao.findByNumber(number);
+    }
+
 }

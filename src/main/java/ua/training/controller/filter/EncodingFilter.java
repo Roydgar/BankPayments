@@ -3,7 +3,6 @@ package ua.training.controller.filter;
 import ua.training.util.constants.GlobalConstants;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 public class EncodingFilter implements Filter {

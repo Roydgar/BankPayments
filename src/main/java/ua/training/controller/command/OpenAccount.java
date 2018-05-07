@@ -9,17 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 public class OpenAccount implements Command {
     private AccountService accountService;
 
-    public OpenAccount(AccountService accountService) {
+    OpenAccount(AccountService accountService) {
         this.accountService = accountService;
     }
     @Override
     public String execute(HttpServletRequest request) {
         String type = request.getParameter(AttributeNames.ACCOUNT_TYPE);
+        int loggedUserId = (int)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID);
 
-        System.out.println(type);
-
-        accountService.create(type,
-                (Integer)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID));
+        accountService.create(type, loggedUserId);
 
         return PageURLs.USER_MENU;
     }

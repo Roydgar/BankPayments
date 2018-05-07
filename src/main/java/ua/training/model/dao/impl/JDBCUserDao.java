@@ -2,7 +2,6 @@ package ua.training.model.dao.impl;
 
 import ua.training.exception.NoResultFromDbException;
 import ua.training.model.dao.UserDao;
-import ua.training.model.dao.impl.constants.ColumnNames;
 import ua.training.model.dao.impl.constants.UserQueries;
 import ua.training.model.dao.util.ExtractUtil;
 import ua.training.model.entity.User;
@@ -90,7 +89,7 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
-    public void close()  {
+    public void close() throws Exception{
         try {
             connection.close();
         } catch (Exception e) {
@@ -111,6 +110,23 @@ public class JDBCUserDao implements UserDao {
                 return ExtractUtil.extractUserFromResultSet(rs);
             } else {
                 throw new NoResultFromDbException(ExceptionMessages.LOGIN_FAILED);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public User findUserByLogin(String login) throws NoResultFromDbException {
+        try (PreparedStatement ps = connection.prepareStatement(UserQueries.FIND_BY_LOGIN)){
+            ps.setString(1, login.toLowerCase());
+
+            ResultSet rs = ps.executeQuery();
+
+            if( rs.next() ){
+                return ExtractUtil.extractUserFromResultSet(rs);
+            } else {
+                throw new NoResultFromDbException(ExceptionMessages.NO_RESULT_FROM_DB);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -139,4 +155,6 @@ public class JDBCUserDao implements UserDao {
         ps.setString(3 , user.getPassword());
         ps.setString(4 , user.getRole().toString());
     }
+
+
 }
