@@ -42,4 +42,13 @@ public class JDBCDaoFactory extends DaoFactory {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public CreditRequestDao createCreditRequestDao() {
+        try {
+            return new JDBCCreditRequestDao(getConnection());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

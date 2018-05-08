@@ -8,4 +8,6 @@ public interface CommandNames {
     String OPEN_ACCOUNT         = "open-account";
     String SELECT_ACCOUNT       = "select-account";
     String ADD_USER_TO_ACCOUNT  = "add-user-to-account";
+    String SHOW_CREDIT_REQUESTS = "show-credit-requests";
+    String CONFIRM_CREDIT_REQUEST = "confirm-credit-request";
 }

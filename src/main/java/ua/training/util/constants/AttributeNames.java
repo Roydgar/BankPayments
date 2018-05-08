@@ -19,4 +19,7 @@ public interface AttributeNames {
     String SELECTED_ACCOUNT    = "selectedAccount";
     String CHOSEN_ACCOUNT      = "chosenAccount";
     String MONEY_AMOUNT        = "moneyAmount";
+
+    String CREDIT_REQUESTS     = "creditRequests";
+    String CREDIT_REQUEST_ID   = "creditRequestId";
 }

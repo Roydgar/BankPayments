@@ -15,5 +15,7 @@ public interface PageURLs {
 
     String OPEN_ACCOUNT   = "view/open-account.jsp";
 
+    String SHOW_CREDIT_REQUESTS_PAGE = "view/show-credit-requests.jsp";
+
     String ERROR          = "view/error.jsp";
 }

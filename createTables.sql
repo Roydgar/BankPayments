@@ -26,6 +26,19 @@ CREATE TABLE IF NOT EXISTS `payments`.`user` (
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `payments`.`credit_request` (
+  `credit_request_id` INT NOT NULL AUTO_INCREMENT,
+  `money_amount` BIGINT NOT NULL,
+  `date` TIMESTAMP NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`credit_request_id`),
+  INDEX `fk_credit_request_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_credit_request_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `payments`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `mydb`.`account`

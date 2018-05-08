@@ -24,8 +24,8 @@
                         $(document).ready(function() {
                             $.viewMap = {
                                 'checking' : $([]),
-                                'credit' : $('#checking-card, #money-amount'),
-                                'deposit' : $('#checking-card, #money-amount')
+                                'credit' : $('#money-amount'),
+                                'deposit' : $('#money-amount')
                             };
 
                             $('#account-type').change(function() {
@@ -36,14 +36,6 @@
                             });
                         });
                     </script>
-
-                    <div id="checking-card">
-                        <select class="form-control" id="chosenAccount" name="chosenAccount">
-                            <c:forEach var="account" items="${sessionScope.accounts}">
-                                <option value="${account.number}"><c:out value="${account.number}"/></option>
-                            </c:forEach>
-                        </select>
-                    </div>
 
                     <div id="money-amount">
                         <input type="text" class="form-control" placeholder="Money amount" name="moneyAmount">

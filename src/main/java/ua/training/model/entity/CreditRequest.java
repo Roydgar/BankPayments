@@ -76,7 +76,7 @@ public class CreditRequest {
         }
 
         public CreditRequestBuilder setUserId(int userId) {
-            creditRequest.setId(userId);
+            creditRequest.setUserId(userId);
             return this;
         }
 

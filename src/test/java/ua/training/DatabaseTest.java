@@ -2,11 +2,10 @@ package ua.training;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
-import ua.training.model.dao.AccountDao;
-import ua.training.model.dao.DaoFactory;
-import ua.training.model.dao.UserDao;
-import ua.training.model.dao.UserHasAccountDao;
+import ua.training.model.dao.*;
+import ua.training.model.entity.CreditRequest;
 import ua.training.model.entity.User;
+import ua.training.util.AccountUtil;
 
 import java.time.LocalDateTime;
 
@@ -33,10 +32,9 @@ public class DatabaseTest {
 
     @Test
     public void testFindAll(){
-        AccountDao accountDao = DaoFactory.getInstance().createAccountDao();
         UserDao userDao = DaoFactory.getInstance().createUserDao();
-        userDao.create(new User.UserBuilder().setLogin("roydgar").setPassword(DigestUtils.md5Hex("VS8241403"))
-                .setEmail("roydgaryshka@gmail.com").setRole(User.Role.ADMIN).create());
+        userDao.create(new User.UserBuilder().setLogin("roydgar").setPassword(DigestUtils.md5Hex("VS824"))
+                .setEmail("Royd@gmail.com").setRole(User.Role.ADMIN).create());
     }
 
 }
