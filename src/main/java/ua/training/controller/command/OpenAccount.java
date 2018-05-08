@@ -27,8 +27,6 @@ public class OpenAccount implements Command {
         Account.Type type = Account.Type.valueOf(request.getParameter(AttributeNames.ACCOUNT_TYPE).toUpperCase());
         int loggedUserId = (int)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID);
 
-        System.out.println(loggedUserId);
-
         if (type == Account.Type.CHECKING) {
             accountService.create(type, loggedUserId);
         } else if(type == Account.Type.DEPOSIT) {
@@ -45,6 +43,7 @@ public class OpenAccount implements Command {
 
         request.getSession().setAttribute(AttributeNames.ACCOUNTS,
                 accountService.findAccountsByUserId(loggedUserId));
+
         User.Role role = (User.Role)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ROLE);
         return UserUtil.getPageByRole(role);
     }

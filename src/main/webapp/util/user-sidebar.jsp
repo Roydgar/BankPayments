@@ -18,7 +18,7 @@
                     <c:forEach var="account" items="${sessionScope.accounts}">
                         <li class="active">
                             <form method="post" action="/select-account">
-                                <button class="btn btn-info" type="submit" name="${account.number}" value="${account.number}">
+                                <button class="btn btn-info" type="submit" name="accountToSelect" value="${account.number}">
                                     <c:out value="${account.number}"/> : <c:out value="${account.balance}"/>
                                 </button>
                             </form>

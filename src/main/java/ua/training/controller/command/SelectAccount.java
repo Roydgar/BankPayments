@@ -7,6 +7,7 @@ import ua.training.util.UserUtil;
 import ua.training.util.constants.AttributeNames;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 public class SelectAccount implements Command{
     private AccountService accountService;
@@ -18,11 +19,12 @@ public class SelectAccount implements Command{
     public String execute(HttpServletRequest request) {
         int currentUserId = (int)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID);
 
-        for (Account account : accountService.findAccountsByUserId(currentUserId)) {
-            if (request.getParameter(account.getNumber()) != null) {
-                request.getSession().setAttribute(AttributeNames.SELECTED_ACCOUNT, account);
-            }
-        }
+        //todo: get from list
+        Optional<Account> selectedAccount = accountService.findByNumber(request.getParameter("accountToSelect"));
+        System.out.println(selectedAccount.get());
+
+        request.getSession().setAttribute(AttributeNames.SELECTED_ACCOUNT, selectedAccount.get());
+
 
         User.Role role = (User.Role)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ROLE);
         return UserUtil.getPageByRole(role);
