@@ -1,16 +1,13 @@
 package ua.training.model.service;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import ua.training.exception.NoResultFromDbException;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.UserDao;
-import ua.training.model.dao.UserHasAccountDao;
 import ua.training.model.entity.User;
-import ua.training.util.constants.PageURLs;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 public class UserService {
     private UserDao userDao = DaoFactory.getInstance().createUserDao();
@@ -36,7 +33,7 @@ public class UserService {
         userDao.delete(id);
     }
 
-    public User login(String login, String password) throws NoResultFromDbException {
+    public Optional<User> login(String login, String password){
         return userDao.login(login, DigestUtils.md5Hex(password));
     }
 
@@ -44,7 +41,7 @@ public class UserService {
         return userDao.userExists(login);
     }
 
-    public User getUserByLogin(String login)throws NoResultFromDbException {
+    public Optional<User> getUserByLogin(String login){
         return userDao.findUserByLogin(login);
     }
 

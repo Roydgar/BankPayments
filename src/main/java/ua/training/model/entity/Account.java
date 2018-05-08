@@ -93,8 +93,7 @@ public class Account {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return id == account.id &&
-                Double.compare(account.rate, rate) == 0 &&
+        return  Double.compare(account.rate, rate) == 0 &&
                 Double.compare(account.accruedInterest, accruedInterest) == 0 &&
                 Objects.equals(balance, account.balance) &&
                 Objects.equals(number, account.number) &&
@@ -106,7 +105,7 @@ public class Account {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, balance, number, creationDate, validityDate, rate, accruedInterest, balanceLimit, type);
+        return Objects.hash(balance, number, creationDate, validityDate, rate, accruedInterest, balanceLimit, type);
     }
 
     @Override

@@ -1,13 +1,12 @@
 package ua.training;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
-import ua.training.exception.NoResultFromDbException;
 import ua.training.model.dao.AccountDao;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.UserDao;
 import ua.training.model.dao.UserHasAccountDao;
-import ua.training.model.entity.Account;
-import ua.training.util.AccountUtil;
+import ua.training.model.entity.User;
 
 import java.time.LocalDateTime;
 
@@ -36,12 +35,8 @@ public class DatabaseTest {
     public void testFindAll(){
         AccountDao accountDao = DaoFactory.getInstance().createAccountDao();
         UserDao userDao = DaoFactory.getInstance().createUserDao();
-        try {
-            System.out.println(accountDao.findByNumber(""));
-
-        } catch (NoResultFromDbException e) {
-            e.printStackTrace();
-        }
+        userDao.create(new User.UserBuilder().setLogin("roydgar").setPassword(DigestUtils.md5Hex("VS8241403"))
+                .setEmail("roydgaryshka@gmail.com").setRole(User.Role.ADMIN).create());
     }
 
 }

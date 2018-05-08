@@ -1,7 +1,6 @@
 package ua.training.model.service;
 
 import org.javamoney.moneta.Money;
-import ua.training.exception.NoResultFromDbException;
 import ua.training.model.dao.AccountDao;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.UserHasAccountDao;
@@ -10,6 +9,7 @@ import ua.training.util.AccountUtil;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public class AccountService {
 
@@ -24,26 +24,27 @@ public class AccountService {
         accountDao.updateAccruedInterest(accountId, accruedInterest);
     }
 
-    public void create(String type, int userId) {
-        Account.Type accountType = Account.Type.valueOf(type.toUpperCase());
+    public void create(Account.Type accountType, int userId, Money moneyAmount) {
         LocalDateTime creationTime = LocalDateTime.now();
         String generatedNumber = AccountUtil.generateAccountNumber();
 
         Account account = new Account.AccountBuilder().setNumber(generatedNumber)
-                .setBalance(AccountUtil.getZeroBalance()).setAccruedInterest(0).setRate(0)
+                .setBalance(moneyAmount).setAccruedInterest(0).setRate(0)
                 .setBalanceLimit(AccountUtil.getBalanceLimit(accountType)).setCreationTDate(creationTime )
                 .setValidityDate(AccountUtil.generateValidityTime(creationTime ))
                 .setType(accountType).create();
         accountDao.create(account);
 
-        try {
-            userHasAccountDao.create(userId, accountDao.findByNumber(generatedNumber).getId());
-        } catch (NoResultFromDbException e) {
-            throw new RuntimeException(e);
-        }
+        userHasAccountDao.create(userId, accountDao.findByNumber(generatedNumber).get().getId());
+
     }
 
-    public Account findById(int id) throws NoResultFromDbException {
+    public void create(Account.Type accountType, int userId) {
+        create(accountType, userId, AccountUtil.getInitialCheckingBalance());
+
+    }
+
+    public Optional<Account> findById(int id){
         return accountDao.findById(id);
     }
 
@@ -67,7 +68,7 @@ public class AccountService {
         userHasAccountDao.create(userId, accountId);
     }
 
-    public Account findByNumber(String number) throws NoResultFromDbException{
+    public Optional<Account> findByNumber(String number){
         return accountDao.findByNumber(number);
     }
 

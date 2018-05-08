@@ -1,6 +1,5 @@
 package ua.training.controller.command;
 
-import ua.training.exception.NoResultFromDbException;
 import ua.training.model.entity.Account;
 import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
@@ -12,6 +11,7 @@ import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.ResponseMessages;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 public class AddUserToAccount implements Command{
 
@@ -25,15 +25,14 @@ public class AddUserToAccount implements Command{
 
     @Override
     public String execute(HttpServletRequest request) {
+        Optional<Account> chosenAccount = accountService.findByNumber(
+                request.getParameter(AttributeNames.CHOSEN_ACCOUNT));
 
+        Optional<User> chosenUser = userService.getUserByLogin(request.getParameter(AttributeNames.LOGIN));
 
-        try {
-            Account chosenAccount = accountService.findByNumber(
-                    request.getParameter(AttributeNames.CHOSEN_ACCOUNT));
-            User chosenUser = userService.getUserByLogin(request.getParameter(AttributeNames.LOGIN));
-
-            accountService.addUserToAccount(chosenUser.getId(), chosenAccount.getId());
-        } catch (NoResultFromDbException e){
+        if (chosenUser.isPresent() && chosenAccount.isPresent()) {
+            accountService.addUserToAccount(chosenUser.get().getId(), chosenAccount.get().getId());
+        } else {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.LOGIN_DOESNT_EXIST);
         }
 

@@ -1,6 +1,7 @@
 package ua.training.controller;
 
 import ua.training.controller.command.CommandExecutor;
+import ua.training.util.constants.AttributeNames;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashSet;
 
 
 public class ServletController extends HttpServlet {
@@ -15,6 +17,7 @@ public class ServletController extends HttpServlet {
     private CommandExecutor commandExecutor = CommandExecutor.getInstance();
     @Override
     public void init(ServletConfig servletConfig){
+        servletConfig.getServletContext().setAttribute(AttributeNames.LOGGED_USERS, new HashSet<String>());
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp)

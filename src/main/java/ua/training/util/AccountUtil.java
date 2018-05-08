@@ -17,6 +17,10 @@ public class AccountUtil {
         return getMoneyInDefaultCurrency(0);
     }
 
+    public static Money getInitialCheckingBalance() {
+        return getMoneyInDefaultCurrency(AccountConstants.CHECKING_INITIAL_BALANCE);
+    }
+
     public static Money getBalanceLimit(Account.Type type) {
         if (type == Account.Type.CREDIT) {
             return getMoneyInDefaultCurrency(AccountConstants.CREDIT_BALANCE_LIMIT);

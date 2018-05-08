@@ -50,8 +50,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id &&
-                Objects.equals(login, user.login) &&
+        return  Objects.equals(login, user.login) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(email, user.email) &&
                 role == user.role;
@@ -60,7 +59,7 @@ public class User {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, login, password, email, role);
+        return Objects.hash(login, password, email, role);
     }
 
     @Override

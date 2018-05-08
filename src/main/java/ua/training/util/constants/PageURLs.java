@@ -6,6 +6,7 @@ public interface PageURLs {
 
     String LOGIN          = "view/login.jsp";
     String REGISTRATION   = "view/registration.jsp";
+    String ADMIN_REGISTRATION   = "view/admin-registration.jsp";
 
     String USER_MENU            = "view/user-menu.jsp";
     String REDIRECT_USER_MENU   = "redirect:view/user-menu.jsp";

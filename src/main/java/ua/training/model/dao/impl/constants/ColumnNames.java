@@ -15,6 +15,14 @@ public interface ColumnNames {
     String ACCOUNT_RATE             = "rate";
     String ACCOUNT_ACCRUED_INTEREST = "accrued_interest";
     String ACCOUNT_LIMIT            = "limit";
-    String ACCOUNT_TYPE             = "type";
+    String ACCOUNT_TYPE             = "account_type";
 
+    String OPERATION_ID             = "operation_id";
+    String OPERATION_RECIPIENT      = "recipient";
+    String OPERATION_DATE           = "date";
+    String OPERATION_TYPE           = "operation_type";
+
+    String CREDIT_REQUEST_ID           = "credit_request_id";
+    String CREDIT_REQUEST_MONEY_AMOUNT = "money_amount";
+    String CREDIT_REQUEST_DATE         = "date";
 }

@@ -1,16 +1,15 @@
 package ua.training.model.dao.impl;
 
 import org.javamoney.moneta.Money;
-import ua.training.exception.NoResultFromDbException;
 import ua.training.model.dao.AccountDao;
 import ua.training.model.dao.impl.constants.AccountQueries;
 import ua.training.model.dao.util.ExtractUtil;
 import ua.training.model.entity.Account;
-import ua.training.util.constants.ExceptionMessages;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class JDBCAccountDao implements AccountDao{
 
@@ -69,35 +68,37 @@ public class JDBCAccountDao implements AccountDao{
     }
 
     @Override
-    public Account findById(int id) throws NoResultFromDbException {
+    public Optional<Account> findById(int id){
+        Optional<Account> account = Optional.empty();
+
         try (PreparedStatement ps = connection.prepareStatement
                 (AccountQueries.FIND_BY_ID)){
             ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
             if( rs.next() ){
-                return ExtractUtil.extractAccountFromResultSet(rs);
-            } else {
-                throw new NoResultFromDbException(ExceptionMessages.NO_RESULT_FROM_DB);
+                account = Optional.of(ExtractUtil.extractAccountFromResultSet(rs));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return account;
     }
 
     @Override
-    public Account findByNumber(String number) throws NoResultFromDbException {
+    public Optional<Account> findByNumber(String number){
+        Optional<Account> account = Optional.empty();
+
         try (PreparedStatement ps = connection.prepareStatement
                 (AccountQueries.FIND_BY_NUMBER)){
             ps.setString(1, number);
             ResultSet rs = ps.executeQuery();
             if( rs.next() ){
-                return ExtractUtil.extractAccountFromResultSet(rs);
-            } else {
-                throw new NoResultFromDbException(ExceptionMessages.NO_RESULT_FROM_DB);
+                account = Optional.of(ExtractUtil.extractAccountFromResultSet(rs));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return account;
     }
 
     @Override

@@ -3,6 +3,7 @@
 <html>
 <body>
 <%@ include file="../util/nav.jsp" %>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
@@ -14,9 +15,9 @@
                 <h4  class="error"><c:out value="${wrongUserInputMessage}"/> </h4>
 
                 <form method="post" action="/add-user-to-account">
-                    <label for="account-type">Choose an account</label>
+                    <label for="chosen-account">Choose an account</label>
 
-                    <select class="form-control" id="Account-type" name="chosenAccount">
+                    <select class="form-control" id="chosen-account" name="chosenAccount">
                         <c:forEach var="account" items="${sessionScope.accounts}">
                             <option value="${account.number}"><c:out value="${account.number}"/></option>
                         </c:forEach>

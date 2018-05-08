@@ -39,7 +39,7 @@
         <li><a href="../view/open-account.jsp"><fmt:message key="sidebar.openAccount" /></a></li>
         <li>   -----------------------------------------------------------------------------------------</li>
         <li><a href="open-account.jsp"><fmt:message key="sidebar.admin.confirmCreditRequests" /></a></li>
-        <li><a href="open-account.jsp"><fmt:message key="sidebar.admin.addNewAdmin" /></a></li>
+        <li><a href="../view/admin-registration.jsp"><fmt:message key="sidebar.admin.addNewAdmin" /></a></li>
     </ul><br>
     <div class="input-group">
         <input type="text" class="form-control" placeholder="<fmt:message key="sidebar.search" />">

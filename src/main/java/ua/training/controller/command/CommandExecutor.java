@@ -1,8 +1,10 @@
 package ua.training.controller.command;
 
+import ua.training.controller.command.login.AdminRegistration;
 import ua.training.controller.command.login.Login;
 import ua.training.controller.command.login.Logout;
 import ua.training.controller.command.login.Registration;
+import ua.training.model.dao.impl.constants.ColumnNames;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.UserService;
 import ua.training.util.constants.CommandNames;
@@ -21,6 +23,7 @@ public class CommandExecutor {
         commands.put(CommandNames.OPEN_ACCOUNT, new OpenAccount(new AccountService()));
         commands.put(CommandNames.SELECT_ACCOUNT, new SelectAccount(new AccountService()));
         commands.put(CommandNames.ADD_USER_TO_ACCOUNT, new AddUserToAccount(new UserService(), new AccountService()));
+        commands.put(CommandNames.ADMIN_REGISTRATION, new AdminRegistration(new UserService()));
     }
 
     public String executeCommand(String command, HttpServletRequest request) {

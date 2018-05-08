@@ -1,11 +1,12 @@
 package ua.training.model.dao;
 
 import org.javamoney.moneta.Money;
-import ua.training.exception.NoResultFromDbException;
 import ua.training.model.entity.Account;
+
+import java.util.Optional;
 
 public interface AccountDao extends GenericDao<Account> {
     void updateBalance(int accountId, Money balance);
     void updateAccruedInterest(int accountId,double accruedInterest);
-    Account findByNumber(String number) throws NoResultFromDbException;
+    Optional<Account> findByNumber(String number);
 }

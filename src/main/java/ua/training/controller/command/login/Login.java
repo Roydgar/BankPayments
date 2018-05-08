@@ -1,7 +1,6 @@
 package ua.training.controller.command.login;
 
 import ua.training.controller.command.Command;
-import ua.training.exception.NoResultFromDbException;
 import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.UserService;
@@ -12,6 +11,7 @@ import ua.training.util.constants.ResponseMessages;
 import ua.training.util.constants.PageURLs;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 
 public class Login implements Command {
@@ -29,10 +29,9 @@ public class Login implements Command {
         String login = request.getParameter(AttributeNames.LOGIN);
         String password = request.getParameter(AttributeNames.PASSWORD);
 
-        User user;
-        try {
-            user = userService.login(login, password);
-        } catch (NoResultFromDbException e) {
+        Optional<User> user = userService.login(login, password);
+
+        if (!user.isPresent()) {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.LOGIN_ERROR);
             return PageURLs.LOGIN;
         }
@@ -42,13 +41,15 @@ public class Login implements Command {
             return PageURLs.ERROR;
         }
 
-        request.getSession().setAttribute(AttributeNames.LOGGED_USER_ID, user.getId());
-        request.getSession().setAttribute(AttributeNames.LOGGED_USER_LOGIN, user.getLogin().toLowerCase());
-        request.getSession().setAttribute(AttributeNames.LOGGED_USER_ROLE, user.getRole());
-        request.getSession().setAttribute(AttributeNames.ACCOUNTS,
-                accountService.findAccountsByUserId(user.getId()));
+        User loggedUser = user.get();
 
-        return UserUtil.getPageByRole(user.getRole());
+        request.getSession().setAttribute(AttributeNames.LOGGED_USER_ID, loggedUser.getId());
+        request.getSession().setAttribute(AttributeNames.LOGGED_USER_LOGIN, loggedUser.getLogin().toLowerCase());
+        request.getSession().setAttribute(AttributeNames.LOGGED_USER_ROLE, loggedUser.getRole());
+        request.getSession().setAttribute(AttributeNames.ACCOUNTS,
+                accountService.findAccountsByUserId(loggedUser.getId()));
+
+        return UserUtil.getPageByRole(loggedUser.getRole());
     }
 
 }

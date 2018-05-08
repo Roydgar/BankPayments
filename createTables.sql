@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `payments`.`account` (
   `rate` DECIMAL(5,4) NOT NULL,
   `accrued_interest` DECIMAL(7,4) NOT NULL,
   `limit` BIGINT NOT NULL,
-  `type` ENUM('CHECKING', 'CREDIT', 'DEPOSIT') NOT NULL,
+  `account_type` ENUM('CHECKING', 'CREDIT', 'DEPOSIT') NOT NULL,
   `creation_date` TIMESTAMP NOT NULL,
   PRIMARY KEY (`account_id`))
 ENGINE = InnoDB;
@@ -50,7 +50,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `payments`.`operation` (
   `operation_id` INT NOT NULL AUTO_INCREMENT,
   `recipient` VARCHAR(45) NOT NULL,
-  `type` ENUM('TRANSFER', 'BILLS_PAYMENT', 'LOAN_PAYMENT') NOT NULL,
+  `operation_type` ENUM('TRANSFER', 'BILLS_PAYMENT', 'LOAN_PAYMENT') NOT NULL,
   `account_id` INT NOT NULL,
   `date` TIMESTAMP NOT NULL,
   PRIMARY KEY (`operation_id`, `account_id`),

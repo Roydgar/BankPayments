@@ -1,9 +1,6 @@
 package ua.training.model.dao.impl;
 
-import ua.training.model.dao.AccountDao;
-import ua.training.model.dao.DaoFactory;
-import ua.training.model.dao.UserDao;
-import ua.training.model.dao.UserHasAccountDao;
+import ua.training.model.dao.*;
 
 import java.sql.SQLException;
 
@@ -32,6 +29,15 @@ public class JDBCDaoFactory extends DaoFactory {
     public UserHasAccountDao createUserHasAccountDao() {
         try {
             return new JDBCUserHasAccountDao(getConnection());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public OperationDao createOperationDao() {
+        try {
+            return new JDBCOperationDao(getConnection());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
