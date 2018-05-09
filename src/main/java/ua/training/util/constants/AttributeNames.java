@@ -16,10 +16,15 @@ public interface AttributeNames {
     String ACCOUNT_TYPE        = "account-type";
 
     String ACCOUNTS            = "accounts";
-    String SELECTED_ACCOUNT    = "selectedAccount";
     String CHOSEN_ACCOUNT      = "chosenAccount";
     String MONEY_AMOUNT        = "moneyAmount";
 
     String CREDIT_REQUESTS     = "creditRequests";
     String CREDIT_REQUEST_ID   = "creditRequestId";
+
+    String SORT_BY             = "sortBy";
+    String SORT_BY_BALANCE     = "balance";
+    String SORT_BY_TYPE        = "type";
+    String SORT_BY_DATE        = "date";
+    String SORT_BY_MONEY_AMOUNT = "moneyAmount";
 }

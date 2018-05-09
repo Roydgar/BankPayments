@@ -32,6 +32,20 @@ public class AccountUtil {
         }
     }
 
+    public static double getRate(Account.Type type) {
+        if (type == Account.Type.CREDIT) {
+            return AccountConstants.CREDIT_RATE;
+        } else if(type == Account.Type.DEPOSIT) {
+            return AccountConstants.DEPOSIT_RATE;
+        } else {
+            return 0.0;
+        }
+    }
+
+    public static boolean moneyIsBiggerThanLimit(Money money, Account.Type type) {
+        return money.compareTo(getBalanceLimit(type)) > 0;
+    }
+
     public static String generateAccountNumber() {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < 4; i++) {
@@ -48,6 +62,4 @@ public class AccountUtil {
         max -= min;
         return (int) (Math.random() * ++max) + min;
     }
-
-
 }

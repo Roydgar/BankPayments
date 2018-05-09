@@ -1,7 +1,7 @@
 package ua.training.util.constants;
 
 public interface PageURLs {
-    String INDEX          = "index.jsp";
+    String INDEX          = "/index.jsp";
     String INDEX_REDIRECT = "redirect/index.jsp";
 
     String LOGIN          = "view/login.jsp";
@@ -12,6 +12,8 @@ public interface PageURLs {
     String REDIRECT_USER_MENU   = "redirect:view/user-menu.jsp";
     String ADMIN_MENU           = "view/admin-menu.jsp";
     String REDIRECT_ADMIN_MENU  = "redirect:view/admin-menu.jsp";
+
+    String ACCOUNT_INDO         = "view/account-info.jsp";
 
     String OPEN_ACCOUNT   = "view/open-account.jsp";
 

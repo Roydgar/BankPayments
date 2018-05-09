@@ -6,9 +6,11 @@ import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.CreditRequestService;
 import ua.training.util.AccountUtil;
+import ua.training.util.ResourceBundleUtil;
 import ua.training.util.UserUtil;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.PageURLs;
+import ua.training.util.constants.ResponseMessages;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -26,19 +28,18 @@ public class OpenAccount implements Command {
     public String execute(HttpServletRequest request) {
         Account.Type type = Account.Type.valueOf(request.getParameter(AttributeNames.ACCOUNT_TYPE).toUpperCase());
         int loggedUserId = (int)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID);
+        Money moneyAmount = AccountUtil.getMoneyInDefaultCurrency(
+                Long.parseLong(request.getParameter(AttributeNames.MONEY_AMOUNT)));
 
-        if (type == Account.Type.CHECKING) {
-            accountService.create(type, loggedUserId);
-        } else if(type == Account.Type.DEPOSIT) {
-            Money moneyAmount = AccountUtil.getMoneyInDefaultCurrency(
-                    Long.parseLong(request.getParameter(AttributeNames.MONEY_AMOUNT)));
+        if (AccountUtil.moneyIsBiggerThanLimit(moneyAmount, type)) {
+            ResourceBundleUtil.setErrorMessage(request, ResponseMessages.OPEN_ACCOUNT_DENIED);
+            return PageURLs.OPEN_ACCOUNT;
+        }
 
-            accountService.create(type, loggedUserId, moneyAmount);
-        }  else if(type == Account.Type.CREDIT) {
-            Money moneyAmount = AccountUtil.getMoneyInDefaultCurrency(
-                    Long.parseLong(request.getParameter(AttributeNames.MONEY_AMOUNT)));
-
+        if (type == Account.Type.CREDIT) {
             creditRequestService.create(loggedUserId, moneyAmount);
+        } else{
+            accountService.create(type, loggedUserId, moneyAmount);
         }
 
         request.getSession().setAttribute(AttributeNames.ACCOUNTS,

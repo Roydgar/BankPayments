@@ -24,12 +24,13 @@ public class CommandExecutor {
         commands.put(CommandNames.REGISTRATION, new Registration(new UserService()));
         commands.put(CommandNames.LOGOUT, new Logout());
         commands.put(CommandNames.OPEN_ACCOUNT, new OpenAccount(new AccountService(), new CreditRequestService()));
-        commands.put(CommandNames.SELECT_ACCOUNT, new SelectAccount(new AccountService()));
         commands.put(CommandNames.ADD_USER_TO_ACCOUNT, new AddUserToAccount(new UserService(), new AccountService()));
         commands.put(CommandNames.ADMIN_REGISTRATION, new AdminRegistration(new UserService()));
         commands.put(CommandNames.SHOW_CREDIT_REQUESTS, new ShowCreditRequests(new CreditRequestService()));
         commands.put(CommandNames.CONFIRM_CREDIT_REQUEST, new ConfirmCreditRequest(new CreditRequestService(),
                 new AccountService()));
+        commands.put(CommandNames.SORT_USER_ACCOUNTS, new SortUserAccounts());
+        commands.put(CommandNames.SORT_CREDIT_REQUESTS, new SortCreditRequests());
     }
 
     public String executeCommand(String command, HttpServletRequest request) {

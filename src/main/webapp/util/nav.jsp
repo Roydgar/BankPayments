@@ -10,7 +10,16 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#"> <fmt:message key="navbar.home" /> </a></li>
+                <li>
+                    <c:choose>
+                        <c:when test="${loggedUserRole == 'ADMIN'}">
+                            <a href="../view/admin-menu.jsp"> Admin panel </a>
+                        </c:when>
+                        <c:when test="${loggedUserRole == 'USER'}">
+                            <a href="../view/user-menu.jsp"> User panel </a>
+                        </c:when>
+                    </c:choose>
+                </li>
                 <li><a href="#"> <fmt:message key="navbar.about" /> </a></li>
                 <li><a href="#"> <fmt:message key="navbar.contacts" /> </a></li>
                 <li>

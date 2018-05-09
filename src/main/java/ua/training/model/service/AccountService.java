@@ -27,9 +27,10 @@ public class AccountService {
     public void create(Account.Type accountType, int userId, Money moneyAmount) {
         LocalDateTime creationTime = LocalDateTime.now();
         String generatedNumber = AccountUtil.generateAccountNumber();
+        double rate = AccountUtil.getRate(accountType);
 
         Account account = new Account.AccountBuilder().setNumber(generatedNumber)
-                .setBalance(moneyAmount).setAccruedInterest(0).setRate(0)
+                .setBalance(moneyAmount).setAccruedInterest(0).setRate(rate)
                 .setBalanceLimit(AccountUtil.getBalanceLimit(accountType)).setCreationTDate(creationTime )
                 .setValidityDate(AccountUtil.generateValidityTime(creationTime ))
                 .setType(accountType).create();

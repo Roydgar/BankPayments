@@ -11,6 +11,9 @@
             <div class="account-wall">
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                      alt="">
+
+                <h4  class="error"><c:out value="${wrongUserInputMessage}"/> </h4>
+
                 <form class="form-signin" action="/open-account">
                     <label for="account-type">Choose an account type</label>
 
@@ -38,7 +41,7 @@
                     </script>
 
                     <div id="money-amount">
-                        <input type="text" class="form-control" placeholder="Money amount" name="moneyAmount">
+                        <input pattern="[0-9]{1,15}" class="form-control" placeholder="Money amount" name="moneyAmount">
                     </div>
 
 
