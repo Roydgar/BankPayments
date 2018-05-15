@@ -2,7 +2,7 @@
 
 <html>
 <body>
-<%@ include file="../../util/nav.jsp" %>
+<%@ include file="/util/nav.jsp" %>
 
 <div class="container-fluid">
     <div class="row content">
@@ -17,10 +17,12 @@
                 <li><a href="../user/open-account.jsp"><fmt:message key="sidebar.openAccount" /></a></li>
 
                 <li>--------</li>
-                <form method="post" action="/show-credit-requests">
-                    <li> <button class="btn btn-link" type="submit">
-                        <fmt:message key="sidebar.admin.confirmCreditRequests" /> </button></li>
-                </form>
+                <li>
+                    <form method="post" action="/show-credit-requests">
+                        <button class="btn btn-link" type="submit">
+                            <fmt:message key="sidebar.admin.confirmCreditRequests" /> </button>
+                    </form>
+                </li>
                 <li><a href="admin-registration.jsp"><fmt:message key="sidebar.admin.addNewAdmin" /></a></li>
             </ul><br>
 
@@ -39,6 +41,6 @@
 <div class="container text-center">
 </div>
 
-<%@ include file="../../util/footer.jsp" %>
+<%@ include file="/util/footer.jsp" %>
 </body>
 </html>

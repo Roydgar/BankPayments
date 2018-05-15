@@ -1,8 +1,8 @@
 
-<%@ include file="../../util/head.jsp" %>
+<%@ include file="/util/head.jsp" %>
 <html>
 <body>
-<%@ include file="../../util/nav.jsp" %>
+<%@ include file="/util/nav.jsp" %>
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
@@ -28,6 +28,6 @@
 </div>
 
 
-<%@ include file="../../util/footer.jsp" %>
+<%@ include file="/util/footer.jsp" %>
 </body>
 </html>

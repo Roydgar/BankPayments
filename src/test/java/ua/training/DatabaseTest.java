@@ -1,13 +1,16 @@
 package ua.training;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.javamoney.moneta.Money;
 import org.junit.Test;
 import ua.training.model.dao.*;
 import ua.training.model.entity.CreditRequest;
 import ua.training.model.entity.User;
 import ua.training.util.AccountUtil;
 
+import javax.money.Monetary;
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 public class DatabaseTest {
     @Test
@@ -35,7 +38,6 @@ public class DatabaseTest {
 //        UserDao userDao = DaoFactory.getInstance().createUserDao();
 //        userDao.create(new User.UserBuilder().setLogin("roydgar").setPassword(DigestUtils.md5Hex("VS824"))
 //                .setEmail("Royd@gmail.com").setRole(User.Role.ADMIN).create());
-        System.out.println(-0);
     }
 
 }

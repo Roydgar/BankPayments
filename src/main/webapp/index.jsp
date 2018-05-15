@@ -1,9 +1,8 @@
 <html>
 <%@ include file="./util/head.jsp" %>
-
 <body>
 
-<%@ include file="./util/nav.jsp" %>
+<%@ include file="/util/nav.jsp" %>
 
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -16,18 +15,18 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
-            <div class="carousel-caption">
-                <h3>Sell $</h3>
-                <p>Money Money.</p>
+            <img src="${pageContext.request.contextPath}/resources/img/index_img1.jpg" alt="Image">
+            <div class="${pageContext.request.contextPath}carousel-caption">
+                <h3>Your personal accounts</h3>
+                <p>Save money!</p>
             </div>
         </div>
 
         <div class="item">
-            <img src="https://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
+            <img class="img-fluid d-block mx-auto" src="${pageContext.request.contextPath}/resources/img/index_img2.jpg" alt="Image">
             <div class="carousel-caption">
-                <h3>More Sell $</h3>
-                <p>Lorem ipsum...</p>
+                <h3>Open accounts</h3>
+                <p>Share money with your friends and family</p>
             </div>
         </div>
     </div>
@@ -47,12 +46,12 @@
     <h3>What We Do</h3><br>
     <div class="row">
         <div class="col-sm-4">
-            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-            <p>Шо мы делаем! 123sdaf</p>
+            <img src="${pageContext.request.contextPath}/resources/img/staff.jpg" class="img-responsive" style="width:100%" alt="Image">
+            <p>Credits. Deposits. Operations</p>
         </div>
         <div class="col-sm-4">
-            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-            <p>Project 2</p>
+            <img src="${pageContext.request.contextPath}/resources/img/proj2.jpg" class="img-responsive" style="width:100%" alt="Image">
+            <p>Money!</p>
         </div>
         <div class="col-sm-4">
             <div class="well">

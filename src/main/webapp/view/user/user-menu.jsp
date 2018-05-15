@@ -1,8 +1,8 @@
-<%@ include file="../../util/head.jsp" %>
+<%@ include file="/util/head.jsp" %>
 
 <html>
 <body>
-<%@ include file="../../util/nav.jsp" %>
+<%@ include file="/util/nav.jsp" %>
 
 <div class="container-fluid">
     <div class="row content">
@@ -11,6 +11,6 @@
 
     </div>
 </div>
-<%@ include file="../../util/footer.jsp" %>
+<%@ include file="/util/footer.jsp" %>
 </body>
 </html>

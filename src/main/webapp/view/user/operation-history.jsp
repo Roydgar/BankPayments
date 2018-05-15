@@ -2,8 +2,8 @@
 
 <html>
 <body>
-<%@ include file="../../util/nav.jsp" %>
-<%@ include file="../../util/sidebar.jsp" %>
+<%@ include file="/util/nav.jsp" %>
+<%@ include file="/util/sidebar.jsp" %>
 
 <div class="container-fluid">
     <div class="row content">
@@ -25,6 +25,6 @@
         </div>
     </div>
 </div>
-<%@ include file="../../util/footer.jsp" %>
+<%@ include file="/util/footer.jsp" %>
 </body>
 </html>

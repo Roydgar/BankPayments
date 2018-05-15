@@ -1,13 +1,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ include file="../../util/head.jsp" %>
+<%@ include file="/util/head.jsp" %>
 
 <html>
 
 <body>
 
-<%@ include file="../../util/nav.jsp" %>
+<%@ include file="/util/nav.jsp" %>
 
-<%@ include file="../../util/sidebar.jsp"%>
+<%@ include file="/util/sidebar.jsp"%>
 
 <div class="container text-center">
     <div class="row">
@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<%@ include file="../../util/footer.jsp" %>
+<%@ include file="/util/footer.jsp" %>
 
 </body>
 </html>

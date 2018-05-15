@@ -6,22 +6,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Index</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li>
                     <c:choose>
                         <c:when test="${loggedUserRole == 'ADMIN'}">
-                            <a href="/view/admin/admin-menu.jsp"> Admin panel </a>
+                            <a href="${pageContext.request.contextPath}/view/admin/admin-menu.jsp"> Admin panel </a>
                         </c:when>
                         <c:when test="${loggedUserRole == 'USER'}">
-                            <a href="/view/user/user-menu.jsp"> Home </a>
+                            <a href="${pageContext.request.contextPath}/view/user/user-menu.jsp"> Home </a>
                         </c:when>
                     </c:choose>
                 </li>
-                <li><a href="#"> <fmt:message key="navbar.about" /> </a></li>
-                <li><a href="#"> <fmt:message key="navbar.contacts" /> </a></li>
+                <li><a href="${pageContext.request.contextPath}/about.jsp"> <fmt:message key="navbar.about" /> </a></li>
+                <li><a href="${pageContext.request.contextPath}/contacts.jsp"> <fmt:message key="navbar.contacts" /> </a></li>
                 <li>
                     <br>
                     <select class="form-control" id="language" name="language" onchange="submit()">
@@ -31,12 +31,11 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-
                 <c:choose>
                     <c:when test="${empty loggedUserLogin || loggedUserRole == 'UNKNOWN'}">
-                        <li><a href="/view/login/registration.jsp"> <span class="glyphicon glyphicon-user"></span>
+                        <li><a href="${pageContext.request.contextPath}/view/login/registration.jsp"> <span class="glyphicon glyphicon-user"></span>
                             <fmt:message key="index.link.registration" /></a></li>
-                        <li><a href="/view/login/login.jsp">
+                        <li><a href="${pageContext.request.contextPath}/view/login/login.jsp">
                             <span class="glyphicon glyphicon-log-in"></span> <fmt:message key="index.link.login" /></a></li>
                     </c:when>
 

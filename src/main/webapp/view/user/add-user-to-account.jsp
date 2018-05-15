@@ -1,9 +1,9 @@
 
-<%@ include file="../../util/head.jsp" %>
+<%@ include file="/util/head.jsp" %>
 <html>
 <body>
-<%@ include file="../../util/nav.jsp" %>
-<%@ include file="../../util/sidebar.jsp" %>
+<%@ include file="/util/nav.jsp" %>
+<%@ include file="/util/sidebar.jsp" %>
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
@@ -30,12 +30,12 @@
                 </form>
 
             </div>
-            <a href="../login/registration.jsp" class="text-center new-account"><fmt:message key="login.link.registration" /> </a>
+            <a href="${pageContext.request.contextPath}/view/login/registration.jsp" class="text-center new-account"><fmt:message key="login.link.registration" /> </a>
         </div>
     </div>
 </div>
 
 
-<%@ include file="../../util/footer.jsp" %>
+<%@ include file="/util/footer.jsp" %>
 </body>
 </html>
