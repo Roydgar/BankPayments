@@ -3,11 +3,10 @@
 <html>
 <body>
 <%@ include file="../util/nav.jsp" %>
+<%@ include file="../util/sidebar.jsp" %>
 
 <div class="container-fluid">
     <div class="row content">
-
-        <%@ include file="../util/user-sidebar.jsp" %>
 
         <div class="container text-center">
             <div class="row ">

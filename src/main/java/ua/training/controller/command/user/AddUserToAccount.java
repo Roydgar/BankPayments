@@ -1,5 +1,6 @@
-package ua.training.controller.command;
+package ua.training.controller.command.user;
 
+import ua.training.controller.command.Command;
 import ua.training.model.entity.Account;
 import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
@@ -13,12 +14,12 @@ import ua.training.util.constants.ResponseMessages;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
-public class AddUserToAccount implements Command{
+public class AddUserToAccount implements Command {
 
     private AccountService accountService;
     private UserService userService;
 
-    AddUserToAccount(UserService userService, AccountService accountService) {
+    public AddUserToAccount(UserService userService, AccountService accountService) {
         this.userService = userService;
         this.accountService = accountService;
     }

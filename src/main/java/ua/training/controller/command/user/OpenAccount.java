@@ -1,6 +1,7 @@
-package ua.training.controller.command;
+package ua.training.controller.command.user;
 
 import org.javamoney.moneta.Money;
+import ua.training.controller.command.Command;
 import ua.training.model.entity.Account;
 import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
@@ -20,7 +21,7 @@ public class OpenAccount implements Command {
     private AccountService accountService;
     private CreditRequestService creditRequestService;
 
-    OpenAccount(AccountService accountService, CreditRequestService creditRequestService) {
+    public OpenAccount(AccountService accountService, CreditRequestService creditRequestService) {
         this.accountService = accountService;
         this.creditRequestService = creditRequestService;
     }

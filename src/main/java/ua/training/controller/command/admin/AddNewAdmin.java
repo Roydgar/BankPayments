@@ -1,4 +1,4 @@
-package ua.training.controller.command.login;
+package ua.training.controller.command.admin;
 
 import ua.training.controller.command.Command;
 import ua.training.model.entity.User;
@@ -10,11 +10,11 @@ import ua.training.util.constants.ResponseMessages;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class AdminRegistration implements Command {
+public class AddNewAdmin implements Command {
 
     private UserService userService;
 
-    public AdminRegistration(UserService userService) {
+    public AddNewAdmin(UserService userService) {
         this.userService = userService;
     }
 

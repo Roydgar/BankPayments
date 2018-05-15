@@ -13,11 +13,11 @@ public interface PageURLs {
     String ADMIN_MENU           = "view/admin-menu.jsp";
     String REDIRECT_ADMIN_MENU  = "redirect:view/admin-menu.jsp";
 
-    String ACCOUNT_INDO         = "view/account-info.jsp";
+    String ACCOUNT_INFO   = "view/account-info.jsp";
 
     String OPEN_ACCOUNT   = "view/open-account.jsp";
 
-    String SHOW_CREDIT_REQUESTS_PAGE = "view/show-credit-requests.jsp";
+    String SHOW_CREDIT_REQUESTS = "view/show-credit-requests.jsp";
 
     String ERROR          = "view/error.jsp";
 }

@@ -1,7 +1,6 @@
 package ua.training.controller.command.admin;
 
 import ua.training.controller.command.Command;
-import ua.training.model.entity.CreditRequest;
 import ua.training.model.service.CreditRequestService;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.PageURLs;
@@ -18,6 +17,6 @@ public class ShowCreditRequests implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         request.getSession().setAttribute(AttributeNames.CREDIT_REQUESTS, creditRequestService.findAll());
-        return PageURLs.SHOW_CREDIT_REQUESTS_PAGE;
+        return PageURLs.SHOW_CREDIT_REQUESTS;
     }
 }

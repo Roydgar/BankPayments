@@ -7,7 +7,7 @@
 
 <%@ include file="../util/nav.jsp" %>
 
-<%@ include file="../util/admin-sidebar.jsp"%>
+<%@ include file="../util/sidebar.jsp"%>
 
 <div class="container">
     <div class="row">

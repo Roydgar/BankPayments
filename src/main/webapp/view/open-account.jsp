@@ -4,6 +4,9 @@
 <html>
 
 <body>
+
+<%@ include file="../util/nav.jsp" %>
+<%@ include file="../util/sidebar.jsp" %>
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
