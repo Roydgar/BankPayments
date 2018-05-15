@@ -1,8 +1,8 @@
-<%@ include file="../util/head.jsp" %>
+<%@ include file="../../util/head.jsp" %>
 
 <html>
 <body>
-<%@ include file="../util/nav.jsp" %>
+<%@ include file="../../util/nav.jsp" %>
 
 <div class="container-fluid">
     <div class="row content">
@@ -10,11 +10,11 @@
         <div class="col-sm-3 sidenav">
 
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="../view/account-info.jsp"><fmt:message key="sidebar.accountInfo" /></a></li>
+                <li class="active"><a href="../user/account-info.jsp"><fmt:message key="sidebar.accountInfo" /></a></li>
                 <li><a href="#section2"><fmt:message key="sidebar.doOperation" /></a></li>
-                <li><a href="../view/operation-history.jsp"><fmt:message key="sidebar.operationHistory" /></a></li>
-                <li><a href="../view/add-user-to-account.jsp"><fmt:message key="sidebar.addUserToAccount" /></a></li>
-                <li><a href="../view/open-account.jsp"><fmt:message key="sidebar.openAccount" /></a></li>
+                <li><a href="../user/operation-history.jsp"><fmt:message key="sidebar.operationHistory" /></a></li>
+                <li><a href="../user/add-user-to-account.jsp"><fmt:message key="sidebar.addUserToAccount" /></a></li>
+                <li><a href="../user/open-account.jsp"><fmt:message key="sidebar.openAccount" /></a></li>
 
                 <li>--------</li>
                 <form method="post" action="/show-credit-requests">
@@ -39,6 +39,6 @@
 <div class="container text-center">
 </div>
 
-<%@ include file="../util/footer.jsp" %>
+<%@ include file="../../util/footer.jsp" %>
 </body>
 </html>

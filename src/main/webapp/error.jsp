@@ -1,5 +1,5 @@
-<jsp:include page="../util/head.jsp"/>
-<jsp:include page="../util/nav.jsp"/>
+<jsp:include page="util/head.jsp"/>
+<jsp:include page="util/nav.jsp"/>
 
 <section class="py-5 bg-image-full">
 
@@ -7,6 +7,6 @@
     <a class="btn btn-default" href="${pageContext.request.contextPath}/index.jsp" role="button" style="margin-left: 5%">
         Back</a>
 
-    <jsp:include page="../util/footer.jsp"/>
+    <jsp:include page="util/footer.jsp"/>
 
 </section>
