@@ -1,6 +1,7 @@
 package ua.training.model.dao.impl;
 
 import ua.training.model.dao.*;
+import ua.training.util.LoggerMessageUtil;
 
 import java.sql.SQLException;
 
@@ -12,6 +13,7 @@ public class JDBCDaoFactory extends DaoFactory {
         try {
             return new JDBCUserDao(getConnection());
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -21,6 +23,7 @@ public class JDBCDaoFactory extends DaoFactory {
         try {
             return new JDBCAccountDao(getConnection());
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -30,6 +33,7 @@ public class JDBCDaoFactory extends DaoFactory {
         try {
             return new JDBCUserHasAccountDao(getConnection());
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -39,6 +43,7 @@ public class JDBCDaoFactory extends DaoFactory {
         try {
             return new JDBCOperationDao(getConnection());
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -48,6 +53,7 @@ public class JDBCDaoFactory extends DaoFactory {
         try {
             return new JDBCCreditRequestDao(getConnection());
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }

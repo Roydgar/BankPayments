@@ -43,22 +43,13 @@ public class DoOperation implements Command {
             return PageURLs.DO_OPERATION;
         }
 
-        if (recipientAccount.get().getType() == Account.Type.CREDIT) {
-            accountService.updateBalance(recipientAccount.get().getId(),
-                    recipientAccount.get().getBalance().subtract(moneyAmount));
-            accountService.updateBalance(payerAccount.get().getId(),
-                    payerAccount.get().getBalance().subtract(moneyAmount));
-            operationService.create(payerAccount.get().getId(),
-                    recipientAccount.get().getNumber(), Operation.Type.LOAN_PAYMENT, moneyAmount);
-
-        } else if (recipientAccount.get().getType() == Account.Type.CHECKING){
-            accountService.updateBalance(recipientAccount.get().getId(),
-                    recipientAccount.get().getBalance().add(moneyAmount));
-            accountService.updateBalance(payerAccount.get().getId(),
-                    payerAccount.get().getBalance().subtract(moneyAmount));
-            operationService.create(payerAccount.get().getId(),
-                    recipientAccount.get().getNumber(), Operation.Type.TRANSFER, moneyAmount);
-        }
+        accountService.updateBalance(recipientAccount.get().getId(),
+                recipientAccount.get().getBalance().add(moneyAmount));
+        accountService.updateBalance(payerAccount.get().getId(),
+                payerAccount.get().getBalance().subtract(moneyAmount));
+        operationService.create(payerAccount.get().getId(), recipientAccount.get().getNumber(),
+                recipientAccount.get().getType() == Account.Type.CREDIT ?
+                        Operation.Type.LOAN_PAYMENT : Operation.Type.TRANSFER, moneyAmount);
 
         int loggedUserId = (int)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID);
         request.getSession().setAttribute(AttributeNames.ACCOUNTS,
@@ -67,4 +58,5 @@ public class DoOperation implements Command {
         User.Role role = (User.Role)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ROLE);
         return UserUtil.getPageByRole(role);
     }
+
 }

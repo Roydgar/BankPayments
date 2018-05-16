@@ -3,6 +3,7 @@ package ua.training.controller.command.login;
 
 import ua.training.controller.command.Command;
 import ua.training.model.entity.User;
+import ua.training.util.LoggerMessageUtil;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.PageURLs;
 
@@ -22,6 +23,7 @@ public class Logout implements Command {
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_ROLE, User.Role.UNKNOWN);
         request.getSession().getServletContext().setAttribute(AttributeNames.LOGGED_USERS, loggedUsers);
 
+        logger.info(LoggerMessageUtil.userLogout(login));
         return PageURLs.INDEX;
     }
 }

@@ -5,6 +5,8 @@ import ua.training.model.dao.AccountDao;
 import ua.training.model.dao.impl.constants.AccountQueries;
 import ua.training.model.dao.util.ExtractUtil;
 import ua.training.model.entity.Account;
+import ua.training.util.LoggerMessageUtil;
+
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class JDBCAccountDao implements AccountDao{
             ps.setInt(2, accountId);
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -50,6 +53,7 @@ public class JDBCAccountDao implements AccountDao{
             ps.setInt(2, accountId);
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -63,6 +67,7 @@ public class JDBCAccountDao implements AccountDao{
 
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -79,6 +84,7 @@ public class JDBCAccountDao implements AccountDao{
                 account = Optional.of(ExtractUtil.extractAccountFromResultSet(rs));
             }
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return account;
@@ -96,6 +102,7 @@ public class JDBCAccountDao implements AccountDao{
                 account = Optional.of(ExtractUtil.extractAccountFromResultSet(rs));
             }
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return account;
@@ -112,6 +119,7 @@ public class JDBCAccountDao implements AccountDao{
             }
 
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return resultList;
@@ -127,6 +135,7 @@ public class JDBCAccountDao implements AccountDao{
             ps.setInt(9, entity.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -137,6 +146,7 @@ public class JDBCAccountDao implements AccountDao{
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -146,6 +156,7 @@ public class JDBCAccountDao implements AccountDao{
         try {
             connection.close();
         } catch (Exception e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }

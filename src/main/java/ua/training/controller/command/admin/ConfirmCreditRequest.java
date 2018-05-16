@@ -32,13 +32,13 @@ public class ConfirmCreditRequest implements Command {
 
         if (status == CreditRequest.Status.CONFIRMED) {
             accountService.create(Account.Type.CREDIT, creditRequest.get().getUserId(),
-                    creditRequest.get().getMoneyAmount());
+                    creditRequest.get().getMoneyAmount().negate());
         }
 
         creditRequestService.updateStatus(creditRequestId, status);
 
         request.getSession().setAttribute(AttributeNames.CREDIT_REQUESTS,
                 ConvertUtil.convertCreditMoneyToDollars(creditRequestService.findAll()));
-        return PageURLs.SHOW_CREDIT_REQUESTS;
+        return PageURLs.SHOW_CREDIT_REQUESTS_REDIRECT;
     }
 }

@@ -3,6 +3,7 @@ package ua.training.controller.command.admin;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.User;
 import ua.training.model.service.UserService;
+import ua.training.util.LoggerMessageUtil;
 import ua.training.util.ResourceBundleUtil;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.PageURLs;
@@ -37,6 +38,7 @@ public class AddNewAdmin implements Command {
         }
 
         userService.create(login, password, User.Role.ADMIN, email);
+        logger.info(LoggerMessageUtil.userRegistration(login, User.Role.ADMIN));
 
         return PageURLs.ADMIN_MENU;
     }

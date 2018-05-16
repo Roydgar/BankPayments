@@ -19,6 +19,6 @@ public class ShowCreditRequests implements Command {
     public String execute(HttpServletRequest request) {
         request.getSession().setAttribute(AttributeNames.CREDIT_REQUESTS,
                 ConvertUtil.convertCreditMoneyToDollars(creditRequestService.findAll()));
-        return PageURLs.SHOW_CREDIT_REQUESTS;
+        return PageURLs.SHOW_CREDIT_REQUESTS_REDIRECT;
     }
 }

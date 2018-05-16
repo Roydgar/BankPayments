@@ -5,6 +5,8 @@ import ua.training.model.dao.impl.constants.UserHasAccountQueries;
 import ua.training.model.dao.util.ExtractUtil;
 import ua.training.model.entity.Account;
 import ua.training.model.entity.User;
+import ua.training.util.LoggerMessageUtil;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,7 @@ public class JDBCUserHasAccountDao implements UserHasAccountDao {
             ps.setInt(2, accountId);
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -42,6 +45,7 @@ public class JDBCUserHasAccountDao implements UserHasAccountDao {
             }
 
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return resultList;
@@ -60,6 +64,7 @@ public class JDBCUserHasAccountDao implements UserHasAccountDao {
             }
 
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return resultList;
@@ -76,6 +81,7 @@ public class JDBCUserHasAccountDao implements UserHasAccountDao {
 
             return rs.next();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -86,6 +92,7 @@ public class JDBCUserHasAccountDao implements UserHasAccountDao {
         try {
             connection.close();
         } catch (Exception e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }

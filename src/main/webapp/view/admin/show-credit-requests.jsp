@@ -1,9 +1,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/util/head.jsp" %>
-
 <html>
 
 <body>
+
 
 <%@ include file="/util/nav.jsp" %>
 

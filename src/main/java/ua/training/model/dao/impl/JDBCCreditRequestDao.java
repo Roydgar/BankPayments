@@ -4,6 +4,7 @@ import ua.training.model.dao.CreditRequestDao;
 import ua.training.model.dao.impl.constants.CreditRequestQueries;
 import ua.training.model.dao.util.ExtractUtil;
 import ua.training.model.entity.CreditRequest;
+import ua.training.util.LoggerMessageUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class JDBCCreditRequestDao implements CreditRequestDao {
 
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return resultList;
@@ -47,6 +49,7 @@ public class JDBCCreditRequestDao implements CreditRequestDao {
 
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -63,6 +66,7 @@ public class JDBCCreditRequestDao implements CreditRequestDao {
                 creditRequest = Optional.of(ExtractUtil.extractCreditRequestFromResultSet(rs));
             }
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return creditRequest;
@@ -79,6 +83,7 @@ public class JDBCCreditRequestDao implements CreditRequestDao {
             }
 
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return resultList;
@@ -92,6 +97,7 @@ public class JDBCCreditRequestDao implements CreditRequestDao {
 
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -102,6 +108,7 @@ public class JDBCCreditRequestDao implements CreditRequestDao {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -113,6 +120,7 @@ public class JDBCCreditRequestDao implements CreditRequestDao {
             ps.setInt(2, id);
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -122,6 +130,7 @@ public class JDBCCreditRequestDao implements CreditRequestDao {
         try {
             connection.close();
         } catch (Exception e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }

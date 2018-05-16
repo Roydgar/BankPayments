@@ -4,6 +4,7 @@ import ua.training.model.dao.UserDao;
 import ua.training.model.dao.impl.constants.UserQueries;
 import ua.training.model.dao.util.ExtractUtil;
 import ua.training.model.entity.User;
+import ua.training.util.LoggerMessageUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class JDBCUserDao implements UserDao {
 
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -43,6 +45,7 @@ public class JDBCUserDao implements UserDao {
                 user = Optional.of(ExtractUtil.extractUserFromResultSet(rs));
             }
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return user;
@@ -61,6 +64,7 @@ public class JDBCUserDao implements UserDao {
             }
 
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return resultList;
@@ -84,6 +88,7 @@ public class JDBCUserDao implements UserDao {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -93,6 +98,7 @@ public class JDBCUserDao implements UserDao {
         try {
             connection.close();
         } catch (Exception e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -110,6 +116,7 @@ public class JDBCUserDao implements UserDao {
                 user = Optional.of(ExtractUtil.extractUserFromResultSet(rs));
             }
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return user;
@@ -128,6 +135,7 @@ public class JDBCUserDao implements UserDao {
                 user = Optional.of(ExtractUtil.extractUserFromResultSet(rs));
             }
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return user;
@@ -144,6 +152,7 @@ public class JDBCUserDao implements UserDao {
                 return true;
             }
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return false;

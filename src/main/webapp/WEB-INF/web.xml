@@ -39,4 +39,13 @@
     <url-pattern>*.jpg</url-pattern>
   </servlet-mapping>
 
+  <listener>
+    <listener-class>ua.training.controller.listener.SessionListener</listener-class>
+  </listener>
+
+  <context-param>
+    <param-name>log4j-config-location</param-name>
+    <param-value>WEB-INF/log4j.properties</param-value>
+  </context-param>
+
 </web-app>

@@ -2,12 +2,12 @@ package ua.training.controller.command.login;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.User;
 import ua.training.model.service.UserService;
+import ua.training.util.LoggerMessageUtil;
 import ua.training.util.ResourceBundleUtil;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.ResponseMessages;
 import ua.training.util.constants.PageURLs;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Locale;
 
 public class Registration implements Command {
 
@@ -36,7 +36,7 @@ public class Registration implements Command {
         }
 
         userService.create(login, password, User.Role.USER, email);
-
+        logger.info(LoggerMessageUtil.userRegistration(login, User.Role.USER));
         return PageURLs.LOGIN;
     }
 }

@@ -4,7 +4,7 @@ import ua.training.controller.command.Command;
 import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.UserService;
-import ua.training.util.ConvertUtil;
+import ua.training.util.LoggerMessageUtil;
 import ua.training.util.ResourceBundleUtil;
 import ua.training.util.UserUtil;
 import ua.training.util.constants.AttributeNames;
@@ -34,21 +34,26 @@ public class Login implements Command {
 
         if (!user.isPresent()) {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.LOGIN_ERROR);
+            logger.info(LoggerMessageUtil.userLoginWrongInput(login));
             return PageURLs.LOGIN;
         }
 
+        User loggedUser = user.get();
+        User.Role role = loggedUser.getRole();
+
+        logger.info(LoggerMessageUtil.userLogin(login, role));
+
         if(userService.userIsLogged(request, login)) {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.LOGIN_USER_IS_LOGGED);
+            logger.warn(LoggerMessageUtil.userLogged(login, role));
             return PageURLs.ERROR;
         }
 
-        User loggedUser = user.get();
-
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_ID, loggedUser.getId());
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_LOGIN, loggedUser.getLogin().toLowerCase());
-        request.getSession().setAttribute(AttributeNames.LOGGED_USER_ROLE, loggedUser.getRole());
+        request.getSession().setAttribute(AttributeNames.LOGGED_USER_ROLE, role);
 
-        return UserUtil.getPageByRole(loggedUser.getRole());
+        return UserUtil.getPageByRole(role);
     }
 
 }

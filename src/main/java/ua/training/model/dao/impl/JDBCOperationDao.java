@@ -4,6 +4,7 @@ import ua.training.model.dao.OperationDao;
 import ua.training.model.dao.impl.constants.OperationQueries;
 import ua.training.model.dao.util.ExtractUtil;
 import ua.training.model.entity.Operation;
+import ua.training.util.LoggerMessageUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class JDBCOperationDao implements OperationDao {
 
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return resultList;
@@ -47,6 +49,7 @@ public class JDBCOperationDao implements OperationDao {
 
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -64,6 +67,7 @@ public class JDBCOperationDao implements OperationDao {
                 operation = Optional.of(ExtractUtil.extractOperationFromResultSet(rs));
             }
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return operation;
@@ -80,6 +84,7 @@ public class JDBCOperationDao implements OperationDao {
             }
 
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
         return resultList;
@@ -93,6 +98,7 @@ public class JDBCOperationDao implements OperationDao {
 
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -103,6 +109,7 @@ public class JDBCOperationDao implements OperationDao {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
@@ -112,6 +119,7 @@ public class JDBCOperationDao implements OperationDao {
         try {
             connection.close();
         } catch (Exception e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }
     }
