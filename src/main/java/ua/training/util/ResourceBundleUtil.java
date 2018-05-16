@@ -15,8 +15,12 @@ public class ResourceBundleUtil {
     }
 
     public static void setErrorMessage(HttpServletRequest request, String message) {
-        Locale locale = new Locale((String)request.getSession().getAttribute(AttributeNames.LANGUAGE));
-
+        Locale locale;
+        try {
+            locale = new Locale((String) request.getSession().getAttribute(AttributeNames.LANGUAGE));
+        } catch (ClassCastException e) {
+            locale = (Locale) request.getSession().getAttribute(AttributeNames.LANGUAGE);
+        }
         request.setAttribute(AttributeNames.WRONG_INPUT_MESSAGE, ResourceBundleUtil.
                 getPropertyFromLangBundle(message, locale));
     }
