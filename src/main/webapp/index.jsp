@@ -14,7 +14,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="${pageContext.request.contextPath}/resources/img/index_img1.jpg" alt="Image">
+            <img src="${pageContext.request.contextPath}/resources/img/index_img2.jpg" alt="Image">
             <div class="${pageContext.request.contextPath}carousel-caption">
                 <h3><fmt:message key="index.personalAccounts" /> </h3>
                 <p><fmt:message key="index.saveMoney" /></p>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="item">
-            <img class="img-fluid d-block mx-auto" src="${pageContext.request.contextPath}/resources/img/index_img2.jpg" alt="Image">
+            <img class="img-fluid d-block mx-auto" src="${pageContext.request.contextPath}/resources/img/index_img1.jpg" alt="Image">
             <div class="carousel-caption">
                 <h3><fmt:message key="index.openAccounts" /></h3>
                 <p><fmt:message key="index.shareMoney" /></p>

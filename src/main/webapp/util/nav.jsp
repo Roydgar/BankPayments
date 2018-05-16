@@ -24,6 +24,7 @@
                 <li><a href="${pageContext.request.contextPath}/contacts.jsp"> <fmt:message key="navbar.contacts" /> </a></li>
                 <li>
                     <form>
+                        <br>
                         <select class="nav-select" id="language" name="language" onchange="submit()">
                             <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
                             <option value="ru" ${language == 'ru' ? 'selected' : ''}>Russian</option>
