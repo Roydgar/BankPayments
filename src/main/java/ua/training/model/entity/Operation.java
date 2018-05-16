@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Operation {
 
-    public enum Type { ACCOUNT_OPENING, TRANSFER, BILLS_PAYMENT, LOAN_PAYMENT }
+    public enum Type { TRANSFER, LOAN_PAYMENT }
 
     private int id;
     private int AccountId;
