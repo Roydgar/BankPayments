@@ -65,6 +65,21 @@ public class JDBCUserHasAccountDao implements UserHasAccountDao {
         return resultList;
     }
 
+    @Override
+    public boolean exists (int userId, int accountId) {
+        List<User> resultList = new ArrayList<>();
+        try (PreparedStatement ps = connection.prepareStatement
+                (UserHasAccountQueries.FIND_BY_USER_AND_ACCOUNT_ID)) {
+            ps.setInt(1, userId);
+            ps.setInt(2, accountId);
+            ResultSet rs = ps.executeQuery();
+
+            return rs.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @Override
     public void close() throws Exception {

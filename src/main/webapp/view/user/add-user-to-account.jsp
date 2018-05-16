@@ -26,11 +26,8 @@
                     <input type="text" class="form-control" placeholder=" <fmt:message key="login.placeholder.login" />" id = "Login" name="login" required autofocus>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">
                        Confirm</button>
-                    <a href="#" class="pull-right need-help"><fmt:message key="login.link.help" /></a><span class="clearfix"></span>
                 </form>
-
             </div>
-            <a href="${pageContext.request.contextPath}/view/login/registration.jsp" class="text-center new-account"><fmt:message key="login.link.registration" /> </a>
         </div>
     </div>
 </div>

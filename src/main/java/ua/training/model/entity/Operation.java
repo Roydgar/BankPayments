@@ -1,5 +1,7 @@
 package ua.training.model.entity;
 
+import org.javamoney.moneta.Money;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -12,6 +14,7 @@ public class Operation {
     private LocalDateTime date;
     private String recipient;
     private Type type;
+    private Money moneyAmount;
 
     public LocalDateTime getDate() {
         return date;
@@ -45,28 +48,42 @@ public class Operation {
 
     public void setAccountId(int accountId) { AccountId = accountId; }
 
+    public Money getMoneyAmount() {
+        return moneyAmount;
+    }
+
+    public void setMoneyAmount(Money moneyAmount) {
+        this.moneyAmount = moneyAmount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Operation that = (Operation) o;
-        return Objects.equals(date, that.date) &&
-                Objects.equals(recipient, that.recipient) &&
-                type == that.type;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(date, recipient, type);
+        Operation operation = (Operation) o;
+        return AccountId == operation.AccountId &&
+                Objects.equals(date, operation.date) &&
+                Objects.equals(recipient, operation.recipient) &&
+                type == operation.type &&
+                Objects.equals(moneyAmount, operation.moneyAmount);
     }
 
     @Override
     public String toString() {
         return "Operation{" +
-                "date=" + date +
+                "id=" + id +
+                ", AccountId=" + AccountId +
+                ", date=" + date +
                 ", recipient='" + recipient + '\'' +
                 ", type=" + type +
+                ", moneyAmount=" + moneyAmount +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(AccountId, date, recipient, type, moneyAmount);
     }
 
     public static class OperationBuilder {
@@ -94,6 +111,11 @@ public class Operation {
 
         public OperationBuilder setType(Type type) {
             operation.setType(type);
+            return this;
+        }
+
+        public OperationBuilder setMoneyAmount(Money money) {
+            operation.setMoneyAmount(money);
             return this;
         }
 

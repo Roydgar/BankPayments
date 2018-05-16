@@ -4,6 +4,7 @@ import org.javamoney.moneta.Money;
 import ua.training.model.dao.CreditRequestDao;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.entity.CreditRequest;
+import ua.training.util.ConvertUtil;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,7 +19,8 @@ public class CreditRequestService{
 
     public void create(int userId, Money moneyAmount) {
         creditRequestDao.create(new CreditRequest.CreditRequestBuilder().setUserId(userId)
-        .setDate(LocalDateTime.now()).setMoneyAmount(moneyAmount).create());
+        .setDate(LocalDateTime.now()).setMoneyAmount(moneyAmount)
+                .setStatus(CreditRequest.Status.NEW).create());
     }
 
     public Optional<CreditRequest> findById(int id) {
@@ -35,5 +37,9 @@ public class CreditRequestService{
 
     public void delete(int id) {
         creditRequestDao.delete(id);
+    }
+
+    public void updateStatus(int id, CreditRequest.Status status) {
+        creditRequestDao.updateStatus(id, status);
     }
 }

@@ -106,7 +106,7 @@ public class CreditRequest {
             creditRequest.setStatus(status);
             return this;
         }
-        
+
         public CreditRequest create() {
             return creditRequest;
         }

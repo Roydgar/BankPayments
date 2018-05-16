@@ -6,6 +6,7 @@ import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.UserHasAccountDao;
 import ua.training.model.entity.Account;
 import ua.training.util.AccountUtil;
+import ua.training.util.ConvertUtil;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -66,7 +67,9 @@ public class AccountService {
     }
 
     public void addUserToAccount(int userId, int accountId) {
-        userHasAccountDao.create(userId, accountId);
+        if (!userHasAccountDao.exists(userId, accountId)) {
+            userHasAccountDao.create(userId, accountId);
+        }
     }
 
     public Optional<Account> findByNumber(String number){

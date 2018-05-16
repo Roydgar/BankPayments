@@ -6,12 +6,11 @@ import ua.training.controller.command.admin.AddNewAdmin;
 import ua.training.controller.command.login.Login;
 import ua.training.controller.command.login.Logout;
 import ua.training.controller.command.login.Registration;
-import ua.training.controller.command.user.AddUserToAccount;
-import ua.training.controller.command.user.OpenAccount;
-import ua.training.controller.command.user.SortCreditRequests;
-import ua.training.controller.command.user.SortUserAccounts;
+import ua.training.controller.command.user.*;
+import ua.training.model.dao.impl.constants.ColumnNames;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.CreditRequestService;
+import ua.training.model.service.OperationService;
 import ua.training.model.service.UserService;
 import ua.training.util.constants.CommandNames;
 
@@ -34,6 +33,9 @@ public class CommandExecutor {
                 new AccountService()));
         commands.put(CommandNames.SORT_USER_ACCOUNTS, new SortUserAccounts());
         commands.put(CommandNames.SORT_CREDIT_REQUESTS, new SortCreditRequests());
+        commands.put(CommandNames.DO_OPERATION, new DoOperation(new OperationService(), new AccountService()));
+        commands.put(CommandNames.SHOW_ACCOUNTS, new ShowAccounts(new AccountService()));
+        commands.put(CommandNames.SHOW_OPERATION_HISTORY, new ShowOperationHistory(new OperationService()));
     }
 
     public String executeCommand(String command, HttpServletRequest request) {

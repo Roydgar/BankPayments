@@ -19,6 +19,8 @@ public interface AttributeNames {
     String CHOSEN_ACCOUNT      = "chosenAccount";
     String MONEY_AMOUNT        = "moneyAmount";
 
+    String OPERATIONS          = "operations";
+
     String CREDIT_REQUESTS     = "creditRequests";
     String CREDIT_REQUEST_ID   = "creditRequestId";
 
@@ -27,4 +29,8 @@ public interface AttributeNames {
     String SORT_BY_TYPE        = "type";
     String SORT_BY_DATE        = "date";
     String SORT_BY_MONEY_AMOUNT = "moneyAmount";
+
+    String OPERATION_TYPE      = "operationType";
+    String PAYER_ACCOUNT       = "payerAccount";
+    String RECIPIENT_ACCOUNT   = "recipientAccount";
 }

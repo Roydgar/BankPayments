@@ -21,6 +21,24 @@
                         </c:forEach>
                     </select>
 
+                    <ul class="list-group">
+                        <c:forEach var="operation" items="${operations}">
+                            <li class="list-group-item">
+                                <button class="btn btn-info" data-toggle="collapse" data-target="#${operation.id}">
+                                    <c:out value="recipient :${operation.recipient}"/>; money: <c:out value="${operation.moneyAmount}"/>
+                                </button>
+
+                                <div id="${operation.id}" class="collapse">
+                                    <p>
+                                        When: <c:out value="${operation.date}"/> ;
+                                        <br>
+                                        Type:  <c:out value="${operation.type}"/>
+                                    </p>
+                                </div>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

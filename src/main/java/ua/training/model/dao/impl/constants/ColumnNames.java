@@ -21,8 +21,10 @@ public interface ColumnNames {
     String OPERATION_RECIPIENT      = "recipient";
     String OPERATION_DATE           = "date";
     String OPERATION_TYPE           = "operation_type";
+    String OPERATION_MONEY_AMOUNT   = "money_amount";
 
     String CREDIT_REQUEST_ID           = "credit_request_id";
     String CREDIT_REQUEST_MONEY_AMOUNT = "money_amount";
     String CREDIT_REQUEST_DATE         = "date";
+    String CREDIT_REQUEST_STATUS       = "request_status";
 }

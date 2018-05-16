@@ -7,6 +7,7 @@ import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.CreditRequestService;
 import ua.training.util.AccountUtil;
+import ua.training.util.ConvertUtil;
 import ua.training.util.ResourceBundleUtil;
 import ua.training.util.UserUtil;
 import ua.training.util.constants.AttributeNames;
@@ -29,8 +30,7 @@ public class OpenAccount implements Command {
     public String execute(HttpServletRequest request) {
         Account.Type type = Account.Type.valueOf(request.getParameter(AttributeNames.ACCOUNT_TYPE).toUpperCase());
         int loggedUserId = (int)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID);
-        Money moneyAmount = AccountUtil.getMoneyInDefaultCurrency(
-                Long.parseLong(request.getParameter(AttributeNames.MONEY_AMOUNT)));
+        Money moneyAmount = AccountUtil.getMoneyInDefaultCurrency(request.getParameter(AttributeNames.MONEY_AMOUNT));
 
         if (AccountUtil.moneyIsBiggerThanLimit(moneyAmount, type)) {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.OPEN_ACCOUNT_DENIED);
@@ -38,13 +38,11 @@ public class OpenAccount implements Command {
         }
 
         if (type == Account.Type.CREDIT) {
-            creditRequestService.create(loggedUserId, moneyAmount);
+            creditRequestService.create(loggedUserId, ConvertUtil.convertDollarsToCents(moneyAmount));
         } else{
-            accountService.create(type, loggedUserId, moneyAmount);
+            accountService.create(type, loggedUserId, ConvertUtil.convertDollarsToCents(moneyAmount));
         }
 
-        request.getSession().setAttribute(AttributeNames.ACCOUNTS,
-                accountService.findAccountsByUserId(loggedUserId));
 
         User.Role role = (User.Role)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ROLE);
         return UserUtil.getPageByRole(role);

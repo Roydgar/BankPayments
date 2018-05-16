@@ -121,5 +121,6 @@ public class JDBCOperationDao implements OperationDao {
         ps.setString(2, operation.getType().toString());
         ps.setTimestamp(3 , Timestamp.valueOf(operation.getDate()));
         ps.setInt(4 , operation.getAccountId());
+        ps.setLong(5, operation.getMoneyAmount().getNumber().longValue());
     }
 }

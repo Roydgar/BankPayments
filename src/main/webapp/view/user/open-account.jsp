@@ -45,7 +45,7 @@
                     </script>
 
                     <div id="money-amount">
-                        <input pattern="[0-9]{1,15}" class="form-control" placeholder="Money amount" name="moneyAmount">
+                        <input type="text"  pattern="[0-9]+(\.[0-9]{0,2})?%?" class="form-control" placeholder="Money amount" name="moneyAmount" required >
                     </div>
 
 

@@ -30,7 +30,16 @@
                     <c:forEach var="creditRequest" items="${creditRequests}">
                         <li class="list-group-item">
                             <c:out value="${creditRequest.moneyAmount}"/> : <c:out value="${creditRequest.date}"/>
-                            <button class="btn btn-info" type="submit" name="creditRequestId" value="${creditRequest.id}"> Confirm </button>
+
+                            <c:choose>
+                                <c:when test="${creditRequest.status == 'NEW'}">
+                                    <button class="btn btn-info" type="submit" name="creditRequestId"  value="${creditRequest.id}:confirmed"> Confirm </button>
+                                    <button class="btn btn-info" type="submit" name="creditRequestId"  value="${creditRequest.id}:denied">    Deny </button>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:out value="${creditRequest.status}"/>
+                                </c:otherwise>
+                            </c:choose>
                         </li>
                     </c:forEach>
                 </ul>

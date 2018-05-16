@@ -24,21 +24,22 @@ CREATE TABLE IF NOT EXISTS `payments`.`user` (
   `password` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`user_id`))
-ENGINE = InnoDB;
+  ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `payments`.`credit_request` (
   `credit_request_id` INT NOT NULL AUTO_INCREMENT,
   `money_amount` BIGINT NOT NULL,
-  `date` TIMESTAMP NOT NULL,
+  `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `user_id` INT NOT NULL,
+  `request_status` ENUM('NEW', 'CONFIRMED', 'DENIED') NOT NULL,
   PRIMARY KEY (`credit_request_id`),
   INDEX `fk_credit_request_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_credit_request_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `payments`.`user` (`user_id`)
+  FOREIGN KEY (`user_id`)
+  REFERENCES `payments`.`user` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `mydb`.`account`
@@ -47,14 +48,14 @@ CREATE TABLE IF NOT EXISTS `payments`.`account` (
   `account_id` INT NOT NULL AUTO_INCREMENT,
   `number` VARCHAR(45) NOT NULL,
   `balance` BIGINT NOT NULL,
-  `validity_date` TIMESTAMP NOT NULL,
+  `validity_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `rate` DECIMAL(5,4) NOT NULL,
   `accrued_interest` DECIMAL(7,4) NOT NULL,
   `limit` BIGINT NOT NULL,
   `account_type` ENUM('CHECKING', 'CREDIT', 'DEPOSIT') NOT NULL,
-  `creation_date` TIMESTAMP NOT NULL,
+  `creation_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`account_id`))
-ENGINE = InnoDB;
+  ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -63,17 +64,18 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `payments`.`operation` (
   `operation_id` INT NOT NULL AUTO_INCREMENT,
   `recipient` VARCHAR(45) NOT NULL,
-  `operation_type` ENUM('TRANSFER', 'BILLS_PAYMENT', 'LOAN_PAYMENT') NOT NULL,
+  `operation_type` ENUM('TRANSFER', 'LOAN_PAYMENT') NOT NULL,
   `account_id` INT NOT NULL,
-  `date` TIMESTAMP NOT NULL,
+  `money_amount` BIGINT NOT NULL,
+  `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`operation_id`, `account_id`),
   INDEX `fk_operation_account1_idx` (`account_id` ASC),
   CONSTRAINT `fk_operation_account1`
-    FOREIGN KEY (`account_id`)
-    REFERENCES `payments`.`account` (`account_id`)
+  FOREIGN KEY (`account_id`)
+  REFERENCES `payments`.`account` (`account_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -86,16 +88,16 @@ CREATE TABLE IF NOT EXISTS `payments`.`user_has_account` (
   INDEX `fk_user_has_account_account1_idx` (`account_id` ASC),
   INDEX `fk_user_has_account_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_user_has_account_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `payments`.`user` (`user_id`)
+  FOREIGN KEY (`user_id`)
+  REFERENCES `payments`.`user` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_has_account_account1`
-    FOREIGN KEY (`account_id`)
-    REFERENCES `payments`.`account` (`account_id`)
+  FOREIGN KEY (`account_id`)
+  REFERENCES `payments`.`account` (`account_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

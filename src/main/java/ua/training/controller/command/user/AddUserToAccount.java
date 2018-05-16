@@ -9,6 +9,7 @@ import ua.training.util.ResourceBundleUtil;
 import ua.training.util.UserUtil;
 import ua.training.util.constants.AttributeNames;
 
+import ua.training.util.constants.PageURLs;
 import ua.training.util.constants.ResponseMessages;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,7 @@ public class AddUserToAccount implements Command {
             accountService.addUserToAccount(chosenUser.get().getId(), chosenAccount.get().getId());
         } else {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.LOGIN_DOESNT_EXIST);
+            return PageURLs.ADD_USER_TO_ACCOUNT;
         }
 
         User.Role role = (User.Role)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ROLE);

@@ -107,6 +107,17 @@ public class JDBCCreditRequestDao implements CreditRequestDao {
     }
 
     @Override
+    public void updateStatus(int id, CreditRequest.Status status) {
+        try (PreparedStatement ps = connection.prepareStatement(CreditRequestQueries.UPDATE_STATUS)){
+            ps.setString(1, status.toString());
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void close() throws Exception {
         try {
             connection.close();
@@ -119,5 +130,6 @@ public class JDBCCreditRequestDao implements CreditRequestDao {
         ps.setLong(1 , creditRequest.getMoneyAmount().getNumber().longValue());
         ps.setTimestamp(2, Timestamp.valueOf(creditRequest.getDate()));
         ps.setInt(3, creditRequest.getUserId());
+        ps.setString(4, creditRequest.getStatus().toString());
     }
 }

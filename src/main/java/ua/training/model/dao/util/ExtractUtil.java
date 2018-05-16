@@ -49,9 +49,10 @@ public class ExtractUtil {
         String recipient = rs.getString(ColumnNames.OPERATION_RECIPIENT);
         Operation.Type type = Operation.Type.valueOf(rs.getString(ColumnNames.OPERATION_TYPE));
         LocalDateTime date = rs.getTimestamp(ColumnNames.OPERATION_DATE).toLocalDateTime();
+        Money moneyAmount = AccountUtil.getMoneyInDefaultCurrency(rs.getLong(ColumnNames.OPERATION_MONEY_AMOUNT));
 
         return new Operation.OperationBuilder().setId(operationId).setAccountId(accountId).setRecipient(recipient)
-                .setType(type).setDate(date).create();
+                .setType(type).setDate(date).setMoneyAmount(moneyAmount).create();
     }
 
     public static CreditRequest extractCreditRequestFromResultSet(ResultSet rs)
@@ -60,8 +61,9 @@ public class ExtractUtil {
         int userId = rs.getInt(ColumnNames.USER_ID);
         Money moneyAmount = AccountUtil.getMoneyInDefaultCurrency(rs.getLong(ColumnNames.CREDIT_REQUEST_MONEY_AMOUNT));
         LocalDateTime date = rs.getTimestamp(ColumnNames.CREDIT_REQUEST_DATE).toLocalDateTime();
+        CreditRequest.Status status = CreditRequest.Status.valueOf(rs.getString(ColumnNames.CREDIT_REQUEST_STATUS));
 
         return new CreditRequest.CreditRequestBuilder().setId(id).setUserId(userId)
-                .setDate(date).setMoneyAmount(moneyAmount).create();
+                .setDate(date).setMoneyAmount(moneyAmount).setStatus(status).create();
     }
 }

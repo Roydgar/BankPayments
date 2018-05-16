@@ -14,6 +14,14 @@ public class AccountUtil {
         return Money.of(money, GlobalConstants.DEFAULT_CURRENCY);
     }
 
+    public static Money getMoneyInDefaultCurrency(double money) {
+        return Money.of(money, GlobalConstants.DEFAULT_CURRENCY);
+    }
+
+    public static Money getMoneyInDefaultCurrency(String money) {
+        return Money.of(Double.parseDouble(money), GlobalConstants.DEFAULT_CURRENCY);
+    }
+
     public static Money getZeroBalance() {
         return getMoneyInDefaultCurrency(0);
     }
@@ -44,6 +52,10 @@ public class AccountUtil {
 
     public static boolean moneyIsBiggerThanLimit(Money money, Account.Type type) {
         return money.compareTo(getBalanceLimit(type)) > 0;
+    }
+
+    public static boolean moneyIsBiggerOrEqualsThan(Money money, Money anotherMoney) {
+        return money.compareTo(anotherMoney) >= 0;
     }
 
     public static String generateAccountNumber() {

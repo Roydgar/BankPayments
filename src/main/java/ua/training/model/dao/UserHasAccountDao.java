@@ -9,4 +9,5 @@ public interface UserHasAccountDao extends AutoCloseable{
     void create(int userId, int accountId);
     List<Account> findAccountsByUserId(int userId);
     List<User> findUsersByAccountId(int accountId);
+    boolean exists (int userId, int accountId);
 }

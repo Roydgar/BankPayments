@@ -11,4 +11,7 @@ public interface CommandNames {
     String CONFIRM_CREDIT_REQUEST = "confirm-credit-request";
     String SORT_USER_ACCOUNTS   = "sort-accounts";
     String SORT_CREDIT_REQUESTS = "sort-credit-requests";
+    String DO_OPERATION         = "do-operation";
+    String SHOW_ACCOUNTS        = "show-accounts";
+    String SHOW_OPERATION_HISTORY = "show-operation-history";
 }

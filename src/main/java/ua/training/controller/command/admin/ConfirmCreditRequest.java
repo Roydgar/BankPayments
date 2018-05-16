@@ -5,6 +5,7 @@ import ua.training.model.entity.Account;
 import ua.training.model.entity.CreditRequest;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.CreditRequestService;
+import ua.training.util.ConvertUtil;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.PageURLs;
 
@@ -22,13 +23,22 @@ public class ConfirmCreditRequest implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        int creditRequestId = Integer.parseInt(request.getParameter(AttributeNames.CREDIT_REQUEST_ID));
+        int creditRequestId = Integer.parseInt(
+                request.getParameter(AttributeNames.CREDIT_REQUEST_ID).split(":")[0]);
+        CreditRequest.Status status = CreditRequest.Status.valueOf(
+                request.getParameter(AttributeNames.CREDIT_REQUEST_ID).split(":")[1].toUpperCase());
+
         Optional<CreditRequest> creditRequest = creditRequestService.findById(creditRequestId);
 
-        accountService.create(Account.Type.CREDIT, creditRequest.get().getUserId(),
-                creditRequest.get().getMoneyAmount());
+        if (status == CreditRequest.Status.CONFIRMED) {
+            accountService.create(Account.Type.CREDIT, creditRequest.get().getUserId(),
+                    creditRequest.get().getMoneyAmount());
+        }
 
-        creditRequestService.delete(creditRequestId);
+        creditRequestService.updateStatus(creditRequestId, status);
+
+        request.getSession().setAttribute(AttributeNames.CREDIT_REQUESTS,
+                ConvertUtil.convertCreditMoneyToDollars(creditRequestService.findAll()));
         return PageURLs.SHOW_CREDIT_REQUESTS;
     }
 }
