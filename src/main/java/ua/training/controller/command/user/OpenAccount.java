@@ -6,10 +6,7 @@ import ua.training.model.entity.Account;
 import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.CreditRequestService;
-import ua.training.util.AccountUtil;
-import ua.training.util.ConvertUtil;
-import ua.training.util.ResourceBundleUtil;
-import ua.training.util.UserUtil;
+import ua.training.util.*;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.PageURLs;
 import ua.training.util.constants.ResponseMessages;
@@ -28,9 +25,16 @@ public class OpenAccount implements Command {
     }
     @Override
     public String execute(HttpServletRequest request) {
-        Account.Type type = Account.Type.valueOf(request.getParameter(AttributeNames.ACCOUNT_TYPE).toUpperCase());
+        String accountType = request.getParameter(AttributeNames.ACCOUNT_TYPE);
+        String moneyAmountParameter = request.getParameter(AttributeNames.MONEY_AMOUNT);
+
+        if (DataValidator.parameterIsEmptyOrNull(accountType, moneyAmountParameter)) {
+            return PageURLs.OPEN_ACCOUNT;
+        }
+
+        Account.Type type = Account.Type.valueOf(accountType.toUpperCase());
         int loggedUserId = (int)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID);
-        Money moneyAmount = AccountUtil.getMoneyInDefaultCurrency(request.getParameter(AttributeNames.MONEY_AMOUNT));
+        Money moneyAmount = AccountUtil.getMoneyInDefaultCurrency(moneyAmountParameter);
 
         if (AccountUtil.moneyIsBiggerThanLimit(moneyAmount, type)) {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.OPEN_ACCOUNT_DENIED);

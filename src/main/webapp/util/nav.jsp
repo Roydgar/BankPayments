@@ -34,9 +34,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <c:choose>
                     <c:when test="${empty loggedUserLogin || loggedUserRole == 'UNKNOWN'}">
-                        <li><a href="${pageContext.request.contextPath}/view/login/registration.jsp"> <span class="glyphicon glyphicon-user"></span>
+                        <li><a href="${pageContext.request.contextPath}/registration"> <span class="glyphicon glyphicon-user"></span>
                             <fmt:message key="index.link.registration" /></a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/login/login.jsp">
+                        <li><a href="${pageContext.request.contextPath}/login">
                             <span class="glyphicon glyphicon-log-in"></span> <fmt:message key="index.link.login" /></a></li>
                     </c:when>
 

@@ -30,7 +30,7 @@
                 </form>
 
             </div>
-            <a href="login.jsp" class="text-center new-account"><fmt:message key="registration.link.login" /></a>
+            <a href="${pageContext.request.contextPath}/view/login/login.jsp" class="text-center new-account"><fmt:message key="registration.link.login" /></a>
         </div>
     </div>
 </div>

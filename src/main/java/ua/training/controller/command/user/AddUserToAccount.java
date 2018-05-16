@@ -5,6 +5,7 @@ import ua.training.model.entity.Account;
 import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.UserService;
+import ua.training.util.DataValidator;
 import ua.training.util.ResourceBundleUtil;
 import ua.training.util.UserUtil;
 import ua.training.util.constants.AttributeNames;
@@ -27,9 +28,14 @@ public class AddUserToAccount implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
+        String chosenAccountNumber = request.getParameter(AttributeNames.CHOSEN_ACCOUNT);
+
+        if (DataValidator.parameterIsEmptyOrNull(chosenAccountNumber)) {
+            return PageURLs.ADD_USER_TO_ACCOUNT;
+        }
+
         Optional<Account> chosenAccount = accountService.findByNumber(
                 request.getParameter(AttributeNames.CHOSEN_ACCOUNT));
-
         Optional<User> chosenUser = userService.getUserByLogin(request.getParameter(AttributeNames.LOGIN));
 
         if (chosenUser.isPresent() && chosenAccount.isPresent()) {

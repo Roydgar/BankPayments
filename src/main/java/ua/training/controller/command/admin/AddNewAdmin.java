@@ -3,6 +3,7 @@ package ua.training.controller.command.admin;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.User;
 import ua.training.model.service.UserService;
+import ua.training.util.DataValidator;
 import ua.training.util.LoggerMessageUtil;
 import ua.training.util.ResourceBundleUtil;
 import ua.training.util.constants.AttributeNames;
@@ -26,6 +27,9 @@ public class AddNewAdmin implements Command {
         String password = request.getParameter(AttributeNames.PASSWORD);
         String confirmPassword = request.getParameter(AttributeNames.CONFIRM_PASSWORD);
 
+        if (DataValidator.parameterIsEmptyOrNull(login, email, password, confirmPassword)) {
+            return PageURLs.REGISTRATION;
+        }
 
         if(!password.equals(confirmPassword)) {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.REGISTRATION_PASSWORDS_DONT_MATCH);

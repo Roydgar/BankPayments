@@ -7,10 +7,7 @@ import ua.training.model.entity.Operation;
 import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.OperationService;
-import ua.training.util.AccountUtil;
-import ua.training.util.ConvertUtil;
-import ua.training.util.ResourceBundleUtil;
-import ua.training.util.UserUtil;
+import ua.training.util.*;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.PageURLs;
 import ua.training.util.constants.ResponseMessages;
@@ -29,13 +26,19 @@ public class DoOperation implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        Money moneyAmount = ConvertUtil.convertDollarsToCents(AccountUtil.getMoneyInDefaultCurrency(
-                request.getParameter(AttributeNames.MONEY_AMOUNT)));
+        String moneyAmountParameter =  request.getParameter(AttributeNames.MONEY_AMOUNT);
+        String payerAccountNumber   =  request.getParameter(AttributeNames.PAYER_ACCOUNT);
+        String recipientAccountNumber = request.getParameter(AttributeNames.RECIPIENT_ACCOUNT);
 
-        Optional<Account> payerAccount = accountService.findByNumber(
-                request.getParameter(AttributeNames.PAYER_ACCOUNT));
-        Optional<Account> recipientAccount = accountService.findByNumber(
-                request.getParameter(AttributeNames.RECIPIENT_ACCOUNT));
+        if (DataValidator.parameterIsEmptyOrNull(moneyAmountParameter, payerAccountNumber, recipientAccountNumber)) {
+            return PageURLs.DO_OPERATION;
+        }
+
+        Money moneyAmount = ConvertUtil.convertDollarsToCents(AccountUtil.getMoneyInDefaultCurrency(
+                moneyAmountParameter));
+
+        Optional<Account> payerAccount = accountService.findByNumber(payerAccountNumber);
+        Optional<Account> recipientAccount = accountService.findByNumber(recipientAccountNumber);
 
         if (!payerAccount.isPresent() || !recipientAccount.isPresent()) {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.RECIPIENT_DOESNT_EXIST);
