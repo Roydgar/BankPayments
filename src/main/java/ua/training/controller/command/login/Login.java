@@ -4,6 +4,7 @@ import ua.training.controller.command.Command;
 import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.UserService;
+import ua.training.util.ConvertUtil;
 import ua.training.util.LoggerMessageUtil;
 import ua.training.util.ResourceBundleUtil;
 import ua.training.util.UserUtil;
@@ -52,6 +53,8 @@ public class Login implements Command {
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_ID, loggedUser.getId());
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_LOGIN, loggedUser.getLogin().toLowerCase());
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_ROLE, role);
+        request.getSession().setAttribute(AttributeNames.ACCOUNTS,
+                ConvertUtil.convertMoneyToDollars(accountService.findAccountsByUserId(loggedUser.getId())));
 
         return UserUtil.getPageByRole(role);
     }

@@ -27,17 +27,14 @@ public class ServletController extends HttpServlet {
     }
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp)
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("DOOOGEEET");
-
-        processRequest(req, resp);
+        processRequest(request, response);
     }
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        System.out.println("DOOOPOOST");
         processRequest(req, resp);
     }
 

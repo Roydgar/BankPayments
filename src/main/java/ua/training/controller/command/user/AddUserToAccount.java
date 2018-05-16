@@ -27,7 +27,6 @@ public class AddUserToAccount implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        System.out.println("EEEEEE");
         Optional<Account> chosenAccount = accountService.findByNumber(
                 request.getParameter(AttributeNames.CHOSEN_ACCOUNT));
 
