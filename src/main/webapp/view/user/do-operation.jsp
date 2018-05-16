@@ -11,7 +11,7 @@
             <h4  class="error"><c:out value="${wrongUserInputMessage}"/> </h4>
 
             <form class="form-signin" action="/do-operation">
-                <label for="payerAccount">Choose an account</label>
+                <label for="payerAccount"><fmt:message key="doOperation.chooseAccount" /> </label>
 
                 <select class="form-control" id="payerAccount" name="payerAccount">
 
@@ -25,12 +25,12 @@
 
                 </select>
 
-                <input type="text" class="form-control" placeholder="Recipient card number" name="recipientAccount" required >
+                <input type="text" class="form-control" placeholder="<fmt:message key="doOperation.placeholder.recipient" /> " name="recipientAccount" required >
 
-                <input type="text"  pattern="[0-9]+(\.[0-9]{0,2})?%?" class="form-control" placeholder="Money amount" name="moneyAmount" required >
+                <input type="text"  pattern="[0-9]+(\.[0-9]{0,2})?%?" class="form-control" placeholder="<fmt:message key="doOperation.placeholder.moneyAmount" /> " name="moneyAmount" required >
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
-                    Confirm</button>
+                    <fmt:message key="doOperation.button.confirm" /> </button>
             </form>
         </div>
     </div>

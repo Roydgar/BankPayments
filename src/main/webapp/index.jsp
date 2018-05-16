@@ -16,16 +16,16 @@
         <div class="item active">
             <img src="${pageContext.request.contextPath}/resources/img/index_img1.jpg" alt="Image">
             <div class="${pageContext.request.contextPath}carousel-caption">
-                <h3>Your personal accounts</h3>
-                <p>Save money!</p>
+                <h3><fmt:message key="index.personalAccounts" /> </h3>
+                <p><fmt:message key="index.saveMoney" /></p>
             </div>
         </div>
 
         <div class="item">
             <img class="img-fluid d-block mx-auto" src="${pageContext.request.contextPath}/resources/img/index_img2.jpg" alt="Image">
             <div class="carousel-caption">
-                <h3>Open accounts</h3>
-                <p>Share money with your friends and family</p>
+                <h3><fmt:message key="index.openAccounts" /></h3>
+                <p><fmt:message key="index.shareMoney" /></p>
             </div>
         </div>
     </div>
@@ -42,22 +42,21 @@
 </div>
 
 <div class="container text-center">
-    <h3>What We Do</h3><br>
+    <h3><fmt:message key="index.whatDoWeDo" /></h3><br>
     <div class="row">
         <div class="col-sm-4">
             <img src="${pageContext.request.contextPath}/resources/img/staff.jpg" class="img-responsive" style="width:100%" alt="Image">
-            <p>Credits. Deposits. Operations</p>
+            <p><fmt:message key="index.credits" /></p>
         </div>
         <div class="col-sm-4">
             <img src="${pageContext.request.contextPath}/resources/img/proj2.jpg" class="img-responsive" style="width:100%" alt="Image">
-            <p>Money!</p>
+            <p><fmt:message key="index.money" /></p>
         </div>
         <div class="col-sm-4">
             <div class="well">
-                <p><a href="view/admin/admin-menu.jsp"> admin page </a></p>
             </div>
             <div class="well">
-                <p><a href="view/user/user-menu.jsp"> user page </a></p>
+                <p></p>
             </div>
         </div>
     </div>

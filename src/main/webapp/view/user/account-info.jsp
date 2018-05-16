@@ -14,14 +14,14 @@
                 <div class="col-lg-6">
 
                     <form method="post" action="/sort-accounts">
-                        <label for="sortBy"><fmt:message key="sidebar.sortBy" /></label>
+                        <label for="sortBy"><fmt:message key="sortBy" /></label>
                         <select class="form-control" id="sortBy" name="sortBy">
-                            <option value="balance"><fmt:message key="sidebar.sortBy.balance" /></option>
-                            <option value="type"><fmt:message key="sidebar.sortBy.type" /></option>
-                            <option value="date"><fmt:message key="sidebar.sortBy.creationTime" /></option>
+                            <option value="balance"><fmt:message key="sortBy.balance" /></option>
+                            <option value="type"><fmt:message key="sortBy.type" /></option>
+                            <option value="date"><fmt:message key="sortBy.creationTime" /></option>
                         </select>
 
-                        <button class="btn btn-info" type="submit">Sort</button>
+                        <button class="btn btn-info" type="submit"><fmt:message key="sortBy.button.sort" /></button>
                     </form>
 
 
@@ -34,15 +34,15 @@
 
                                 <div id="${account.number}" class="collapse">
                                     <p>
-                                        Created: <c:out value="${account.creationDate}"/> ; Validity to:  <c:out value="${account.validityDate}"/>
+                                        <fmt:message key="accountInfo.created" /> <c:out value="${account.creationDate}"/> ; <fmt:message key="accountInfo.validityTo" />  <c:out value="${account.validityDate}"/>
                                         <br>
-                                        Rate: <c:out value="${account.rate}"/> ; Accrued interest:  <c:out value="${account.accruedInterest}"/>
+                                        <fmt:message key="accountInfo.rate" />  <c:out value="${account.rate}"/> ; <fmt:message key="accountInfo.accruedInterest" />   <c:out value="${account.accruedInterest}"/>
                                         <br>
-                                        Type:  <c:out value="${account.type}"/>
+                                        <fmt:message key="accountInfo.type" />   <c:out value="${account.type}"/>
                                     </p>
                                 </div>
                             </li>
-                            </c:forEach>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>

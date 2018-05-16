@@ -16,11 +16,11 @@
             <form method="post" action="/sort-credit-requests">
                 <label for="sortBy"><fmt:message key="sidebar.sortBy" /></label>
                 <select class="form-control" id="sortBy" name="sortBy">
-                    <option value="date" selected="selected">Date</option>
-                    <option value="moneyAmount"> Money amount</option>
+                    <option value="date" selected="selected"><fmt:message key="sortBy.date" /></option>
+                    <option value="moneyAmount"> <fmt:message key="sortBy.moneyAmount" /></option>
                 </select>
 
-                <button class="btn btn-info" type="submit">Sort</button>
+                <button class="btn btn-info" type="submit"><fmt:message key="sortBy.button.sort" /></button>
             </form>
 
 
@@ -33,8 +33,8 @@
 
                             <c:choose>
                                 <c:when test="${creditRequest.status == 'NEW'}">
-                                    <button class="btn btn-info" type="submit" name="creditRequestId"  value="${creditRequest.id}:confirmed"> Confirm </button>
-                                    <button class="btn btn-info" type="submit" name="creditRequestId"  value="${creditRequest.id}:denied">    Deny </button>
+                                    <button class="btn btn-info" type="submit" name="creditRequestId"  value="${creditRequest.id}:confirmed"> <fmt:message key="creditRequest.confirm" /> </button>
+                                    <button class="btn btn-info" type="submit" name="creditRequestId"  value="${creditRequest.id}:denied">    <fmt:message key="creditRequest.deny" /> </button>
                                 </c:when>
                                 <c:otherwise>
                                     <c:out value="${creditRequest.status}"/>

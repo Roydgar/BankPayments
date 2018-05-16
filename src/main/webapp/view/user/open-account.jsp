@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
-            <h1 class="text-center login-title">Open an account</h1>
+            <h1 class="text-center login-title"><fmt:message key="openAccount.title" /></h1>
             <div class="account-wall">
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                      alt="">
@@ -19,12 +19,12 @@
                 <h4  class="error"><c:out value="${wrongUserInputMessage}"/> </h4>
 
                 <form class="form-signin" action="/open-account">
-                    <label for="account-type">Choose an account type</label>
+                    <label for="account-type"><fmt:message key="openAccount.accountType" /> </label>
 
                     <select class="form-control" id="account-type" name="account-type">
-                        <option value="checking">Checking</option>
-                        <option value="credit">Credit</option>
-                        <option value="deposit">Deposit</option>
+                        <option value="checking"><fmt:message key="accountType.checking" /> </option>
+                        <option value="credit"><fmt:message key="accountType.credit" /></option>
+                        <option value="deposit"><fmt:message key="accountType.deposit" /> </option>
                     </select>
 
                     <script >
@@ -45,14 +45,14 @@
                     </script>
 
                     <div id="money-amount">
-                        <input type="text"  pattern="[0-9]+(\.[0-9]{0,2})?%?" class="form-control" placeholder="Money amount" name="moneyAmount" required >
+                        <input type="text"  pattern="[0-9]+(\.[0-9]{0,2})?%?" class="form-control" placeholder="<fmt:message key="openAccount.placeholder.moneyAmount" /> " name="moneyAmount" required >
                     </div>
 
 
 
                     <button class="btn btn-lg btn-primary btn-block" type="submit">
-                        Open an account</button>
-                    <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                        <fmt:message key="openAccount.button.confirm" /> </button>
+                    <a href="#" class="pull-right need-help"> <fmt:message key="openAccount.link.needHelp" />  </a><span class="clearfix"></span>
                 </form>
             </div>
         </div>

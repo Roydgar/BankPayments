@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="row content">
 
-        <%@ include file="../../util/sidebar.jsp" %>
+        <%@ include file="/util/sidebar.jsp" %>
 
     </div>
 </div>

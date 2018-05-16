@@ -3,9 +3,11 @@ package ua.training.util.constants;
 public interface PageURLs {
     String INDEX          = "/index.jsp";
 
-    String LOGIN          = "view/login/login.jsp";
-    String REGISTRATION   = "view/login/registration.jsp";
-    String ADMIN_REGISTRATION   = "/view/admin/admin-registration.jsp";
+    String LOGIN                    = "/view/login/login.jsp";
+    String LOGIN_REDIRECT           = "redirect:/view/login/login.jsp";
+    String REGISTRATION             = "/view/login/registration.jsp";
+    String REGISTRATION_REDIRECT    = "redirect:/view/login/registration.jsp";
+    String ADMIN_REGISTRATION       = "/view/admin/admin-registration.jsp";
 
     String USER_MENU            = "/view/user/user-menu.jsp";
     String REDIRECT_USER_MENU   = "/redirect:view/user/user-menu.jsp";

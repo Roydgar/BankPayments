@@ -7,7 +7,7 @@
 
 <div class="container text-center">
 
-    <h3>Mobile phone: +3802285566</h3>
+    <h3><fmt:message key="contacts.message" /></h3>
 </div><br>
 
 <%@ include file="/util/footer.jsp" %>

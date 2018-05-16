@@ -7,7 +7,7 @@
 
 <div class="container text-center">
 
-    <h3>Here we are! Bank payments!</h3>
+    <h3><fmt:message key="about.message" /></h3>
 </div><br>
 
 <%@ include file="/util/footer.jsp" %>
