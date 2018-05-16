@@ -9,9 +9,11 @@ import ua.training.model.service.AccountService;
 import ua.training.model.service.OperationService;
 import ua.training.util.AccountUtil;
 import ua.training.util.ConvertUtil;
+import ua.training.util.ResourceBundleUtil;
 import ua.training.util.UserUtil;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.PageURLs;
+import ua.training.util.constants.ResponseMessages;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
@@ -36,10 +38,12 @@ public class DoOperation implements Command {
                 request.getParameter(AttributeNames.RECIPIENT_ACCOUNT));
 
         if (!payerAccount.isPresent() || !recipientAccount.isPresent()) {
+            ResourceBundleUtil.setErrorMessage(request, ResponseMessages.RECIPIENT_DOESNT_EXIST);
             return PageURLs.DO_OPERATION;
         }
 
         if (payerAccount.get().getBalance().isLessThan(moneyAmount)) {
+            ResourceBundleUtil.setErrorMessage(request, ResponseMessages.INSUFFICIENT_FUNDS);
             return PageURLs.DO_OPERATION;
         }
 

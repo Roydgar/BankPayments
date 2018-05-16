@@ -10,4 +10,7 @@ public interface ResponseMessages {
     String REGISTRATION_USER_EXISTS             = "registration.error.userExists";
 
     String OPEN_ACCOUNT_DENIED          = "openAccount.denied";
+
+    String RECIPIENT_DOESNT_EXIST       = "recipient.doesnt.exist";
+    String INSUFFICIENT_FUNDS           = "insufficient.funds";
 }

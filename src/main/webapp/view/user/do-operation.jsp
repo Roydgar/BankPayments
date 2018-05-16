@@ -8,6 +8,8 @@
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
 
+            <h4  class="error"><c:out value="${wrongUserInputMessage}"/> </h4>
+
             <form class="form-signin" action="/do-operation">
                 <label for="payerAccount">Choose an account</label>
 
