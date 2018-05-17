@@ -1,6 +1,7 @@
 package ua.training.controller.command.user;
 
 import org.javamoney.moneta.Money;
+import ua.training.controller.annotation.CommandWithName;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Account;
 import ua.training.model.entity.Operation;
@@ -9,12 +10,14 @@ import ua.training.model.service.AccountService;
 import ua.training.model.service.OperationService;
 import ua.training.util.*;
 import ua.training.util.constants.AttributeNames;
+import ua.training.util.constants.CommandNames;
 import ua.training.util.constants.PageURLs;
 import ua.training.util.constants.ResponseMessages;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+@CommandWithName(name = CommandNames.DO_OPERATION)
 public class DoOperation implements Command {
     private AccountService accountService;
     private OperationService operationService;

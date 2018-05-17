@@ -1,5 +1,6 @@
 package ua.training.controller.command.user;
 
+import ua.training.controller.annotation.CommandWithName;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Account;
 import ua.training.model.entity.User;
@@ -10,12 +11,14 @@ import ua.training.util.ResourceBundleUtil;
 import ua.training.util.UserUtil;
 import ua.training.util.constants.AttributeNames;
 
+import ua.training.util.constants.CommandNames;
 import ua.training.util.constants.PageURLs;
 import ua.training.util.constants.ResponseMessages;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+@CommandWithName(name = CommandNames.ADD_USER_TO_ACCOUNT)
 public class AddUserToAccount implements Command {
 
     private AccountService accountService;

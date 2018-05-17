@@ -1,6 +1,7 @@
 package ua.training.controller.command.user;
 
 import org.javamoney.moneta.Money;
+import ua.training.controller.annotation.CommandWithName;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Account;
 import ua.training.model.entity.User;
@@ -8,13 +9,13 @@ import ua.training.model.service.AccountService;
 import ua.training.model.service.CreditRequestService;
 import ua.training.util.*;
 import ua.training.util.constants.AttributeNames;
+import ua.training.util.constants.CommandNames;
 import ua.training.util.constants.PageURLs;
 import ua.training.util.constants.ResponseMessages;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Optional;
 
+@CommandWithName(name = CommandNames.OPEN_ACCOUNT)
 public class OpenAccount implements Command {
     private AccountService accountService;
     private CreditRequestService creditRequestService;

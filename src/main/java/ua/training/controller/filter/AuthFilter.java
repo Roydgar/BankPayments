@@ -1,6 +1,7 @@
 package ua.training.controller.filter;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.training.model.entity.User;
 import ua.training.util.LoggerMessageUtil;
 import ua.training.util.constants.AttributeNames;
@@ -32,7 +33,7 @@ public class AuthFilter implements Filter {
 
         if (url.contains(GlobalConstants.ADMIN_PATTERN) && userRole != User.Role.ADMIN){
             resp.sendRedirect(PageURLs.INDEX);
-            Logger.getRootLogger().warn(LoggerMessageUtil.unauthorizedAccess(userLogin, userRole));
+            LogManager.getRootLogger().warn(LoggerMessageUtil.unauthorizedAccess(userLogin, userRole));
             return;
         }
         filterChain.doFilter(req, response);

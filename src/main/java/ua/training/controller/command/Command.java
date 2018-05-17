@@ -1,11 +1,12 @@
 package ua.training.controller.command;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
 public interface Command {
-    Logger logger = Logger.getRootLogger();
+    Logger logger = LogManager.getRootLogger();
 
     String execute(HttpServletRequest request);
 }

@@ -1,6 +1,5 @@
 package ua.training.controller;
 
-import org.apache.log4j.PropertyConfigurator;
 import ua.training.controller.command.CommandExecutor;
 import ua.training.util.constants.AttributeNames;
 
@@ -20,10 +19,6 @@ public class ServletController extends HttpServlet {
     @Override
     public void init(ServletConfig servletConfig){
         servletConfig.getServletContext().setAttribute(AttributeNames.LOGGED_USERS, new HashSet<String>());
-
-        String log4jConfigFile = servletConfig.getServletContext().getInitParameter("log4j-config-location");
-        String fullPath = servletConfig.getServletContext().getRealPath("") + File.separator + log4jConfigFile;
-        PropertyConfigurator.configure(fullPath);
     }
 
     @Override

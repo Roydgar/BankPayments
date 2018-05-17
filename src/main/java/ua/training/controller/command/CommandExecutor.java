@@ -1,5 +1,6 @@
 package ua.training.controller.command;
 
+import ua.training.controller.annotation.CommandWithName;
 import ua.training.controller.command.admin.ConfirmCreditRequest;
 import ua.training.controller.command.admin.ShowCreditRequests;
 import ua.training.controller.command.admin.AddNewAdmin;
@@ -22,19 +23,24 @@ public class CommandExecutor {
     private Map<String, Command> commands = new ConcurrentHashMap<>();
 
     private CommandExecutor() {
-        commands.put(CommandNames.LOGIN, new Login(new UserService(), new AccountService()));
-        commands.put(CommandNames.REGISTRATION, new Registration(new UserService()));
-        commands.put(CommandNames.LOGOUT, new Logout());
-        commands.put(CommandNames.OPEN_ACCOUNT, new OpenAccount(new AccountService(), new CreditRequestService()));
-        commands.put(CommandNames.ADD_USER_TO_ACCOUNT, new AddUserToAccount(new UserService(), new AccountService()));
-        commands.put(CommandNames.ADMIN_REGISTRATION, new AddNewAdmin(new UserService()));
-        commands.put(CommandNames.SHOW_CREDIT_REQUESTS, new ShowCreditRequests(new CreditRequestService()));
-        commands.put(CommandNames.CONFIRM_CREDIT_REQUEST, new ConfirmCreditRequest(new CreditRequestService(),
-                new AccountService()));
+        initCommand(new Login(new UserService(), new AccountService()));
+        initCommand(new Registration(new UserService()));
+        initCommand(new Logout());
+        initCommand(new OpenAccount(new AccountService(), new CreditRequestService()));
+        initCommand(new AddUserToAccount(new UserService(), new AccountService()));
+        initCommand(new AddNewAdmin(new UserService()));
+        initCommand(new ShowCreditRequests(new CreditRequestService()));
+        initCommand(new ConfirmCreditRequest(new CreditRequestService(), new AccountService()));
+        initCommand(new DoOperation(new OperationService(), new AccountService()));
+        initCommand(new ShowAccounts(new AccountService()));
+        initCommand(new ShowOperationHistory(new OperationService()));
+    }
 
-        commands.put(CommandNames.DO_OPERATION, new DoOperation(new OperationService(), new AccountService()));
-        commands.put(CommandNames.SHOW_ACCOUNTS, new ShowAccounts(new AccountService()));
-        commands.put(CommandNames.SHOW_OPERATION_HISTORY, new ShowOperationHistory(new OperationService()));
+    private void initCommand(Command command) {
+        Class clazz = command.getClass();
+        CommandWithName annotation = (CommandWithName) clazz.getAnnotation(CommandWithName.class);
+        String location = annotation.name();
+        commands.put(location, command);
     }
 
     public String executeCommand(String command, HttpServletRequest request) {

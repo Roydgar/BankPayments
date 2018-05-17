@@ -1,4 +1,5 @@
 package ua.training.controller.command.login;
+import ua.training.controller.annotation.CommandWithName;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.User;
 import ua.training.model.service.UserService;
@@ -6,12 +7,13 @@ import ua.training.util.DataValidator;
 import ua.training.util.LoggerMessageUtil;
 import ua.training.util.ResourceBundleUtil;
 import ua.training.util.constants.AttributeNames;
+import ua.training.util.constants.CommandNames;
 import ua.training.util.constants.ResponseMessages;
 import ua.training.util.constants.PageURLs;
 import javax.servlet.http.HttpServletRequest;
 
+@CommandWithName(name = CommandNames.REGISTRATION)
 public class Registration implements Command {
-
     private UserService userService;
 
     public Registration(UserService userService) {

@@ -1,15 +1,18 @@
 package ua.training.controller.command.login;
 
 
+import ua.training.controller.annotation.CommandWithName;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.User;
 import ua.training.util.LoggerMessageUtil;
 import ua.training.util.constants.AttributeNames;
+import ua.training.util.constants.CommandNames;
 import ua.training.util.constants.PageURLs;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 
+@CommandWithName(name = CommandNames.LOGOUT)
 public class Logout implements Command {
     @Override
     public String execute(HttpServletRequest request) {
