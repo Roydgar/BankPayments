@@ -49,8 +49,7 @@ public class OpenAccount implements Command {
             accountService.create(type, loggedUserId, ConvertUtil.convertDollarsToCents(moneyAmount));
         }
 
-        request.getSession().setAttribute(AttributeNames.ACCOUNTS,
-                ConvertUtil.convertMoneyToDollars(accountService.findAccountsByUserId(loggedUserId)));
+        request.getSession().setAttribute(AttributeNames.ACCOUNTS, accountService.findAccountsByUserId(loggedUserId));
 
         User.Role role = (User.Role)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ROLE);
         return UserUtil.getPageByRole(role);

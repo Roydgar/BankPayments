@@ -59,7 +59,7 @@
                         <c:forEach var="creditRequest" items="${creditRequests}">
                             <tr>
                                 <td><c:out value="${creditRequest.userLogin}"/></td>
-                                <td><c:out value="${creditRequest.moneyAmount}"/></td>
+                                <td><c:out value="${creditRequest.moneyAmount.getNumber() / 100}"/></td>
                                 <td><c:out value="${creditRequest.date}"/></td>
                                 <td>
                                     <c:choose>

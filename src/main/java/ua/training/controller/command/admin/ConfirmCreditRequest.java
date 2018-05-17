@@ -39,8 +39,7 @@ public class ConfirmCreditRequest implements Command {
 
         creditRequestService.updateStatus(creditRequestId, status);
 
-        request.getSession().setAttribute(AttributeNames.CREDIT_REQUESTS,
-                ConvertUtil.convertCreditMoneyToDollars(creditRequestService.findAll()));
+        request.getSession().setAttribute(AttributeNames.CREDIT_REQUESTS, creditRequestService.findAll());
         return PageURLs.SHOW_CREDIT_REQUESTS_REDIRECT;
     }
 }

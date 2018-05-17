@@ -26,8 +26,7 @@ public class ShowOperationHistory implements Command{
             operations.addAll(operationService.findByAccountId(account.getId()));
         }
 
-        request.setAttribute(AttributeNames.OPERATIONS,
-                ConvertUtil.convertOperationMoneyToDollars(operations));
+        request.setAttribute(AttributeNames.OPERATIONS, operations);
         return PageURLs.OPERATION_HISTORY;
     }
 }

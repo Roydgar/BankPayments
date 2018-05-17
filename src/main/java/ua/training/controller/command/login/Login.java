@@ -54,8 +54,7 @@ public class Login implements Command {
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_ID, loggedUser.getId());
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_LOGIN, loggedUser.getLogin().toLowerCase());
         request.getSession().setAttribute(AttributeNames.LOGGED_USER_ROLE, role);
-        request.getSession().setAttribute(AttributeNames.ACCOUNTS,
-                ConvertUtil.convertMoneyToDollars(accountService.findAccountsByUserId(loggedUser.getId())));
+        request.getSession().setAttribute(AttributeNames.ACCOUNTS, accountService.findAccountsByUserId(loggedUser.getId()));
 
         return UserUtil.getPageByRole(role);
     }

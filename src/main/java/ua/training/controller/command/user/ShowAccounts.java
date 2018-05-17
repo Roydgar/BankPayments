@@ -22,8 +22,8 @@ public class ShowAccounts implements Command {
         int loggedUserId = (int)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID);
         List<Account> accounts = accountService.findAccountsByUserId(loggedUserId);
 
-        request.getSession().setAttribute(AttributeNames.ACCOUNTS,
-                ConvertUtil.convertMoneyToDollars(accounts));
+
+        request.getSession().setAttribute(AttributeNames.ACCOUNTS, accounts);
         return PageURLs.ACCOUNT_INFO;
     }
 }

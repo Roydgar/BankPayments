@@ -61,7 +61,7 @@ public class DoOperation implements Command {
 
         int loggedUserId = (int)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID);
         request.getSession().setAttribute(AttributeNames.ACCOUNTS,
-                ConvertUtil.convertMoneyToDollars(accountService.findAccountsByUserId(loggedUserId)));
+                accountService.findAccountsByUserId(loggedUserId));
 
         User.Role role = (User.Role)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ROLE);
         return UserUtil.getPageByRole(role);

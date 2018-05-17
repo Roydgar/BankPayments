@@ -55,7 +55,7 @@
                             <c:forEach var="operation" items="${operations}">
                                 <tr>
                                     <td><c:out value="${operation.recipient}"/></td>
-                                    <td><c:out value="${operation.moneyAmount}"/></td>
+                                    <td><c:out value="${operation.moneyAmount.getNumber() / 100}"/></td>
                                     <td><c:out value="${operation.date}"/></td>
                                     <td><c:out value="${operation.type}"/></td>
                                 </tr>

@@ -58,12 +58,12 @@
                         <c:forEach var="account" items="${sessionScope.accounts}">
                             <tr>
                                 <td><c:out value="${account.number}"/> </td>
-                                <td><c:out value="${account.balance}"/> </td>
+                                <td><c:out value="${account.balance.getNumber() / 100} "/></td>
                                 <td><c:out value="${account.creationDate}"/></td>
                                 <td><c:out value="${account.validityDate}"/></td>
                                 <td><c:out value="${account.rate}"/></td>
                                 <td><c:out value="${account.accruedInterest}"/> </td>
-                                <td> <c:out value="${account.type}"/> </td>
+                                <td><c:out value="${account.type}"/> </td>
                             </tr>
                         </c:forEach>
                         </tbody>
