@@ -49,15 +49,10 @@
             <p><fmt:message key="index.credits" /></p>
         </div>
         <div class="col-sm-4">
+            <br>
             <img src="${pageContext.request.contextPath}/resources/img/proj2.jpg" class="img-responsive" style="width:100%" alt="Image">
+            <br>
             <p><fmt:message key="index.money" /></p>
-        </div>
-        <div class="col-sm-4">
-            <div class="well">
-            </div>
-            <div class="well">
-                <p></p>
-            </div>
         </div>
     </div>
 

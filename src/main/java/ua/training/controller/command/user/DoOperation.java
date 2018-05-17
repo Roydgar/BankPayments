@@ -45,7 +45,8 @@ public class DoOperation implements Command {
             return PageURLs.DO_OPERATION;
         }
 
-        if (payerAccount.get().getBalance().isLessThan(moneyAmount)) {
+        if (payerAccount.get().getBalance().isLessThan(moneyAmount) &&
+                payerAccount.get().getType() != Account.Type.CREDIT) {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.INSUFFICIENT_FUNDS);
             return PageURLs.DO_OPERATION;
         }

@@ -11,6 +11,7 @@ public class CreditRequest {
 
     private int id;
     private int userId;
+    private String userLogin;
     private Money moneyAmount;
     private LocalDateTime date;
     private Status status;
@@ -51,12 +52,17 @@ public class CreditRequest {
 
     public void setStatus(Status status) { this.status = status; }
 
+    public String getUserLogin() { return userLogin; }
+
+    public void setUserLogin(String userLogin) { this.userLogin = userLogin; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CreditRequest that = (CreditRequest) o;
         return userId == that.userId &&
+                Objects.equals(userLogin, that.userLogin) &&
                 Objects.equals(moneyAmount, that.moneyAmount) &&
                 Objects.equals(date, that.date) &&
                 status == that.status;
@@ -65,7 +71,7 @@ public class CreditRequest {
     @Override
     public int hashCode() {
 
-        return Objects.hash(userId, moneyAmount, date, status);
+        return Objects.hash(userId, userLogin, moneyAmount, date, status);
     }
 
     @Override
@@ -104,6 +110,11 @@ public class CreditRequest {
 
         public CreditRequestBuilder setStatus(Status status) {
             creditRequest.setStatus(status);
+            return this;
+        }
+
+        public CreditRequestBuilder setUserLogin(String userLogin) {
+            creditRequest.setUserLogin(userLogin);
             return this;
         }
 

@@ -17,10 +17,10 @@ public class CreditRequestService{
         return creditRequestDao.findByUserId(userId);
     }
 
-    public void create(int userId, Money moneyAmount) {
+    public void create(int userId, String userLogin, Money moneyAmount) {
         creditRequestDao.create(new CreditRequest.CreditRequestBuilder().setUserId(userId)
         .setDate(LocalDateTime.now()).setMoneyAmount(moneyAmount)
-                .setStatus(CreditRequest.Status.NEW).create());
+                .setStatus(CreditRequest.Status.NEW).setUserLogin(userLogin).create());
     }
 
     public Optional<CreditRequest> findById(int id) {

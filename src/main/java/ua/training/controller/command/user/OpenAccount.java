@@ -42,7 +42,9 @@ public class OpenAccount implements Command {
         }
 
         if (type == Account.Type.CREDIT) {
-            creditRequestService.create(loggedUserId, ConvertUtil.convertDollarsToCents(moneyAmount));
+            creditRequestService.create(loggedUserId,
+                    (String)request.getSession().getAttribute(AttributeNames.LOGGED_USER_LOGIN),
+                    ConvertUtil.convertDollarsToCents(moneyAmount));
         } else{
             accountService.create(type, loggedUserId, ConvertUtil.convertDollarsToCents(moneyAmount));
         }

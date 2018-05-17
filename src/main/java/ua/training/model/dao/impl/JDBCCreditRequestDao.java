@@ -138,7 +138,8 @@ public class JDBCCreditRequestDao implements CreditRequestDao {
     private void prepareCreateUpdateQuery(CreditRequest creditRequest, PreparedStatement ps) throws SQLException {
         ps.setLong(1 , creditRequest.getMoneyAmount().getNumber().longValue());
         ps.setTimestamp(2, Timestamp.valueOf(creditRequest.getDate()));
-        ps.setInt(3, creditRequest.getUserId());
-        ps.setString(4, creditRequest.getStatus().toString());
+        ps.setString(3, creditRequest.getUserLogin());
+        ps.setInt(4, creditRequest.getUserId());
+        ps.setString(5, creditRequest.getStatus().toString());
     }
 }

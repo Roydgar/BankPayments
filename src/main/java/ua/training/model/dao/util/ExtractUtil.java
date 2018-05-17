@@ -62,8 +62,9 @@ public class ExtractUtil {
         Money moneyAmount = AccountUtil.getMoneyInDefaultCurrency(rs.getLong(ColumnNames.CREDIT_REQUEST_MONEY_AMOUNT));
         LocalDateTime date = rs.getTimestamp(ColumnNames.CREDIT_REQUEST_DATE).toLocalDateTime();
         CreditRequest.Status status = CreditRequest.Status.valueOf(rs.getString(ColumnNames.CREDIT_REQUEST_STATUS));
+        String userLogin    = rs.getString(ColumnNames.CREDIT_REQUEST_USER_LOGIN);
 
         return new CreditRequest.CreditRequestBuilder().setId(id).setUserId(userId)
-                .setDate(date).setMoneyAmount(moneyAmount).setStatus(status).create();
+                .setDate(date).setMoneyAmount(moneyAmount).setStatus(status).setUserLogin(userLogin).create();
     }
 }

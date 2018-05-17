@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `payments`.`credit_request` (
   `money_amount` BIGINT NOT NULL,
   `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `user_id` INT NOT NULL,
+  `user_login` VARCHAR(255) NOT NULL,
   `request_status` ENUM('NEW', 'CONFIRMED', 'DENIED') NOT NULL,
   PRIMARY KEY (`credit_request_id`),
   INDEX `fk_credit_request_user1_idx` (`user_id` ASC),

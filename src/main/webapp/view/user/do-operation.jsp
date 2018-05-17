@@ -16,11 +16,7 @@
                 <select class="form-control" id="payerAccount" name="payerAccount">
 
                     <c:forEach var="account" items="${sessionScope.accounts}">
-                        <c:choose>
-                            <c:when test="${account.type == 'CHECKING'}">
-                                <option value="${account.number}"><c:out value="${account.number}"/></option>
-                            </c:when>
-                        </c:choose>
+                        <option value="${account.number}"><c:out value="${account.number}"/></option>
                     </c:forEach>
 
                 </select>

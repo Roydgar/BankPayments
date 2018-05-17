@@ -35,9 +35,9 @@ public class DatabaseTest {
 
     @Test
     public void testFindAll(){
-//        UserDao userDao = DaoFactory.getInstance().createUserDao();
-//        userDao.create(new User.UserBuilder().setLogin("roydgar").setPassword(DigestUtils.md5Hex("VS824"))
-//                .setEmail("Royd@gmail.com").setRole(User.Role.ADMIN).create());
+        UserDao userDao = DaoFactory.getInstance().createUserDao();
+        userDao.create(new User.UserBuilder().setLogin("roydgar").setPassword(DigestUtils.md5Hex("VS824"))
+                .setEmail("Royd@gmail.com").setRole(User.Role.ADMIN).create());
     }
 
 }

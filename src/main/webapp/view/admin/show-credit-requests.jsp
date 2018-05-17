@@ -48,6 +48,7 @@
                 <table id="creditRequestTable" class="display">
                     <thead>
                         <tr>
+                            <th><fmt:message key="creditRequest.user"/></th>
                             <th><fmt:message key="creditRequest.moneyAmount"/></th>
                             <th><fmt:message key="creditRequest.date"/></th>
                             <th><fmt:message key="creditRequest.status"/></th>
@@ -57,6 +58,7 @@
                     <tbody>
                         <c:forEach var="creditRequest" items="${creditRequests}">
                             <tr>
+                                <td><c:out value="${creditRequest.userLogin}"/></td>
                                 <td><c:out value="${creditRequest.moneyAmount}"/></td>
                                 <td><c:out value="${creditRequest.date}"/></td>
                                 <td>

@@ -27,4 +27,5 @@ public interface ColumnNames {
     String CREDIT_REQUEST_MONEY_AMOUNT = "money_amount";
     String CREDIT_REQUEST_DATE         = "date";
     String CREDIT_REQUEST_STATUS       = "request_status";
+    String CREDIT_REQUEST_USER_LOGIN   = "user_login";
 }
