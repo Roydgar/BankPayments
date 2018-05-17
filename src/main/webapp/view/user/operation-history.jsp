@@ -12,32 +12,56 @@
             <div class="row ">
                 <div class="center-block col-lg-6">
 
-                    <label for="chosen-account"> <fmt:message key="operationHistory.chooseAccount" /></label>
+                    <br><br><br>
 
-                    <select class="form-control" id="chosen-account" name="chosenAccount">
-                        <option value="allOperations"  selected="selected">  <fmt:message key="operationHistory.option.all" /></option>
-                        <c:forEach var="account" items="${sessionScope.accounts}">
-                            <option value="${account.number}"><c:out value="${account.number}"/></option>
-                        </c:forEach>
-                    </select>
+                    <script>
+                        $(document).ready( function () {
+                            $('#operationHistoryTable').DataTable( {
+                                "language": {
+                                    "lengthMenu": "<fmt:message key='table.display'/> _MENU_ <fmt:message key='table.recordsPerPage'/>",
+                                    "zeroRecords": "<fmt:message key='table.zeroRecords'/>",
+                                    "info": "<fmt:message key='table.info'/> _PAGE_ <fmt:message key='table.info.of'/> _PAGES_",
+                                    "infoEmpty": "<fmt:message key='table.infoEmpty'/>",
+                                    "infoFiltered": "(<fmt:message key='table.infoFiltered'/> _MAX_)",
+                                    "search": "<fmt:message key='table.search'/>",
+                                    paginate: {
+                                        previous: '<<<',
+                                        next:     '>>>'
+                                    },
+                                    aria: {
+                                        paginate: {
+                                            previous: 'Previous',
+                                            next:     'Next'
+                                        }
+                                    }
+                                },
+                                "lengthMenu": [ 3, 5, 10 ],
+                                pageLength: 5
+                            } );
+                        } );
+                    </script>
 
-                    <ul class="list-group">
-                        <c:forEach var="operation" items="${operations}">
-                            <li class="list-group-item">
-                                <button class="btn btn-info" data-toggle="collapse" data-target="#${operation.id}">
-                                    <c:out value="recipient :${operation.recipient}"/>;  <fmt:message key="operationHistory.money" /> <c:out value="${operation.moneyAmount}"/>
-                                </button>
+                    <table id="operationHistoryTable" class="display">
+                        <thead>
+                        <tr>
+                            <th><fmt:message key="operationHistory.recipient"/></th>
+                            <th><fmt:message key="operationHistory.money"/></th>
+                            <th><fmt:message key="operationHistory.date"/></th>
+                            <th><fmt:message key="operationHistory.type"/></th>
+                        </tr>
+                        </thead>
 
-                                <div id="${operation.id}" class="collapse">
-                                    <p>
-                                        <fmt:message key="operationHistory.date" /> <c:out value="${operation.date}"/> ;
-                                        <br>
-                                        <fmt:message key="operationHistory.type" />  <c:out value="${operation.type}"/>
-                                    </p>
-                                </div>
-                            </li>
-                        </c:forEach>
-                    </ul>
+                        <tbody>
+                            <c:forEach var="operation" items="${operations}">
+                                <tr>
+                                    <td><c:out value="${operation.recipient}"/></td>
+                                    <td><c:out value="${operation.moneyAmount}"/></td>
+                                    <td><c:out value="${operation.date}"/></td>
+                                    <td><c:out value="${operation.type}"/></td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

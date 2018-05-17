@@ -13,37 +13,61 @@
             <div class="row">
                 <div class="col-lg-6">
 
-                    <form method="post" action="/sort-accounts">
-                        <label for="sortBy"><fmt:message key="sortBy" /></label>
-                        <select class="form-control" id="sortBy" name="sortBy">
-                            <option value="balance"><fmt:message key="sortBy.balance" /></option>
-                            <option value="type"><fmt:message key="sortBy.type" /></option>
-                            <option value="date"><fmt:message key="sortBy.creationTime" /></option>
-                        </select>
+                    <br><br><br>
 
-                        <button class="btn btn-info" type="submit"><fmt:message key="sortBy.button.sort" /></button>
-                    </form>
+                    <script>
+                        $(document).ready( function () {
+                            $('#accountTable').DataTable( {
+                                "language": {
+                                    "lengthMenu": "<fmt:message key='table.display'/> _MENU_ <fmt:message key='table.recordsPerPage'/>",
+                                    "zeroRecords": "<fmt:message key='table.zeroRecords'/>",
+                                    "info": "<fmt:message key='table.info'/> _PAGE_ <fmt:message key='table.info.of'/> _PAGES_",
+                                    "infoEmpty": "<fmt:message key='table.infoEmpty'/>",
+                                    "infoFiltered": "(<fmt:message key='table.infoFiltered'/> _MAX_)",
+                                    "search": "<fmt:message key='table.search'/>",
+                                    paginate: {
+                                        previous: '<<<',
+                                        next:     '>>>'
+                                    },
+                                    aria: {
+                                        paginate: {
+                                            previous: 'Previous',
+                                            next:     'Next'
+                                        }
+                                    }
+                                },
+                                "lengthMenu": [ 3, 5, 10 ],
+                                pageLength: 5
+                            } );
+                        } );
+                    </script>
 
-
-                    <ul class="list-group">
+                    <table id="accountTable" class="display">
+                        <thead>
+                        <tr>
+                            <th><fmt:message key="accountInfo.number"/></th>
+                            <th><fmt:message key="accountInfo.balance"/></th>
+                            <th><fmt:message key="accountInfo.created"/></th>
+                            <th><fmt:message key="accountInfo.validityTo"/></th>
+                            <th><fmt:message key="accountInfo.rate"/></th>
+                            <th><fmt:message key="accountInfo.accruedInterest"/></th>
+                            <th><fmt:message key="accountInfo.type"/></th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         <c:forEach var="account" items="${sessionScope.accounts}">
-                            <li class="list-group-item">
-                                <button class="btn btn-info" data-toggle="collapse" data-target="#${account.number}">
-                                    <c:out value="${account.number}"/> :  <c:out value="${account.balance}"/>
-                                </button>
-
-                                <div id="${account.number}" class="collapse">
-                                    <p>
-                                        <fmt:message key="accountInfo.created" /> <c:out value="${account.creationDate}"/> ; <fmt:message key="accountInfo.validityTo" />  <c:out value="${account.validityDate}"/>
-                                        <br>
-                                        <fmt:message key="accountInfo.rate" />  <c:out value="${account.rate}"/> ; <fmt:message key="accountInfo.accruedInterest" />   <c:out value="${account.accruedInterest}"/>
-                                        <br>
-                                        <fmt:message key="accountInfo.type" />   <c:out value="${account.type}"/>
-                                    </p>
-                                </div>
-                            </li>
+                            <tr>
+                                <td><c:out value="${account.number}"/> </td>
+                                <td><c:out value="${account.balance}"/> </td>
+                                <td><c:out value="${account.creationDate}"/></td>
+                                <td><c:out value="${account.validityDate}"/></td>
+                                <td><c:out value="${account.rate}"/></td>
+                                <td><c:out value="${account.accruedInterest}"/> </td>
+                                <td> <c:out value="${account.type}"/> </td>
+                            </tr>
                         </c:forEach>
-                    </ul>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

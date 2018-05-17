@@ -31,8 +31,6 @@ public class JDBCOperationDao implements OperationDao {
             while ( rs.next() ){
                 resultList.add(ExtractUtil.extractOperationFromResultSet(rs));
             }
-
-            ps.executeUpdate();
         } catch (SQLException e) {
             logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);

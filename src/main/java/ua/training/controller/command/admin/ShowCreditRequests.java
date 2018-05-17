@@ -3,7 +3,6 @@ package ua.training.controller.command.admin;
 import ua.training.controller.command.Command;
 import ua.training.model.service.CreditRequestService;
 import ua.training.util.ConvertUtil;
-import ua.training.util.SortUtil;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.PageURLs;
 
@@ -19,8 +18,7 @@ public class ShowCreditRequests implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         request.getSession().setAttribute(AttributeNames.CREDIT_REQUESTS,
-                SortUtil.sortCreditRequestsByDate(
-                        ConvertUtil.convertCreditMoneyToDollars(creditRequestService.findAll())));
+                ConvertUtil.convertCreditMoneyToDollars(creditRequestService.findAll()));
 
         return PageURLs.SHOW_CREDIT_REQUESTS_REDIRECT;
     }

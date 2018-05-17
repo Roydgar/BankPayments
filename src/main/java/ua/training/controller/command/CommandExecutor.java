@@ -31,8 +31,7 @@ public class CommandExecutor {
         commands.put(CommandNames.SHOW_CREDIT_REQUESTS, new ShowCreditRequests(new CreditRequestService()));
         commands.put(CommandNames.CONFIRM_CREDIT_REQUEST, new ConfirmCreditRequest(new CreditRequestService(),
                 new AccountService()));
-        commands.put(CommandNames.SORT_USER_ACCOUNTS, new SortUserAccounts());
-        commands.put(CommandNames.SORT_CREDIT_REQUESTS, new SortCreditRequests());
+
         commands.put(CommandNames.DO_OPERATION, new DoOperation(new OperationService(), new AccountService()));
         commands.put(CommandNames.SHOW_ACCOUNTS, new ShowAccounts(new AccountService()));
         commands.put(CommandNames.SHOW_OPERATION_HISTORY, new ShowOperationHistory(new OperationService()));
