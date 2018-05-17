@@ -19,7 +19,7 @@ public class CreditRequestService{
 
     public void create(int userId, String userLogin, Money moneyAmount) {
         creditRequestDao.create(new CreditRequest.CreditRequestBuilder().setUserId(userId)
-        .setDate(LocalDateTime.now()).setMoneyAmount(moneyAmount)
+        .setDate(LocalDateTime.now()).setMoneyAmount(ConvertUtil.convertDollarsToCents(moneyAmount))
                 .setStatus(CreditRequest.Status.NEW).setUserLogin(userLogin).create());
     }
 

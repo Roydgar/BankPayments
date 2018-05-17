@@ -18,7 +18,7 @@ public class AccountService {
     private UserHasAccountDao userHasAccountDao = DaoFactory.getInstance().createUserHasAccountDao();
 
     public void updateBalance(int accountId, Money balance) {
-        accountDao.updateBalance(accountId, balance);
+        accountDao.updateBalance(accountId, ConvertUtil.convertDollarsToCents(balance));
     }
 
     public void updateAccruedInterest(int accountId, double accruedInterest) {
@@ -31,9 +31,9 @@ public class AccountService {
         double rate = AccountUtil.getRate(accountType);
 
         Account account = new Account.AccountBuilder().setNumber(generatedNumber)
-                .setBalance(moneyAmount).setAccruedInterest(0).setRate(rate)
-                .setBalanceLimit(AccountUtil.getBalanceLimit(accountType)).setCreationTDate(creationTime )
-                .setValidityDate(AccountUtil.generateValidityTime(creationTime ))
+                .setBalance(ConvertUtil.convertDollarsToCents(moneyAmount)).setAccruedInterest(0).setRate(rate)
+                .setBalanceLimit(ConvertUtil.convertDollarsToCents(AccountUtil.getBalanceLimit(accountType)))
+                .setCreationTDate(creationTime).setValidityDate(AccountUtil.generateValidityTime(creationTime))
                 .setType(accountType).create();
         accountDao.create(account);
 

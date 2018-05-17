@@ -4,6 +4,7 @@ import org.javamoney.moneta.Money;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.OperationDao;
 import ua.training.model.entity.Operation;
+import ua.training.util.ConvertUtil;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,7 +19,8 @@ public class OperationService{
 
     public void create(int accountId, String recipient, Operation.Type type, Money moneyAmount) {
         operationDao.create(new Operation.OperationBuilder().setAccountId(accountId)
-        .setDate(LocalDateTime.now()).setRecipient(recipient).setType(type).setMoneyAmount(moneyAmount).create());
+        .setDate(LocalDateTime.now()).setRecipient(recipient).setType(type).
+                        setMoneyAmount(ConvertUtil.convertDollarsToCents(moneyAmount)).create());
     }
 
     public Optional<Operation> findById(int id) {

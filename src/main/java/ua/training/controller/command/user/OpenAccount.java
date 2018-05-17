@@ -43,10 +43,9 @@ public class OpenAccount implements Command {
 
         if (type == Account.Type.CREDIT) {
             creditRequestService.create(loggedUserId,
-                    (String)request.getSession().getAttribute(AttributeNames.LOGGED_USER_LOGIN),
-                    ConvertUtil.convertDollarsToCents(moneyAmount));
+                    (String)request.getSession().getAttribute(AttributeNames.LOGGED_USER_LOGIN), moneyAmount);
         } else{
-            accountService.create(type, loggedUserId, ConvertUtil.convertDollarsToCents(moneyAmount));
+            accountService.create(type, loggedUserId, moneyAmount);
         }
 
         request.getSession().setAttribute(AttributeNames.ACCOUNTS, accountService.findAccountsByUserId(loggedUserId));
