@@ -47,7 +47,6 @@ public class MoneyFormatTag extends SimpleTagSupport {
                             conversion.getCurrency());
         } catch (IOException e) {
             throw new RuntimeException(e);
-            //logger.error(e.getMessage() + Mess.LOG_NOT_WRITE_CUSTOM_TAG);
         }
     }
 }

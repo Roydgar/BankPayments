@@ -60,7 +60,7 @@
                             <c:forEach var="operation" items="${operations}">
                                 <tr>
                                     <td><c:out value="${operation.recipient}"/></td>
-                                    <td><c:out value="${operation.moneyAmount.getNumber() / 100}"/> $</td>
+                                    <td><moneyFormatter:formatMoney money="${operation.moneyAmount}" currencyCode="${currency}"/></td>
                                     <td><dateFormatter:formatDate language="${language}" localDateTime="${operation.date}"/></td>
                                     <td><c:out value="${operation.type}"/></td>
                                 </tr>
