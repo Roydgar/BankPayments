@@ -24,10 +24,22 @@
                 <li><a href="${pageContext.request.contextPath}/contacts.jsp"> <fmt:message key="navbar.contacts" /> </a></li>
                 <li>
                     <form>
+                        <label class="label" for="language">Language</label>
                         <br>
                         <select class="nav-select" id="language" name="language" onchange="submit()">
                             <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
                             <option value="ru" ${language == 'ru' ? 'selected' : ''}>Russian</option>
+                        </select>
+                    </form>
+                </li>
+                <li>
+                    <form>
+                        <label class="label" for="currency">Currency</label>
+                        <br>
+                        <select class="nav-select" id="currency" name="currency" onchange="submit()">
+                            <option value="USD" ${currency == 'USD' ? 'selected' : ''}>USD</option>
+                            <option value="EUR" ${currency== 'EUR' ? 'selected' : ''}>EUR</option>
+                            <option value="RUB" ${currency == 'RUB' ? 'selected' : ''}>RUB</option>
                         </select>
                     </form>
                 </li>

@@ -37,7 +37,8 @@ public class DoOperation implements Command {
             return PageURLs.DO_OPERATION;
         }
 
-        Money moneyAmount = AccountUtil.getMoneyInDefaultCurrency(moneyAmountParameter);
+        Money moneyAmount = ConvertUtil.convertDollarsToCents(
+                AccountUtil.getMoneyInDefaultCurrency(moneyAmountParameter));
 
         Optional<Account> payerAccount = accountService.findByNumber(payerAccountNumber);
         Optional<Account> recipientAccount = accountService.findByNumber(recipientAccountNumber);

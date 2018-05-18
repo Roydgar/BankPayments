@@ -1,5 +1,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ include file="/util/head.jsp" %>
+<%@ include file="/util/head.jsp"%>
+
 
 <html>
 <body>
@@ -25,6 +26,7 @@
                                     "infoEmpty": "<fmt:message key='table.infoEmpty'/>",
                                     "infoFiltered": "(<fmt:message key='table.infoFiltered'/> _MAX_)",
                                     "search": "<fmt:message key='table.search'/>",
+
                                     paginate: {
                                         previous: '<<<',
                                         next:     '>>>'
@@ -46,23 +48,17 @@
                         <thead>
                         <tr>
                             <th><fmt:message key="accountInfo.number"/></th>
-                            <th><fmt:message key="accountInfo.balance"/></th>
-                            <th><fmt:message key="accountInfo.created"/></th>
+                            <th><fmt:message key="accountInfo.balance"/> </th>
                             <th><fmt:message key="accountInfo.validityTo"/></th>
-                            <th><fmt:message key="accountInfo.rate"/></th>
-                            <th><fmt:message key="accountInfo.accruedInterest"/></th>
                             <th><fmt:message key="accountInfo.type"/></th>
                         </tr>
                         </thead>
                         <tbody>
                         <c:forEach var="account" items="${sessionScope.accounts}">
                             <tr>
-                                <td><c:out value="${account.number}"/> </td>
-                                <td><c:out value="${account.balance.getNumber() / 100} "/></td>
-                                <td><c:out value="${account.creationDate}"/></td>
-                                <td><c:out value="${account.validityDate}"/></td>
-                                <td><c:out value="${account.rate}"/></td>
-                                <td><c:out value="${account.accruedInterest}"/> </td>
+                                <td><c:out value="${account.number}"/></td>
+                                <td><moneyFormatter:formatMoney money="${account.balance}" currencyCode="${currency}"/></td>
+                                <td><dateFormatter:formatDate language="${language}" localDateTime="${account.validityDate}"/></td>
                                 <td><c:out value="${account.type}"/> </td>
                             </tr>
                         </c:forEach>

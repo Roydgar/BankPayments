@@ -24,6 +24,11 @@
                                     "infoEmpty": "<fmt:message key='table.infoEmpty'/>",
                                     "infoFiltered": "(<fmt:message key='table.infoFiltered'/> _MAX_)",
                                     "search": "<fmt:message key='table.search'/>",
+
+                                    "columnDefs": [
+                                        { "width": "100px", "targets": [2, 3] }
+                                    ],
+
                                     paginate: {
                                         previous: '<<<',
                                         next:     '>>>'
@@ -55,8 +60,8 @@
                             <c:forEach var="operation" items="${operations}">
                                 <tr>
                                     <td><c:out value="${operation.recipient}"/></td>
-                                    <td><c:out value="${operation.moneyAmount.getNumber() / 100}"/></td>
-                                    <td><c:out value="${operation.date}"/></td>
+                                    <td><c:out value="${operation.moneyAmount.getNumber() / 100}"/> $</td>
+                                    <td><dateFormatter:formatDate language="${language}" localDateTime="${operation.date}"/></td>
                                     <td><c:out value="${operation.type}"/></td>
                                 </tr>
                             </c:forEach>

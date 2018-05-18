@@ -35,7 +35,8 @@ public class OpenAccount implements Command {
 
         Account.Type type = Account.Type.valueOf(accountType.toUpperCase());
         int loggedUserId = (int)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID);
-        Money moneyAmount = AccountUtil.getMoneyInDefaultCurrency(moneyAmountParameter);
+        Money moneyAmount = ConvertUtil.convertDollarsToCents(
+                AccountUtil.getMoneyInDefaultCurrency(moneyAmountParameter));
 
         if (AccountUtil.moneyIsBiggerThanLimit(moneyAmount, type)) {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.OPEN_ACCOUNT_DENIED);

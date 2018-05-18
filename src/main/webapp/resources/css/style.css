@@ -8,6 +8,14 @@ body {
     border-radius: 0;
 }
 
+.navbar {
+    font-size: larger;
+}
+
+.sidenav {
+    font-size: larger;
+}
+
 .error {
     color: #ff550d;
 }

@@ -20,7 +20,7 @@ public class OperationService{
     public void create(int accountId, String recipient, Operation.Type type, Money moneyAmount) {
         operationDao.create(new Operation.OperationBuilder().setAccountId(accountId)
         .setDate(LocalDateTime.now()).setRecipient(recipient).setType(type).
-                        setMoneyAmount(ConvertUtil.convertDollarsToCents(moneyAmount)).create());
+                        setMoneyAmount(moneyAmount).create());
     }
 
     public Optional<Operation> findById(int id) {

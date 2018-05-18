@@ -16,7 +16,7 @@
                 <select class="form-control" id="payerAccount" name="payerAccount">
 
                     <c:forEach var="account" items="${sessionScope.accounts}">
-                        <option value="${account.number}"><c:out value="${account.number}"/></option>
+                        <option value="${account.number}"><c:out value="${account.number}"/> : <c:out value="${account.balance.getNumber() / 100} $"/></option>
                     </c:forEach>
 
                 </select>

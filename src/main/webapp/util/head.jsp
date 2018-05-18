@@ -1,9 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="dateFormatter" uri="/customDateFormatter" %>
+<%@ taglib prefix="moneyFormatter" uri="/customMoneyFormatter" %>
+
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="i18n.locale" />
+<fmt:setBundle basename="i18n.locale" />
+
+<c:set var="currency" value="${not empty param.currency ? param.currency: not empty currency ? currency : 'USD'}" scope="session" />
+
 
 <head>
     <title>Payments</title>

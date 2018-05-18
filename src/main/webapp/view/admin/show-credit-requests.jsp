@@ -59,8 +59,8 @@
                         <c:forEach var="creditRequest" items="${creditRequests}">
                             <tr>
                                 <td><c:out value="${creditRequest.userLogin}"/></td>
-                                <td><c:out value="${creditRequest.moneyAmount.getNumber() / 100}"/></td>
-                                <td><c:out value="${creditRequest.date}"/></td>
+                                <td><c:out value="${creditRequest.moneyAmount.getNumber() / 100}"/> $</td>
+                                <td><dateFormatter:formatDate language="${language}" localDateTime="${creditRequest.date}"/></td>
                                 <td>
                                     <c:choose>
                                     <c:when test="${creditRequest.status == 'NEW'}">

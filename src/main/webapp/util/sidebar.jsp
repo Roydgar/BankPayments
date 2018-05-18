@@ -9,12 +9,4 @@
         <li><a href="${pageContext.request.contextPath}/view/user/currency-converter.jsp"><fmt:message key="sidebar.currencyConverter" /></a></li>
     </ul><br>
 
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="<fmt:message key="sidebar.search" />">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-    </div>
 </div>
