@@ -54,10 +54,6 @@ public class AccountUtil {
         return money.compareTo(getBalanceLimit(type)) > 0;
     }
 
-    public static boolean moneyIsBiggerOrEqualsThan(Money money, Money anotherMoney) {
-        return money.compareTo(anotherMoney) >= 0;
-    }
-
     public static String generateAccountNumber() {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < 4; i++) {

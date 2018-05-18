@@ -1,5 +1,9 @@
 package ua.training.view;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ua.training.util.LoggerMessageUtil;
+
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -41,8 +45,9 @@ public class DateFormatTag extends SimpleTagSupport {
                     .getOut()
                     .write(df.format(date));
         } catch (IOException e) {
+            LogManager.getRootLogger().error(LoggerMessageUtil.JstlTagException(), e);
             throw new RuntimeException(e);
-            //logger.error(e.getMessage() + Mess.LOG_NOT_WRITE_CUSTOM_TAG);
         }
+
     }
 }

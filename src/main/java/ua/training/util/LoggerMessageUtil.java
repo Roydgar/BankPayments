@@ -54,4 +54,8 @@ public class LoggerMessageUtil {
         return builder.toString();
     }
 
+    public static String JstlTagException() {
+        return JSTL_TAG;
+    }
+
 }

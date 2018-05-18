@@ -15,5 +15,6 @@ public interface LoggerMessages {
     String AUTH_FILTER           = "AuthFilter: ";
     String UNAUTHORIZED_ACCESS   = " unauthorized access.";
     String DAO          = "DAO: ";
+    String JSTL_TAG     = "JSTL: ";
 
 }

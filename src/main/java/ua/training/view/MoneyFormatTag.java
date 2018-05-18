@@ -1,7 +1,9 @@
 package ua.training.view;
 
+import org.apache.logging.log4j.LogManager;
 import org.javamoney.moneta.Money;
 import org.javamoney.moneta.format.CurrencyStyle;
+import ua.training.util.LoggerMessageUtil;
 
 import javax.money.Monetary;
 import javax.money.convert.CurrencyConversion;
@@ -46,6 +48,7 @@ public class MoneyFormatTag extends SimpleTagSupport {
                     .write(String.valueOf(convertedMoney.getNumber().doubleValue()) + " " +
                             conversion.getCurrency());
         } catch (IOException e) {
+            LogManager.getRootLogger().error(LoggerMessageUtil.JstlTagException(), e);
             throw new RuntimeException(e);
         }
     }
