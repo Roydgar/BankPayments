@@ -41,6 +41,10 @@ public class JDBCAccountDao implements AccountDao{
             ps.executeUpdate();
         } catch (SQLException e) {
             logger.error(LoggerMessageUtil.daoException(), e);
+            try { connection.rollback(); } catch (SQLException exc) {
+                logger.error(LoggerMessageUtil.daoException(), e);
+                throw new RuntimeException(e);
+            };
             throw new RuntimeException(e);
         }
     }
@@ -156,6 +160,19 @@ public class JDBCAccountDao implements AccountDao{
         try {
             connection.close();
         } catch (Exception e) {
+            logger.error(LoggerMessageUtil.daoException(), e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void setAutocommit(boolean autocommit) {
+        try {
+            if (autocommit) {
+                connection.commit();
+            }
+            connection.setAutoCommit(autocommit);
+        } catch (SQLException e) {
             logger.error(LoggerMessageUtil.daoException(), e);
             throw new RuntimeException(e);
         }

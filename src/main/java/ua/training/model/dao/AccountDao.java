@@ -9,4 +9,5 @@ public interface AccountDao extends GenericDao<Account> {
     void updateBalance(int accountId, Money balance);
     void updateAccruedInterest(int accountId,double accruedInterest);
     Optional<Account> findByNumber(String number);
+    void setAutocommit(boolean autocommit);
 }

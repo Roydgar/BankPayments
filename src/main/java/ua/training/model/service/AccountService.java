@@ -76,4 +76,11 @@ public class AccountService {
         return accountDao.findByNumber(number);
     }
 
+    public void doTransfer(Account payer, Account recipient, Money moneyAmount) {
+        accountDao.setAutocommit(false);
+        updateBalance(recipient.getId(), recipient.getBalance().add(moneyAmount));
+        updateBalance(payer.getId(), payer.getBalance().subtract(moneyAmount));
+        accountDao.setAutocommit(true);
+    }
+
 }

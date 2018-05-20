@@ -54,10 +54,7 @@ public class DoOperation implements Command {
             return PageURLs.DO_OPERATION;
         }
 
-        accountService.updateBalance(recipientAccount.get().getId(),
-                recipientAccount.get().getBalance().add(moneyAmount));
-        accountService.updateBalance(payerAccount.get().getId(),
-                payerAccount.get().getBalance().subtract(moneyAmount));
+       accountService.doTransfer(payerAccount.get(), recipientAccount.get(), moneyAmount);
         operationService.create(payerAccount.get().getId(), recipientAccount.get().getNumber(),
                 recipientAccount.get().getType() == Account.Type.CREDIT ?
                         Operation.Type.LOAN_PAYMENT : Operation.Type.TRANSFER, moneyAmount);

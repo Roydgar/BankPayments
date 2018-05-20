@@ -33,7 +33,6 @@ public class MoneyFormatTag extends SimpleTagSupport {
     }
 
     public void setCurrencyCode(String currencyCode) {
-        System.out.println(currencyCode);
         this.currencyCode = currencyCode;
     }
 
