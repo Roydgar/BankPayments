@@ -6,25 +6,25 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp"><fmt:message key="navbar.index" /></a>
+            <c:choose>
+                <c:when test="${loggedUserRole == 'ADMIN'}">
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/view/admin/admin-menu.jsp"> <fmt:message key="navbar.adminPanel" /> </a>
+                </c:when>
+                <c:when test="${loggedUserRole == 'USER'}">
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/view/user/user-menu.jsp"> <fmt:message key="navbar.userPanel" /></a>
+                </c:when>
+                <c:otherwise>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp"><fmt:message key="navbar.index" /></a>
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li>
-                    <c:choose>
-                        <c:when test="${loggedUserRole == 'ADMIN'}">
-                            <a href="${pageContext.request.contextPath}/view/admin/admin-menu.jsp"> <fmt:message key="navbar.adminPanel" /> </a>
-                        </c:when>
-                        <c:when test="${loggedUserRole == 'USER'}">
-                            <a href="${pageContext.request.contextPath}/view/user/user-menu.jsp"> <fmt:message key="navbar.userPanel" /></a>
-                        </c:when>
-                    </c:choose>
-                </li>
                 <li><a href="${pageContext.request.contextPath}/about.jsp"> <fmt:message key="navbar.about" /> </a></li>
                 <li><a href="${pageContext.request.contextPath}/contacts.jsp"> <fmt:message key="navbar.contacts" /> </a></li>
                 <li>
                     <form>
-                        <label class="label" for="language">Language</label>
+                        <label class="label" for="language"><fmt:message key="language" /></label>
                         <br>
                         <select class="nav-select" id="language" name="language" onchange="submit()">
                             <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
@@ -34,7 +34,7 @@
                 </li>
                 <li>
                     <form>
-                        <label class="label" for="currency">Currency</label>
+                        <label class="label" for="currency"><fmt:message key="currency" /></label>
                         <br>
                         <select class="nav-select" id="currency" name="currency" onchange="submit()">
                             <option value="USD" ${currency == 'USD' ? 'selected' : ''}>USD</option>
