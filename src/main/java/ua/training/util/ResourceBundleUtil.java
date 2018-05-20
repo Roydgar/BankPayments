@@ -21,6 +21,7 @@ public class ResourceBundleUtil {
         } catch (ClassCastException e) {
             locale = (Locale) request.getSession().getAttribute(AttributeNames.LANGUAGE);
         }
+
         request.setAttribute(AttributeNames.WRONG_INPUT_MESSAGE, ResourceBundleUtil.
                 getPropertyFromLangBundle(message, locale));
     }

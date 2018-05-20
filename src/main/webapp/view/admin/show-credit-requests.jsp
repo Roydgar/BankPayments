@@ -12,8 +12,9 @@
 <div class="container text-center">
     <div class="row">
         <div class="col-lg-6">
-
-            <br><br><br>
+            <br>
+            <h4  class="error"><c:out value="${wrongUserInputMessage}"/> </h4>
+            <br><br>
 
             <script>
                 $(document).ready( function () {

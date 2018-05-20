@@ -6,9 +6,11 @@ import ua.training.model.entity.Account;
 import ua.training.model.entity.CreditRequest;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.CreditRequestService;
+import ua.training.util.ResourceBundleUtil;
 import ua.training.util.constants.AttributeNames;
 import ua.training.util.constants.CommandNames;
 import ua.training.util.constants.PageURLs;
+import ua.training.util.constants.ResponseMessages;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
@@ -32,6 +34,12 @@ public class ConfirmCreditRequest implements Command {
                 request.getParameter(AttributeNames.CREDIT_REQUEST_ID).split(":")[1].toUpperCase());
 
         Optional<CreditRequest> creditRequest = creditRequestService.findById(creditRequestId);
+
+        if (creditRequest.get().getStatus() != CreditRequest.Status.NEW) {
+            ResourceBundleUtil.setErrorMessage(request, ResponseMessages.REQUEST_ALREADY_PROCESSED);
+            request.getSession().setAttribute(AttributeNames.CREDIT_REQUESTS, creditRequestService.findAll());
+            return PageURLs.SHOW_CREDIT_REQUESTS;
+        }
 
         if (status == CreditRequest.Status.CONFIRMED) {
             accountService.create(Account.Type.CREDIT, creditRequest.get().getUserId(),

@@ -13,4 +13,6 @@ public interface ResponseMessages {
 
     String RECIPIENT_DOESNT_EXIST       = "recipient.doesnt.exist";
     String INSUFFICIENT_FUNDS           = "insufficient.funds";
+
+    String REQUEST_ALREADY_PROCESSED    = "creditRequest.alreadyProcessed";
 }
