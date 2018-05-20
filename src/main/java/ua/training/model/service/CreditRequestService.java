@@ -4,14 +4,12 @@ import org.javamoney.moneta.Money;
 import ua.training.model.dao.CreditRequestDao;
 import ua.training.model.dao.DaoFactory;
 import ua.training.model.entity.CreditRequest;
-import ua.training.util.ConvertUtil;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 public class CreditRequestService{
-    CreditRequestDao creditRequestDao = DaoFactory.getInstance().createCreditRequestDao();
+    private CreditRequestDao creditRequestDao = DaoFactory.getInstance().createCreditRequestDao();
 
     public List<CreditRequest> findByUserId(int userId) {
         return creditRequestDao.findByUserId(userId);

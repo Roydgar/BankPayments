@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class CreditRequest {
 
-    public enum Status { NEW, CONFIRMED, DENIED; }
+    public enum Status { NEW, CONFIRMED, DENIED }
 
     private int id;
     private int userId;

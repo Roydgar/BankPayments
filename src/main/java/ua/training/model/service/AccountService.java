@@ -6,7 +6,6 @@ import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.UserHasAccountDao;
 import ua.training.model.entity.Account;
 import ua.training.util.AccountUtil;
-import ua.training.util.ConvertUtil;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,7 +16,7 @@ public class AccountService {
     private AccountDao accountDao = DaoFactory.getInstance().createAccountDao();
     private UserHasAccountDao userHasAccountDao = DaoFactory.getInstance().createUserHasAccountDao();
 
-    public void updateBalance(int accountId, Money balance) {
+    private void updateBalance(int accountId, Money balance) {
         accountDao.updateBalance(accountId, balance);
     }
 

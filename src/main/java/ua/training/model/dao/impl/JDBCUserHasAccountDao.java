@@ -72,7 +72,6 @@ public class JDBCUserHasAccountDao implements UserHasAccountDao {
 
     @Override
     public boolean exists (int userId, int accountId) {
-        List<User> resultList = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement
                 (UserHasAccountQueries.FIND_BY_USER_AND_ACCOUNT_ID)) {
             ps.setInt(1, userId);

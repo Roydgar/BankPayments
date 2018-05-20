@@ -1,7 +1,6 @@
 package ua.training.controller.filter;
 
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import ua.training.model.entity.User;
 import ua.training.util.LoggerMessageUtil;
 import ua.training.util.constants.AttributeNames;

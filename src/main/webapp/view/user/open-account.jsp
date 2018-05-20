@@ -25,28 +25,9 @@
                         <option value="deposit"><fmt:message key="accountType.deposit" /> </option>
                     </select>
 
-                    <script >
-                        $(document).ready(function() {
-                            $.viewMap = {
-                                'checking' : $([]),
-                                'credit' : $('#money-amount'),
-                                'deposit' : $('#money-amount')
-                            };
-
-                            $('#account-type').change(function() {
-                                // hide all
-                                $.each($.viewMap, function() { this.hide(); });
-                                // show current
-                                $.viewMap[$(this).val()].show();
-                            });
-                        });
-                    </script>
-
                     <div id="money-amount">
                         <input type="text"  pattern="[0-9]+(\.[0-9]{0,2})?%?" class="form-control" placeholder="<fmt:message key="openAccount.placeholder.moneyAmount" /> " name="moneyAmount" required >
                     </div>
-
-
 
                     <button class="btn btn-lg btn-primary btn-block" type="submit">
                         <fmt:message key="openAccount.button.confirm" /> </button></form>

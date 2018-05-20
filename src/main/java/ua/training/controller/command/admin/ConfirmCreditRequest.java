@@ -35,7 +35,7 @@ public class ConfirmCreditRequest implements Command {
 
         Optional<CreditRequest> creditRequest = creditRequestService.findById(creditRequestId);
 
-        if (creditRequest.get().getStatus() != CreditRequest.Status.NEW) {
+        if (creditRequest.isPresent() && creditRequest.get().getStatus() != CreditRequest.Status.NEW) {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.REQUEST_ALREADY_PROCESSED);
             request.getSession().setAttribute(AttributeNames.CREDIT_REQUESTS, creditRequestService.findAll());
             return PageURLs.SHOW_CREDIT_REQUESTS;

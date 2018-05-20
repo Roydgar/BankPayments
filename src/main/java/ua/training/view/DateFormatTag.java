@@ -1,15 +1,12 @@
 package ua.training.view;
 
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import ua.training.util.LoggerMessageUtil;
 
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.FormatStyle;
 import java.util.Locale;
 
@@ -18,8 +15,6 @@ import static java.util.Objects.isNull;
 public class DateFormatTag extends SimpleTagSupport {
     private String language;
     private LocalDateTime date;
-
-    //private Logger logger = LogManager.getLogger(SimpleTagSupport.class);
 
     public void setLocalDateTime(LocalDateTime date) {
         this.date = date;

@@ -1,8 +1,6 @@
 package ua.training.model.dao.impl.constants;
 
 import ua.training.util.constants.PropertyFileNames;
-
-import javax.print.DocFlavor;
 import java.util.ResourceBundle;
 
 public interface CreditRequestQueries {

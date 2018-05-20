@@ -8,12 +8,10 @@ import ua.training.controller.command.login.Login;
 import ua.training.controller.command.login.Logout;
 import ua.training.controller.command.login.Registration;
 import ua.training.controller.command.user.*;
-import ua.training.model.dao.impl.constants.ColumnNames;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.CreditRequestService;
 import ua.training.model.service.OperationService;
 import ua.training.model.service.UserService;
-import ua.training.util.constants.CommandNames;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;

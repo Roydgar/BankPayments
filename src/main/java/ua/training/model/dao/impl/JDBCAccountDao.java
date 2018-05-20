@@ -44,7 +44,7 @@ public class JDBCAccountDao implements AccountDao{
             try { connection.rollback(); } catch (SQLException exc) {
                 logger.error(LoggerMessageUtil.daoException(), e);
                 throw new RuntimeException(e);
-            };
+            }
             throw new RuntimeException(e);
         }
     }

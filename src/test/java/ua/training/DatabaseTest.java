@@ -4,23 +4,16 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.javamoney.moneta.Money;
 import org.junit.Test;
 import ua.training.model.dao.*;
-import ua.training.model.entity.Account;
-import ua.training.model.entity.CreditRequest;
+
 import ua.training.model.entity.User;
 import ua.training.util.AccountUtil;
 
 import javax.money.Monetary;
 import javax.money.convert.CurrencyConversion;
 import javax.money.convert.MonetaryConversions;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Currency;
-import java.util.Date;
-import java.util.Locale;
-import java.util.SimpleTimeZone;
+
 
 public class DatabaseTest {
     @Test

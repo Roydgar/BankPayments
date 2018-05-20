@@ -4,7 +4,6 @@ import org.javamoney.moneta.Money;
 import ua.training.controller.annotation.CommandWithName;
 import ua.training.controller.command.Command;
 import ua.training.model.entity.Account;
-import ua.training.model.entity.Operation;
 import ua.training.model.entity.User;
 import ua.training.model.service.AccountService;
 import ua.training.model.service.OperationService;
@@ -33,7 +32,8 @@ public class DoOperation implements Command {
         String payerAccountNumber   =  request.getParameter(AttributeNames.PAYER_ACCOUNT);
         String recipientAccountNumber = request.getParameter(AttributeNames.RECIPIENT_ACCOUNT);
 
-        if (DataValidator.parameterIsEmptyOrNull(moneyAmountParameter, payerAccountNumber, recipientAccountNumber)) {
+        if (DataValidator.parameterIsEmptyOrNull(moneyAmountParameter,
+                payerAccountNumber, recipientAccountNumber)) {
             return PageURLs.DO_OPERATION;
         }
 
@@ -55,9 +55,8 @@ public class DoOperation implements Command {
         }
 
        accountService.doTransfer(payerAccount.get(), recipientAccount.get(), moneyAmount);
-        operationService.create(payerAccount.get().getId(), recipientAccount.get().getNumber(),
-                recipientAccount.get().getType() == Account.Type.CREDIT ?
-                        Operation.Type.LOAN_PAYMENT : Operation.Type.TRANSFER, moneyAmount);
+        operationService.create(payerAccount.get().getId(), recipientAccount.get(),
+                moneyAmount);
 
         int loggedUserId = (int)request.getSession().getAttribute(AttributeNames.LOGGED_USER_ID);
         request.getSession().setAttribute(AttributeNames.ACCOUNTS,
