@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class JDBCUserDao implements UserDao {
 
-    private Connection connection;
+    private final Connection connection;
 
     JDBCUserDao(Connection connection) {
         this.connection = connection;

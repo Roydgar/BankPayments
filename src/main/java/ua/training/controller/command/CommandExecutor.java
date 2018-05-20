@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class CommandExecutor {
-    private Map<String, Command> commands = new ConcurrentHashMap<>();
+    private final Map<String, Command> commands = new ConcurrentHashMap<>();
 
     private CommandExecutor() {
         initCommand(new Login(new UserService(), new AccountService()));

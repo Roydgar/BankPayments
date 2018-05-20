@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class CreditRequestService{
-    private CreditRequestDao creditRequestDao = DaoFactory.getInstance().createCreditRequestDao();
+    private final CreditRequestDao creditRequestDao = DaoFactory.getInstance().createCreditRequestDao();
 
     public List<CreditRequest> findByUserId(int userId) {
         return creditRequestDao.findByUserId(userId);

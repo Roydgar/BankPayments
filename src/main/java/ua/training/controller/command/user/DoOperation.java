@@ -18,8 +18,8 @@ import java.util.Optional;
 
 @CommandWithName(name = CommandNames.DO_OPERATION)
 public class DoOperation implements Command {
-    private AccountService accountService;
-    private OperationService operationService;
+    private final AccountService accountService;
+    private final OperationService operationService;
 
     public DoOperation(OperationService operationService, AccountService accountService) {
         this.operationService = operationService;

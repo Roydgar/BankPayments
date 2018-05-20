@@ -19,7 +19,7 @@
 
                     <select class="form-control" id="chosen-account" name="chosenAccount">
                         <c:forEach var="account" items="${sessionScope.accounts}">
-                            <option value="${account.number}"><c:out value="${account.number}"/></option>
+                            <option value="${account.number}"><c:out value="${account.number} "/> :  <moneyFormatter:formatMoney money="${account.balance}" currencyCode="${currency}"/></option>
                         </c:forEach>
                     </select>
 

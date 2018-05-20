@@ -124,7 +124,7 @@ public class Account {
     }
 
     public static class AccountBuilder {
-        private Account account = new Account();
+        private final Account account = new Account();
 
         public AccountBuilder() {
         }

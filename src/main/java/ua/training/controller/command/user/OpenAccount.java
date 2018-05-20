@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 
 @CommandWithName(name = CommandNames.OPEN_ACCOUNT)
 public class OpenAccount implements Command {
-    private AccountService accountService;
-    private CreditRequestService creditRequestService;
+    private final AccountService accountService;
+    private final CreditRequestService creditRequestService;
 
     public OpenAccount(AccountService accountService, CreditRequestService creditRequestService) {
         this.accountService = accountService;

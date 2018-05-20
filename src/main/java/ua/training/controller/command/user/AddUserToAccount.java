@@ -21,8 +21,8 @@ import java.util.Optional;
 @CommandWithName(name = CommandNames.ADD_USER_TO_ACCOUNT)
 public class AddUserToAccount implements Command {
 
-    private AccountService accountService;
-    private UserService userService;
+    private final AccountService accountService;
+    private final UserService userService;
 
     public AddUserToAccount(UserService userService, AccountService accountService) {
         this.userService = userService;

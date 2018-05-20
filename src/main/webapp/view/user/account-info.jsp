@@ -57,7 +57,19 @@
                                     <td><c:out value="${account.number}"/></td>
                                     <td><moneyFormatter:formatMoney money="${account.balance}" currencyCode="${currency}"/></td>
                                     <td><dateFormatter:formatDate language="${language}" localDateTime="${account.validityDate}"/></td>
-                                    <td><c:out value="${account.type}"/> </td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${account.type == 'CHECKING'}">
+                                                <fmt:message key="account.type.checking"/>
+                                            </c:when>
+                                            <c:when test="${account.type == 'CREDIT'}">
+                                                <fmt:message key="account.type.credit"/>
+                                            </c:when>
+                                            <c:when test="${account.type == 'DEPOSIT'}">
+                                                <fmt:message key="accountType.deposit"/>
+                                            </c:when>
+                                        </c:choose>
+                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>

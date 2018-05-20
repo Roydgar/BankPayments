@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class OperationService{
-    private OperationDao operationDao = DaoFactory.getInstance().createOperationDao();
+    private final OperationDao operationDao = DaoFactory.getInstance().createOperationDao();
 
     public List<Operation> findByAccountId(int accountId) {
         return operationDao.findByAccountId(accountId);

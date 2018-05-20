@@ -5,6 +5,7 @@ import org.javamoney.moneta.Money;
 import org.junit.Test;
 import ua.training.model.dao.*;
 
+import ua.training.model.entity.Account;
 import ua.training.model.entity.User;
 import ua.training.util.AccountUtil;
 
@@ -33,12 +34,9 @@ public class DatabaseTest {
 
     @Test
     public void test() {
-        Money money = AccountUtil.getMoneyInDefaultCurrency(50.5).divide(100);
+        AccountDao dao = DaoFactory.getInstance().createAccountDao();
 
-        Currency currency = Currency.getInstance("GBP");
-        CurrencyConversion conversion = MonetaryConversions.getConversion(currency.getCurrencyCode());
 
-        System.out.println(money.with(conversion).with(Monetary.getDefaultRounding()));
     }
 
 

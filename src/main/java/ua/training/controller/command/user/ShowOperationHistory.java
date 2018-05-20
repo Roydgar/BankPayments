@@ -15,7 +15,7 @@ import java.util.List;
 
 @CommandWithName(name = CommandNames.SHOW_OPERATION_HISTORY)
 public class ShowOperationHistory implements Command{
-    private OperationService operationService;
+    private final OperationService operationService;
     public ShowOperationHistory(OperationService operationService) {
         this.operationService = operationService;
     }

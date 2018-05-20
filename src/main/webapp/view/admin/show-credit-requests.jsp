@@ -69,7 +69,17 @@
                                         <button class="btn btn-info" type="submit" name="creditRequestId"  value="${creditRequest.id}:denied">    <fmt:message key="creditRequest.deny" /> </button>
                                     </c:when>
                                     <c:otherwise>
-                                        <c:out value="${creditRequest.status}"/>
+                                        <c:choose>
+                                            <c:when test="${creditRequest.status == 'NEW'}">
+                                                <fmt:message key="creditRequest.type.new"/>
+                                            </c:when>
+                                            <c:when test="${creditRequest.status == 'CONFIRMED'}">
+                                                <fmt:message key="creditRequest.type.confirmed"/>
+                                            </c:when>
+                                            <c:when test="${creditRequest.status == 'DENIED'}">
+                                                <fmt:message key="creditRequest.type.denied"/>
+                                            </c:when>
+                                        </c:choose>
                                     </c:otherwise>
                                     </c:choose>
                                 </td>

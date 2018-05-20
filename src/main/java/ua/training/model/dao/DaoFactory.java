@@ -8,7 +8,7 @@ import ua.training.model.dao.impl.JDBCDaoFactory;
 public abstract class DaoFactory{
     private static DaoFactory daoFactory;
 
-    public Logger logger = LogManager.getRootLogger();
+    final protected Logger logger = LogManager.getRootLogger();
 
 
     public abstract UserDao createUserDao();

@@ -62,7 +62,16 @@
                                     <td><c:out value="${operation.recipient}"/></td>
                                     <td><moneyFormatter:formatMoney money="${operation.moneyAmount}" currencyCode="${currency}"/></td>
                                     <td><dateFormatter:formatDate language="${language}" localDateTime="${operation.date}"/></td>
-                                    <td><c:out value="${operation.type}"/></td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${operation.type == 'TRANSFER'}">
+                                                <fmt:message key="operation.type.transfer"/>
+                                            </c:when>
+                                            <c:when test="${operation.type == 'LOAN_PAYMENT'}">
+                                                <fmt:message key="operation.type.loanPayment"/>
+                                            </c:when>
+                                        </c:choose>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </tbody>

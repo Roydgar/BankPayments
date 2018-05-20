@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserService {
-    private UserDao userDao = DaoFactory.getInstance().createUserDao();
+    private final UserDao userDao = DaoFactory.getInstance().createUserDao();
 
     public void create(String login, String password, User.Role role, String email) {
         userDao.create(new User.UserBuilder().setLogin(login).setPassword(DigestUtils.md5Hex(password))

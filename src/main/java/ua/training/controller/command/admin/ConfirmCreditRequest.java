@@ -17,8 +17,8 @@ import java.util.Optional;
 
 @CommandWithName(name = CommandNames.CONFIRM_CREDIT_REQUEST)
 public class ConfirmCreditRequest implements Command {
-    private CreditRequestService creditRequestService;
-    private AccountService accountService;
+    private final CreditRequestService creditRequestService;
+    private final AccountService accountService;
 
     public ConfirmCreditRequest(CreditRequestService creditRequestService,
                                 AccountService accountService) {

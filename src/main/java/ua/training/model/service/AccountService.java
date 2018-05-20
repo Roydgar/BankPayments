@@ -13,8 +13,8 @@ import java.util.Optional;
 
 public class AccountService {
 
-    private AccountDao accountDao = DaoFactory.getInstance().createAccountDao();
-    private UserHasAccountDao userHasAccountDao = DaoFactory.getInstance().createUserHasAccountDao();
+    private final AccountDao accountDao = DaoFactory.getInstance().createAccountDao();
+    private final UserHasAccountDao userHasAccountDao = DaoFactory.getInstance().createUserHasAccountDao();
 
     private void updateBalance(int accountId, Money balance) {
         accountDao.updateBalance(accountId, balance);

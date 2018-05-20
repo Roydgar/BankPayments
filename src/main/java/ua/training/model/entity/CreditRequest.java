@@ -86,7 +86,7 @@ public class CreditRequest {
     }
 
     public static class CreditRequestBuilder {
-        CreditRequest creditRequest = new CreditRequest();
+        private final CreditRequest creditRequest = new CreditRequest();
 
         public CreditRequestBuilder setId(int id) {
             creditRequest.setId(id);

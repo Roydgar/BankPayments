@@ -13,7 +13,7 @@ import java.util.HashSet;
 
 public class ServletController extends HttpServlet {
 
-    private CommandExecutor commandExecutor = CommandExecutor.getInstance();
+    private final CommandExecutor commandExecutor = CommandExecutor.getInstance();
     @Override
     public void init(ServletConfig servletConfig){
         servletConfig.getServletContext().setAttribute(AttributeNames.LOGGED_USERS, new HashSet<String>());

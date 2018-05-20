@@ -87,7 +87,7 @@ public class Operation {
     }
 
     public static class OperationBuilder {
-        Operation operation = new Operation();
+        private final Operation operation = new Operation();
 
         public OperationBuilder setId(int id) {
             operation.setId(id);

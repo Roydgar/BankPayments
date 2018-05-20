@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class JDBCOperationDao implements OperationDao {
 
-    private Connection connection;
+    private final Connection connection;
 
     JDBCOperationDao(Connection connection) {
         this.connection = connection;

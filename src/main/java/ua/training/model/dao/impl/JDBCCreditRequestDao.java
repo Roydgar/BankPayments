@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class JDBCCreditRequestDao implements CreditRequestDao {
 
-    private Connection connection;
+    private final Connection connection;
 
     JDBCCreditRequestDao(Connection connection) {
         this.connection = connection;

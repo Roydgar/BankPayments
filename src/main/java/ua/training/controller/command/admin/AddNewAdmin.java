@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @CommandWithName(name = CommandNames.ADMIN_REGISTRATION)
 public class AddNewAdmin implements Command {
 
-    private UserService userService;
+    private final UserService userService;
 
     public AddNewAdmin(UserService userService) {
         this.userService = userService;

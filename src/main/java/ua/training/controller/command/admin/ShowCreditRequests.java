@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @CommandWithName(name = CommandNames.SHOW_CREDIT_REQUESTS)
 public class ShowCreditRequests implements Command {
-    private CreditRequestService creditRequestService;
+    private final CreditRequestService creditRequestService;
 
     public ShowCreditRequests(CreditRequestService creditRequestService) {
         this.creditRequestService = creditRequestService;

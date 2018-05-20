@@ -77,7 +77,7 @@ public class User {
     }
 
     public static class UserBuilder {
-        private User user = new User();
+        private final User user = new User();
 
         public UserBuilder() {
         }

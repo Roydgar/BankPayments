@@ -13,7 +13,7 @@ import java.util.List;
 
 public class JDBCUserHasAccountDao implements UserHasAccountDao {
 
-    private Connection connection;
+    private final Connection connection;
 
     JDBCUserHasAccountDao(Connection connection) {
         this.connection = connection;

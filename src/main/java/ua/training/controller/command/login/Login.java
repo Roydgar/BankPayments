@@ -18,8 +18,8 @@ import java.util.Optional;
 @CommandWithName(name = CommandNames.LOGIN)
 public class Login implements Command {
 
-    private UserService userService;
-    private AccountService accountService;
+    private final UserService userService;
+    private final AccountService accountService;
 
     public Login(UserService userService, AccountService accountService) {
         this.userService = userService;

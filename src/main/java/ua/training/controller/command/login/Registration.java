@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @CommandWithName(name = CommandNames.REGISTRATION)
 public class Registration implements Command {
-    private UserService userService;
+    private final UserService userService;
 
     public Registration(UserService userService) {
         this.userService = userService;

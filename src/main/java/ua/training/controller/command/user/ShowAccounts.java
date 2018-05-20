@@ -13,7 +13,7 @@ import java.util.List;
 
 @CommandWithName(name = CommandNames.SHOW_ACCOUNTS)
 public class ShowAccounts implements Command {
-    private AccountService accountService;
+    private final AccountService accountService;
 
     public ShowAccounts(AccountService accountService) {
         this.accountService = accountService;
