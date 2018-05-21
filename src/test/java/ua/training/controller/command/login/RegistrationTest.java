@@ -79,7 +79,7 @@ public class RegistrationTest {
         when(request.getParameter(AttributeNames.EMAIL)).thenReturn(email);
         when(request.getParameter(AttributeNames.CONFIRM_PASSWORD)).thenReturn(wrongPassword);
         when(request.getSession()).thenReturn(session);
-        when(request.getSession().getAttribute(AttributeNames.LANGUAGE)).thenReturn("en");
+        when(request.getSession().getAttribute(AttributeNames.LANGUAGE)).thenReturn(language);
 
         doNothing().when(userService).create(login, password, role, email);
 
@@ -95,7 +95,7 @@ public class RegistrationTest {
         when(request.getParameter(AttributeNames.EMAIL)).thenReturn(email);
         when(request.getParameter(AttributeNames.CONFIRM_PASSWORD)).thenReturn(password);
         when(request.getSession()).thenReturn(session);
-        when(request.getSession().getAttribute(AttributeNames.LANGUAGE)).thenReturn("en");
+        when(request.getSession().getAttribute(AttributeNames.LANGUAGE)).thenReturn(language);
         when(userService.userExists(anyString())).thenReturn(true);
 
         doNothing().when(userService).create(login, password, role, email);
@@ -104,6 +104,4 @@ public class RegistrationTest {
         assertNotNull(page);
         assertEquals(page, PageURLs.REGISTRATION);
     }
-
-
 }

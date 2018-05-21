@@ -21,3 +21,6 @@
 2018-05-21 18:22:18.730 [main] WARN   - Login: user pavloIvanovich98, role USER already logged. Denied.
 2018-05-21 18:22:21.569 [main] INFO   - Login: user pavloIvanovich98 wrong login or password. Denied.
 2018-05-21 19:31:14.882 [main] INFO   - Logout: user null logout the system
+2018-05-21 20:08:01.251 [main] INFO   - Registration: user pavloIvanovich98, role USER registered the system
+2018-05-21 20:08:45.418 [main] INFO   - Registration: user pavloIvanovich98, role ADMIN registered the system
+2018-05-21 20:08:58.484 [main] INFO   - Registration: user pavloIvanovich98, role ADMIN registered the system

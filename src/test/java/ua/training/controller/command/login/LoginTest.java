@@ -116,6 +116,7 @@ public class LoginTest {
         when(accountService.findAccountsByUserId(id)).thenReturn(anyList());
         when(session.getAttribute(AttributeNames.LOGGED_USER_ROLE)).thenReturn(role);
         when(userService.userIsLogged(request, login)).thenReturn(true);
+
         when(request.getSession()).thenReturn(session);
         when(request.getSession().getAttribute(AttributeNames.LANGUAGE)).thenReturn("en");
 
