@@ -26,6 +26,21 @@ the size of the deposit and the validity period.
 
 * [Maven](https://maven.apache.org/) - Dependency Management
 
+##Requirements to run
+
+* MySQL
+* Java JDK 1.8 
+* Apache Maven
+* Apache Tomcat
+
+##Run project
+* Go to the file  \src\main\resources\dao.properties
+and change db.user and db.password to your MySQL login and password.
+* Execute createTables.sql (located in the root of the project)
+* Install maven http://www.apache-maven.ru/install.html
+* Enter command "mvn tomcat7:run"
+* Open browser and follow the link http://localhost:8080/
+* Create new users or use pre-created admin user: login - roydgar, password - VS824pass98
 
 ## Authors
 
