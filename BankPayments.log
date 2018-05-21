@@ -1,0 +1,23 @@
+2018-05-21 17:17:05.554 [main] INFO   - Login: user user, role USER login the system
+2018-05-21 17:17:19.033 [main] INFO   - Login: user user, role USER login the system
+2018-05-21 17:36:46.047 [main] INFO   - Login: user user, role USER login the system
+2018-05-21 17:43:24.270 [main] INFO   - Login: user pavloIvanovich98, role USER login the system
+2018-05-21 17:46:02.852 [main] INFO   - Login: user pavloIvanovich98, role USER login the system
+2018-05-21 17:47:17.714 [main] INFO   - Login: user pavloIvanovich98, role null login the system
+2018-05-21 17:53:39.013 [main] INFO   - Login: user pavloIvanovich98, role USER login the system
+2018-05-21 17:53:49.510 [main] INFO   - Login: user pavloIvanovich98, role USER login the system
+2018-05-21 17:54:11.296 [main] INFO   - Login: user pavloIvanovich98, role USER login the system
+2018-05-21 17:54:47.171 [main] INFO   - Login: user pavloIvanovich98, role USER login the system
+2018-05-21 18:05:32.855 [main] INFO   - Registration: user pavloIvanovich98, role USER registered the system
+2018-05-21 18:05:41.603 [main] INFO   - Registration: user pavloIvanovich98, role USER registered the system
+2018-05-21 18:19:28.192 [main] INFO   - Login: user pavloIvanovich98, role USER login the system
+2018-05-21 18:20:13.061 [main] INFO   - Login: user pavloIvanovich98, role USER login the system
+2018-05-21 18:20:13.068 [main] WARN   - Login: user pavloIvanovich98, role USER already logged. Denied.
+2018-05-21 18:20:27.831 [main] INFO   - Login: user pavloIvanovich98, role USER login the system
+2018-05-21 18:20:27.844 [main] WARN   - Login: user pavloIvanovich98, role USER already logged. Denied.
+2018-05-21 18:20:39.122 [main] INFO   - Login: user pavloIvanovich98, role USER login the system
+2018-05-21 18:20:39.136 [main] WARN   - Login: user pavloIvanovich98, role USER already logged. Denied.
+2018-05-21 18:22:18.723 [main] INFO   - Login: user pavloIvanovich98, role USER login the system
+2018-05-21 18:22:18.730 [main] WARN   - Login: user pavloIvanovich98, role USER already logged. Denied.
+2018-05-21 18:22:21.569 [main] INFO   - Login: user pavloIvanovich98 wrong login or password. Denied.
+2018-05-21 19:31:14.882 [main] INFO   - Logout: user null logout the system
