@@ -4,6 +4,7 @@ public interface PageURLs {
     String INDEX          = "/index.jsp";
 
     String LOGIN                    = "/view/login/login.jsp";
+    String REDIRECT_LOGIN           = "redirect:/view/login/login.jsp";
     String LOGIN_REDIRECT           = "redirect:/view/login/login.jsp";
     String REGISTRATION             = "/view/login/registration.jsp";
     String REGISTRATION_REDIRECT    = "redirect:/view/login/registration.jsp";

@@ -43,6 +43,6 @@ public class Registration implements Command {
 
         userService.create(login, password, User.Role.USER, email);
         logger.info(LoggerMessageUtil.userRegistration(login, User.Role.USER));
-        return PageURLs.LOGIN;
+        return PageURLs.REDIRECT_LOGIN;
     }
 }
