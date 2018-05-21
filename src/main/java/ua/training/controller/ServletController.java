@@ -14,6 +14,7 @@ import java.util.HashSet;
 public class ServletController extends HttpServlet {
 
     private final CommandExecutor commandExecutor = CommandExecutor.getInstance();
+
     @Override
     public void init(ServletConfig servletConfig){
         servletConfig.getServletContext().setAttribute(AttributeNames.LOGGED_USERS, new HashSet<String>());
@@ -33,16 +34,12 @@ public class ServletController extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println(request.getSession().getAttribute(AttributeNames.LANGUAGE));
-        if (request.getSession().getAttribute(AttributeNames.LANGUAGE) != null) {
-            String locale = request.getSession().getAttribute(AttributeNames.LANGUAGE).toString();
-            System.out.println(locale);
-        }
-        String path = request.getRequestURI();
 
+        String path = request.getRequestURI();
         path = path.replaceAll(".*/" , "");
 
         String page = commandExecutor.executeCommand(path, request);
+
         if(page.contains("redirect")){
             response.sendRedirect(page.replace("redirect:", ""));
         }else {

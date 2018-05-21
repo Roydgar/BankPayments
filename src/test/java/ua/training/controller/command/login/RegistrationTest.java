@@ -50,7 +50,7 @@ public class RegistrationTest {
         session = mock(HttpSession.class);
         login = "pavloIvanovich98";
         password = "09042606Pav";
-        wrongPassword = "09042606Pav1";
+        wrongPassword = "0904";
         email = "royd@mail.ru";
         role = User.Role.USER;
         language = "en";
@@ -99,6 +99,23 @@ public class RegistrationTest {
         when(userService.userExists(anyString())).thenReturn(true);
 
         doNothing().when(userService).create(login, password, role, email);
+
+        String page = registrationCommand.execute(request);
+        assertNotNull(page);
+        assertEquals(page, PageURLs.REGISTRATION);
+    }
+
+    @Test
+    public void InvalidUserData() {
+        when(request.getParameter(AttributeNames.LOGIN)).thenReturn(login);
+        when(request.getParameter(AttributeNames.PASSWORD)).thenReturn(wrongPassword);
+        when(request.getParameter(AttributeNames.EMAIL)).thenReturn(email);
+        when(request.getParameter(AttributeNames.CONFIRM_PASSWORD)).thenReturn(wrongPassword);
+        when(request.getSession()).thenReturn(session);
+        when(request.getSession().getAttribute(AttributeNames.LANGUAGE)).thenReturn(language);
+        when(userService.userExists(anyString())).thenReturn(true);
+
+        doNothing().when(userService).create(login, wrongPassword, role, email);
 
         String page = registrationCommand.execute(request);
         assertNotNull(page);

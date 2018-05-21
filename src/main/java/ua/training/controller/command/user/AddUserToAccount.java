@@ -32,14 +32,14 @@ public class AddUserToAccount implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         String chosenAccountNumber = request.getParameter(AttributeNames.CHOSEN_ACCOUNT);
-
-        if (DataValidator.parameterIsEmptyOrNull(chosenAccountNumber)) {
+        String login = request.getParameter(AttributeNames.LOGIN);
+        if (DataValidator.parameterIsEmptyOrNull(chosenAccountNumber, login)) {
             return PageURLs.ADD_USER_TO_ACCOUNT;
         }
 
         Optional<Account> chosenAccount = accountService.findByNumber(
                 request.getParameter(AttributeNames.CHOSEN_ACCOUNT));
-        Optional<User> chosenUser = userService.getUserByLogin(request.getParameter(AttributeNames.LOGIN));
+        Optional<User> chosenUser = userService.getUserByLogin(login);
 
         if (chosenUser.isPresent() && chosenAccount.isPresent()) {
             accountService.addUserToAccount(chosenUser.get().getId(), chosenAccount.get().getId());

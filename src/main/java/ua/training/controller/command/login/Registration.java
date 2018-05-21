@@ -31,6 +31,11 @@ public class Registration implements Command {
             return PageURLs.REGISTRATION;
         }
 
+        if(!DataValidator.checkUserInput(login, password, email)) {
+            ResourceBundleUtil.setErrorMessage(request, ResponseMessages.REGISTRATION_NOT_VALID_PARAMETERS);
+            return PageURLs.REGISTRATION;
+        }
+
         if(!password.equals(confirmPassword)) {
             ResourceBundleUtil.setErrorMessage(request, ResponseMessages.REGISTRATION_PASSWORDS_DONT_MATCH);
             return PageURLs.REGISTRATION;

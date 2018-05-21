@@ -54,6 +54,7 @@ public class DoOperation implements Command {
             return PageURLs.DO_OPERATION;
         }
 
+        System.out.println(payerAccount.get().getBalance());
        accountService.doTransfer(payerAccount.get(), recipientAccount.get(), moneyAmount);
         operationService.create(payerAccount.get().getId(), recipientAccount.get(),
                 moneyAmount);

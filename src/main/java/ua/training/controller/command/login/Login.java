@@ -31,8 +31,12 @@ public class Login implements Command {
         String login = request.getParameter(AttributeNames.LOGIN);
         String password = request.getParameter(AttributeNames.PASSWORD);
 
-        System.out.println(login + ": " + password);
         if (DataValidator.parameterIsEmptyOrNull(login, password)) {
+            return PageURLs.LOGIN;
+        }
+
+        if(!DataValidator.checkUserInput(login, password)) {
+            ResourceBundleUtil.setErrorMessage(request, ResponseMessages.LOGIN_ERROR);
             return PageURLs.LOGIN;
         }
 

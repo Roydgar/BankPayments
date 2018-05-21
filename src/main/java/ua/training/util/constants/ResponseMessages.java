@@ -8,6 +8,7 @@ public interface ResponseMessages {
 
     String REGISTRATION_PASSWORDS_DONT_MATCH    = "registration.error.passwordsDontMatch";
     String REGISTRATION_USER_EXISTS             = "registration.error.userExists";
+    String REGISTRATION_NOT_VALID_PARAMETERS    = "registration.error.notValidParameters";
 
     String OPEN_ACCOUNT_DENIED          = "openAccount.denied";
 

@@ -47,6 +47,7 @@ public class OpenAccount implements Command {
             creditRequestService.create(loggedUserId,
                     (String)request.getSession().getAttribute(AttributeNames.LOGGED_USER_LOGIN), moneyAmount);
         } else{
+            System.out.println("CRESDF");
             accountService.create(type, loggedUserId, moneyAmount);
         }
 
