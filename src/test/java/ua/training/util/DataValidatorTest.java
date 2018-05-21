@@ -12,7 +12,7 @@ public class DataValidatorTest {
     private String emptyArgument = "";
     private String correctPassword = "Vs8251094";
     private String incorrectPassword = "1231";
-    private String correctLogin = "myLogin23_32";
+    private String correctLogin = "roydgar";
     private String incorrectLogin = "vsd";
     private String correctEmail = "roydgar@gmail.com";
     private String incorrectEmail = "royd";

@@ -15,6 +15,8 @@ import javax.money.convert.MonetaryConversions;
 import java.time.LocalDateTime;
 import java.util.Currency;
 
+import static org.apache.commons.codec.digest.DigestUtils.md5Hex;
+
 
 public class DatabaseTest {
     @Test
@@ -36,14 +38,14 @@ public class DatabaseTest {
     public void test() {
         AccountDao dao = DaoFactory.getInstance().createAccountDao();
 
-
+        System.out.println(md5Hex("VS824pass98"));
     }
 
 
     @Test
     public void testFindAll(){
         UserDao userDao = DaoFactory.getInstance().createUserDao();
-        userDao.create(new User.UserBuilder().setLogin("roydgar").setPassword(DigestUtils.md5Hex("VS824"))
+        userDao.create(new User.UserBuilder().setLogin("roydgar").setPassword(md5Hex("VS824"))
                 .setEmail("Royd@gmail.com").setRole(User.Role.ADMIN).create());
     }
 
